@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -84,7 +85,9 @@ class PageLogin extends GetView<ControllerLogin> {
                       'Sign In',
                       context,
                       AppColor.primaryColor.shade400,
-                          (){}
+                          (){
+                            Get.toNamed(Routes.main);
+                          }
                   ),
                 ),
                 Container(
