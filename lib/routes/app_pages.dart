@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:intake_customer/features/create_order/page_create_order.dart';
 import 'package:intake_customer/features/home/page_home.dart';
 import 'package:intake_customer/features/login/page_login.dart';
 import 'package:intake_customer/features/profile/page_profile.dart';
@@ -19,6 +20,10 @@ class AppPages {
     GetPage(
       name: Routes.profile,
       page: () => const PageProfile(),
+    ),
+    GetPage(
+      name: Routes.create_order,
+      page: () => const PageCreateOrder(),
     ),
   ];
 }
