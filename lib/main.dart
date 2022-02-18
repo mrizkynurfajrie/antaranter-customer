@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import 'routes/app_pages.dart';
-import 'routes/app_routes.dart';
-import 'shared/constans/colors.dart';
-import 'shared/controller/controller_bind.dart';
-import 'shared/helpers/utils.dart';
-import 'shared/widgets/others/page_info.dart';
+import 'package:intake_customer/routes/app_pages.dart';
+import 'package:intake_customer/routes/app_routes.dart';
+import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/controller/controller_bind.dart';
+import 'package:intake_customer/shared/helpers/utils.dart';
+import 'package:intake_customer/shared/widgets/others/page_info.dart';
 
 void main() {
   runApp(const App());
@@ -91,7 +90,7 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
       designSize: const Size(375, 779),
       builder: () => GetMaterialApp(
         navigatorKey: Get.key,
-        title: 'In-Take',
+        title: 'INTAKE-CUSTOMER',
         theme: ThemeData(
           platform: TargetPlatform.android,
           brightness: Brightness.light,

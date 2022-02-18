@@ -1,4 +1,4 @@
-# intakemobile
+# intake_customer
 
 A new Flutter project.
 
