@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:intake_customer/features/login/page_login.dart';
-
 import 'app_routes.dart';
 
 
