@@ -9,7 +9,7 @@ class PageProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.bgColorGrey,
+      backgroundColor: AppColor.bgPageColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -24,14 +24,7 @@ class PageProfile extends StatelessWidget {
                   bottomLeft: Radius.circular(35),
                   bottomRight: Radius.circular(35),
                 ),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [
-                    AppColor.gradientColorOrangeBegin,
-                    AppColor.gradientColorOrangeEnd,
-                  ],
-                ),
+                gradient: AppColor.gradient1
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

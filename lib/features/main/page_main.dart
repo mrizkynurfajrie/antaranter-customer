@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/main/controller_main.dart';
+import 'package:intake_customer/shared/constans/colors.dart';
 
 class PageMain extends GetView<ControllerMain> {
   const PageMain({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class PageMain extends GetView<ControllerMain> {
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
-          selectedItemColor: Color(0xFFFF9147),
+          selectedItemColor: AppColor.primaryColor.shade400,
           currentIndex: controller.currentPage.value,
           onTap: (index) => controller.changePage(index),
           items: [

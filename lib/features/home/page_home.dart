@@ -8,7 +8,7 @@ class PageHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.bgColorGrey,
+      backgroundColor: AppColor.bgPageColor,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -86,7 +86,7 @@ class PageHome extends StatelessWidget {
                                   "Kacang Almond Booster",
                                   style: TextStyle(
                                     fontSize: 20,
-                                    color: AppColor.textColorOrange,
+                                    color: AppColor.primaryColor.shade500,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),

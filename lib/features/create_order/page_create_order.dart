@@ -7,7 +7,7 @@ class PageCreateOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.bgColorGrey,
+      backgroundColor: AppColor.bgPageColor,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
