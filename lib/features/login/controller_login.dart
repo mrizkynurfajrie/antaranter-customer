@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/response/loginResponse.dart';
+import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'api_login.dart';
 
@@ -21,8 +22,8 @@ class ControllerLogin extends GetxController {
   var loginStatus = false;
 
   @override
-  void onInit() {
-    // checkLogin();
+  void onInit(){
+    checkLogin();
     super.onInit();
   }
 
@@ -44,10 +45,10 @@ class ControllerLogin extends GetxController {
         loginResponse result = loginResponse.fromJson(detailUser);
         var tokenUser = loginResult["data"]["token"];
         token.value = tokenUser;
-        Api2().setToken(token: token.value);
+        await Api2().setToken(token: token.value);
         loginStatus = true;
-        Api2().setIsLogin(isLogin: loginStatus);
-        // Get.off(newPage);
+        await Api2().setIsLogin(isLogin: loginStatus);
+        Get.offNamed(Routes.main);
       }
       loading(false);
     } catch (e) {
@@ -56,10 +57,11 @@ class ControllerLogin extends GetxController {
     }
   }
 
-  // checkLogin(){
-  //   var statusLogin = Api2().getLoginStatus();
-  //   if(statusLogin == true){
-  //     Get.off(newPage);
-  //   }
-  // }
+  checkLogin()async{
+    var statusLogin = await Api2().getLoginStatus();
+    log('cek status : ' + statusLogin.toString());
+    if(statusLogin == true){
+      Get.offNamed(Routes.main);
+    }
+  }
 }

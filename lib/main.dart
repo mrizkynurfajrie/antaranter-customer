@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intake_customer/routes/app_pages.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
@@ -10,7 +11,8 @@ import 'package:intake_customer/shared/controller/controller_bind.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/others/page_info.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const App());
 }
 

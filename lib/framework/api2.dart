@@ -2,7 +2,7 @@ import 'package:get_storage/get_storage.dart';
 
 const String CACHE_USERNAME = "username";
 const String CACHE_TOKEN = "token";
-const String CHECK_LOGIN = "token";
+const String CHECK_LOGIN = "loginState";
 
 class Api2 {
   final box = GetStorage();
@@ -24,7 +24,7 @@ class Api2 {
   }
 
   Future setIsLogin({bool? isLogin}) async{
-    isLogin = false;
+    isLogin ??= false;
     await box.write(CHECK_LOGIN, isLogin);
   }
 

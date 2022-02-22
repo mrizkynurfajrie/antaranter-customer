@@ -11,7 +11,7 @@ class ApiLogin {
     };
 
     var apiLoginResponse = await Api1().apiJSONPost("login-user", loginBody);
-    log('return data = ' + apiLoginResponse.toString());
+    // log('return data = ' + apiLoginResponse.toString());
 
     return apiLoginResponse;
   }
