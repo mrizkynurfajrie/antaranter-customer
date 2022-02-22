@@ -84,7 +84,7 @@ class PageLogin extends GetView<ControllerLogin> {
                       'Sign In',
                       context,
                       AppColor.primaryColor.shade400,
-                          (){}
+                          ()=> controller.login()
                   ),
                 ),
                 Container(
