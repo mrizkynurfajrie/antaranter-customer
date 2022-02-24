@@ -15,11 +15,7 @@ class PageLogin extends GetView<ControllerLogin> {
       body: SafeArea(
         child: Stack(
           children: <Widget>[
-            Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                color: Color(0xfff5f5f5)
-            ),
+            uiComponent().baseBackgroundColor(context),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -92,7 +88,7 @@ class PageLogin extends GetView<ControllerLogin> {
                   child: Align(
                     alignment: Alignment.center,
                     child: TextButton(
-                      onPressed: (){},
+                      onPressed: ()=> controller.regisRoute(),
                       child: Text(
                         "Belum punya akun? Yuk, buat!",
                         style: TextStyle(

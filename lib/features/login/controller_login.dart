@@ -64,4 +64,8 @@ class ControllerLogin extends GetxController {
       Get.offNamed(Routes.main);
     }
   }
+
+  regisRoute(){
+    Get.toNamed(Routes.register);
+  }
 }

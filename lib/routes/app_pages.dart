@@ -5,6 +5,8 @@ import 'package:intake_customer/features/login/page_login.dart';
 import 'package:intake_customer/features/main/binding_main.dart';
 import 'package:intake_customer/features/main/page_main.dart';
 import 'package:intake_customer/features/profile/page_profile.dart';
+import 'package:intake_customer/features/register/page_register.dart';
+import 'package:intake_customer/features/register/binding_register.dart';
 
 import 'app_routes.dart';
 
@@ -14,6 +16,11 @@ class AppPages {
     GetPage(
       name: Routes.INITIAL,
       page: () => const PageLogin(),
+    ),
+    GetPage(
+        name: Routes.register,
+        page: () => const PageRegister(),
+        binding: BindingRegister()
     ),
     GetPage(
       name: Routes.home,
