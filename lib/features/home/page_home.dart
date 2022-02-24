@@ -1,125 +1,323 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intake_customer/features/home/controller_home.dart';
+import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/constans/styles.dart';
+import 'package:intake_customer/shared/pages/page_decoration_top.dart';
+import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
+import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
+import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
+import 'package:intake_customer/shared/widgets/cards/card_rounded_bottom.dart';
+import 'package:intake_customer/shared/widgets/inputs/input_search.dart';
 
-class PageHome extends StatelessWidget {
+class PageHome extends GetView<ControllerHome> {
   const PageHome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PageDecorationTop(
+      padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                width: 300,
-                child: Image.asset(
-                  "assets/logo/logo-besar.png",
-                  fit: BoxFit.contain,
+      toolbarColor: AppColor.whiteColor,
+      center: AppLogos.logoAppBar(AppLogos.logoColored),
+      title: "IN-TAKE",
+      enableBack: false,
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: CardRoundedBottom(
+              margin: EdgeInsets.zero,
+              color: AppColor.primaryColor.shade300,
+              borderRadius: 30,
+              child: Obx(
+                () => Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                controller.username.value,
+                                style: TextStyles.textTitle,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                controller.phone.value,
+                                style: TextStyles.inter.copyWith(
+                                  color: AppColor.whiteColor,
+                                  fontSize: FontSizes.s12,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        CircleAvatar(
+                          backgroundImage:
+                              AssetImage("assets/images/fajrie.jpg"),
+                        )
+                      ],
+                    ),
+                    verticalSpace(25),
+                    Text(
+                      "Tracking paket kamu",
+                      style: TextStyles.inter
+                          .copyWith(color: AppColor.whiteColor, fontSize: 25),
+                    ),
+                    Text(
+                      "Masukkan Nama Penerima / Barang",
+                      style: TextStyle(
+                        color: AppColor.whiteColor,
+                        fontSize: Sizes.sm,
+                      ),
+                    ),
+                    verticalSpace(25),
+                    SizedBox(
+                      width: Get.width * 0.8,
+                      child: InputSearch(
+                        controller: controller.searchController,
+                        onChanged: (p0) {},
+                      ),
+                    ),
+                    verticalSpace(15),
+                  ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 10,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                verticalSpace(Get.height * 0.03),
+                Text(
+                  "Layanan apa yang anda butuhkan ?",
+                  style: TextStyles.textTableOrange,
                 ),
-                child: Text(
-                  "Ingin kirim apa hari ini?",
-                  style: TextStyle(
-                    color: AppColor.textColorGrey,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
+                verticalSpace(Get.height * 0.03),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Insets.med),
+                  child: Row(
+                    children: [
+                      MenuButtonHome(
+                        title: "Kirim Paket",
+                        subTitle: "Kirim paket sesuai keinginan anda",
+                        icon: AppIcons.boxOrange,
+                        ontap: () {},
+                      ),
+                      horizontalSpace(Get.width * 0.025),
+                      MenuButtonHome(
+                        title: "Riwayat Pengiriman",
+                        subTitle: "Lihat riwayat pengiriman anda",
+                        icon: AppIcons.historyOrder,
+                        ontap: () {},
+                      ),
+                    ],
+                  ),
+                ),
+                verticalSpace(Get.height * 0.03),
+              ],
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: Insets.med),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Penawaran untuk anda",
+                        style: TextStyle(
+                          fontSize: FontSizes.s14,
+                          color: AppColor.primaryColor,
+                        ),
+                      ),
+                      ButtonText(
+                        onPressed: () {},
+                        label: "Lihat semua",
+                        color: AppColor.primaryColor,
+                      ),
+                    ],
+                  ),
+                  verticalSpace(10),
+                  SizedBox(
+                    height: 240,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.only(right: 20),
+                          width: 160,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: AppColor.whiteColor,
+                              boxShadow: Shadows.universal),
+                          child: Material(
+                            child: InkWell(
+                              onTap: () {},
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 110,
+                                    width: Get.width,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.asset(
+                                        "assets/images/demo-pict.jpg",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  verticalSpace(10),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: Insets.med,
+                                    ),
+                                    child: Text(
+                                      "Potongan 50% Antar Paket",
+                                      style: TextStyles.h6,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  verticalSpace(6),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: Insets.med,
+                                    ),
+                                    child: Text(
+                                      "Dapatkan potongan harga hingga 50% untuk pengiriman paket di Samarinda",
+                                      style: TextStyle(fontSize: FontSizes.s11),
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  verticalSpace(20),
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: CardRounded(
+              margin: EdgeInsets.symmetric(
+                horizontal: Insets.med,
+              ),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                    child: Image.asset(
+                      AppIcons.customerService,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  horizontalSpace(10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Perlu Bantuan ?",
+                          textAlign: TextAlign.start,
+                          style: TextStyles.h6,
+                        ),
+                        Text(
+                          "Hubungi Customer Service",
+                          style: TextStyle(
+                              color: AppColor.bodyColor.shade600,
+                              fontSize: FontSizes.s11),
+                        )
+                      ],
+                    ),
+                  ),
+                  ButtonPrimary(
+                    cornerRadius: 15,
+                    color: AppColor.primaryColor,
+                    size: Get.width * 0.25,
+                    label: "Hubungi",
+                    onPressed: () {},
+                  )
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: verticalSpace(20),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class MenuButtonHome extends StatelessWidget {
+  final Function() ontap;
+  final String icon;
+  final String title;
+  final String subTitle;
+
+  const MenuButtonHome({
+    Key? key,
+    required this.ontap,
+    required this.icon,
+    required this.title,
+    required this.subTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: InkWell(
+        onTap: () {},
+        child: CardRounded(
+          shadow: Shadows.universal,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(65),
+                child: Container(
+                  padding: EdgeInsets.all(12),
+                  width: 65,
+                  height: 65,
+                  color: AppColor.bodyColor.shade200,
+                  child: Image.asset(
+                    icon,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
+              verticalSpace(15),
+              Text(
+                title,
+                style: TextStyles.inter.copyWith(
+                  fontSize: FontSizes.s14,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 15,
-                    ),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade400,
-                            blurRadius: 10,
-                            spreadRadius: 2,
-                            offset: Offset(4, 4),
-                          ),
-                        ]),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 180,
-                            width: Get.width,
-                            child: Image.asset(
-                              "assets/images/demo-pict.jpg",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 15,
-                              vertical: 10,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Kacang Almond Booster",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: AppColor.primaryColor.shade500,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "081234567890",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Kacang almond merupakan sumber protein terbaik bagi ibu menyusui. Bahkan ginekolog merekomendasikan untuk rutin mengkonsumsi kacang almond saat menyusui, karena kacang almond kaya akan kalsium dan secara efektif dapat meningkatkatkan proses pertumbuhan bayi ibu.",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                },
-                itemCount: 6,
+              verticalSpace(10),
+              Text(
+                subTitle,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppColor.bodyColor.shade600,
+                ),
               ),
             ],
           ),
