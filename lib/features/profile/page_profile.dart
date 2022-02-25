@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 
@@ -9,305 +12,206 @@ class PageProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.bgPageColor,
+      appBar: AppBar(
+        title: AppLogos.logoAppBar(AppLogos.logoColored),
+        backgroundColor: AppColor.whiteColor,
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
+        child: Stack(
+          children: <Widget>[
             Container(
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).padding.top,
-                bottom: 10,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(35),
-                  bottomRight: Radius.circular(35),
-                ),
-                gradient: AppColor.gradient1
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 20,
+              height: Get.height,
+              width: Get.width,
+              color: AppColor.bgPageColor,
+            ),
+            Column(
+              children: <Widget>[
+                Container(
+                  height: Get.height *0.25,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    color: AppColor.primaryColor.shade300,
+                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      OutlinedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.favorite,
-                          color: Colors.white,
-                          size: 47,
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          padding: EdgeInsets.all(15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          side: BorderSide.none,
-                          primary: Colors.grey.withOpacity(0.5),
-                          backgroundColor: Colors.white.withOpacity(0.5),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: CircleAvatar(
+                          radius: 40,
+                          backgroundImage: AssetImage("assets/images/fajrie.jpg"),
                         ),
                       ),
-                      CircleAvatar(
-                        backgroundImage: AssetImage("assets/images/fajrie.jpg"),
-                        radius: 55,
-                      ),
-                      OutlinedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.mail,
-                          color: Colors.white,
-                          size: 47,
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          padding: EdgeInsets.all(15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: Text(
+                            "Muhammad Fajrie",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: AppColor.whiteColor
                           ),
-                          side: BorderSide.none,
-                          primary: Colors.grey.withOpacity(0.5),
-                          backgroundColor: Colors.white.withOpacity(0.5),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 5),
+                        child: Text(
+                            "081234567899",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: AppColor.whiteColor
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: Text(
+                            "Mygmail@gmail.com",
+                          style: TextStyles.textTitle,
                         ),
                       ),
                     ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Muhammad Fajrie",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "081234567890",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.grey,
-                        padding: EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  )
+                ),
+                GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+                    height: Get.height * 0.10,
+                    width: Get.width,
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20))
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image:
-                                    AssetImage("assets/icons/access_time.png"),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "Pesanan",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.textMenuColorGrey,
-                              ),
-                            ),
-                          ),
+                              margin: EdgeInsets.only(left: 15),
+                              child: Icon(
+                                CupertinoIcons.clock,
+                                size: 45,
+                                color: AppColor.primaryColor.shade300,
+                              )),
+                          Container(
+                              margin: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Pesanan',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: AppColor.bodyColor.shade600),
+                              )),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.grey,
-                        padding: EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                ),
+                GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    height: Get.height * 0.10,
+                    width: Get.width,
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20))
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image:
-                                    AssetImage("assets/icons/person_add.png"),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "Ajak Teman",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.textMenuColorGrey,
-                              ),
-                            ),
-                          ),
+                              margin: EdgeInsets.only(left: 15),
+                              child: Icon(
+                                CupertinoIcons.person_add_solid,
+                                size: 45,
+                                color: AppColor.primaryColor.shade300,
+                              )),
+                          Container(
+                              margin: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Ajak Teman',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: AppColor.bodyColor.shade600),
+                              )),
                         ],
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.grey,
-                        padding: EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                ),
+                GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    height: Get.height * 0.10,
+                    width: Get.width,
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20))
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    "assets/icons/directions_bike.png"),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "Bergabung",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.textMenuColorGrey,
-                              ),
-                            ),
-                          ),
+                              margin: EdgeInsets.only(left: 15),
+                              child: Icon(
+                                Icons.motorcycle,
+                                size: 45,
+                                color: AppColor.primaryColor.shade300,
+                              )),
+                          Container(
+                              margin: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Bergabung',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: AppColor.bodyColor.shade600),
+                              )),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.grey,
-                        padding: EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                ),
+                GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    height: Get.height * 0.10,
+                    width: Get.width,
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20))
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage("assets/icons/settings.png"),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "Pengaturan",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.textMenuColorGrey,
-                              ),
-                            ),
-                          ),
+                              margin: EdgeInsets.only(left: 15),
+                              child: Icon(
+                                CupertinoIcons.gear_solid,
+                                size: 45,
+                                color: AppColor.primaryColor.shade300,
+                              )),
+                          Container(
+                              margin: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Pengaturan',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: AppColor.bodyColor.shade600),
+                              )),
                         ],
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+
           ],
         ),
       ),

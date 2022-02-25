@@ -25,6 +25,7 @@ class PageHome extends GetView<ControllerHome> {
       enableBack: false,
       child: CustomScrollView(
         slivers: [
+          //header
           SliverToBoxAdapter(
             child: CardRoundedBottom(
               margin: EdgeInsets.zero,
@@ -90,6 +91,7 @@ class PageHome extends GetView<ControllerHome> {
               ),
             ),
           ),
+          //opsi kirim dan cek pengiriman
           SliverToBoxAdapter(
             child: Column(
               children: [
@@ -123,6 +125,7 @@ class PageHome extends GetView<ControllerHome> {
               ],
             ),
           ),
+          //list iklan
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: Insets.med),
@@ -212,6 +215,7 @@ class PageHome extends GetView<ControllerHome> {
               ),
             ),
           ),
+          //konten bantuan user
           SliverToBoxAdapter(
             child: CardRounded(
               margin: EdgeInsets.symmetric(
@@ -256,6 +260,7 @@ class PageHome extends GetView<ControllerHome> {
               ),
             ),
           ),
+          //jarak dasar
           SliverToBoxAdapter(
             child: verticalSpace(20),
           )
