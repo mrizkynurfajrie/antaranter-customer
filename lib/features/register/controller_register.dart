@@ -1,6 +1,6 @@
+import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/register/api_register.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -28,18 +28,20 @@ class ControllerRegister extends GetxController{
     try{
       loading = true;
       var regisResult = await api.registerApiRunning(phone: edtPhoneNum.text, password: edtPswd.text);
+      loading = false;
       if(regisResult != null){
-        Fluttertoast.showToast(
-          msg: 'Register is success',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.black,
-          fontSize: 16
-        );
+        var successStatus = regisResult["success"];
+        if(successStatus != false){
+          Get.snackbar(
+              "Register",
+              'Register is success',
+              snackPosition: SnackPosition.BOTTOM
+          );
+        }
       }
-
+      loading = false;
     }catch(e){
+      log(e.toString());
       loading = false;
     }
   }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:intake_customer/framework/api1.dart';
 
 class ApiRegister{
@@ -12,7 +10,7 @@ class ApiRegister{
     };
     
     var apiRegisterResponse = await Api1().apiJSONPost('register-user', regisBody);
-    log('cek data : ' + apiRegisterResponse);
+    // log('cek data : ' + apiRegisterResponse);
 
     return apiRegisterResponse;
   }
