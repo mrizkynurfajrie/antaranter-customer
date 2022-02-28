@@ -5,19 +5,21 @@ import 'package:get/get.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
+import 'package:intake_customer/shared/pages/page_decoration_top.dart';
 
 class PageProfile extends StatelessWidget {
   const PageProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: AppLogos.logoAppBar(AppLogos.logoColored),
-        backgroundColor: AppColor.whiteColor,
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
+    return PageDecorationTop(
+      padding: EdgeInsets.zero,
+      backgroundColor: AppColor.bgPageColor,
+      toolbarColor: AppColor.whiteColor,
+      center: AppLogos.logoAppBar(AppLogos.logoColored),
+      title: "IN-TAKE",
+      enableBack: false,
+      child: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
             Container(
