@@ -156,13 +156,14 @@ class PageHome extends GetView<ControllerHome> {
                       itemCount: 10,
                       itemBuilder: (context, index) {
                         return Container(
-                          margin: EdgeInsets.only(right: 20),
+                          margin: EdgeInsets.only(right: 20, bottom: Insets.xs),
                           width: 160,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: AppColor.whiteColor,
                               boxShadow: Shadows.universal),
                           child: Material(
+                            color: Colors.transparent,
                             child: InkWell(
                               onTap: () {},
                               child: Column(
