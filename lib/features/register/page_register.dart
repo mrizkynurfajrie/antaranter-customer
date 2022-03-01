@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/register/controller_register.dart';
 import 'package:flutter/material.dart';
+import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -12,6 +13,11 @@ class PageRegister extends GetView<ControllerRegister>{
   @override
   Widget build(BuildContext context) =>
       Scaffold(
+        appBar: AppBar(
+          title: AppLogos.logoAppBar(AppLogos.logoColored),
+          backgroundColor: AppColor.whiteColor,
+          automaticallyImplyLeading: false,
+        ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Stack(
@@ -20,36 +26,34 @@ class PageRegister extends GetView<ControllerRegister>{
                 Column(
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.only(top: 10),
-                      alignment: Alignment.topCenter,
-                      child: const Text(
-                        'Sign Up',
+                      margin: EdgeInsets.only(top: 30),
+                      child: Text(
+                        "SIGN UP",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black54),
+                          fontSize: 25,
+                          color: AppColor.bodyColor.shade800,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
+                    uiComponent().baseLinePrimaryColor(context),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
-                      alignment: Alignment.topCenter,
-                      child: const Text(
-                        'Pastikan data diri anda benar & lengkap',
-                        textAlign: TextAlign.center,
+                      margin: EdgeInsets.only(top: 5),
+                      child: Text(
+                        "Yuk, gabung sama kami!",
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300,
-                            color: Colors.black87),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                        ),
                       ),
                     ),
-                    uiComponent().baseLineDarkColor(context),
                     Container(
                       margin: EdgeInsets.only(top: 20, left: 20, right: 20),
                       child: Card(
                         elevation: 4,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)
+                            borderRadius: BorderRadius.circular(5)
                         ),
                         child: InternationalPhoneNumberInput(
                           onInputChanged: (PhoneNumber value) {},
@@ -65,8 +69,9 @@ class PageRegister extends GetView<ControllerRegister>{
                       child: Card(
                         elevation: 4,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        child: uiComponent().edtField(controller.edtPswd,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: uiComponent().edtPassField(
+                            controller.edtPswd,
                             prefIcon: Icon(CupertinoIcons.lock_fill)),
                       ),
                     ),

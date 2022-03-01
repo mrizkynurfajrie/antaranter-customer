@@ -20,9 +20,31 @@ class uiComponent{
     );
 }
 
-  edtField(var edtController, {Icon? prefIcon}){
+  baseLinePrimaryColor(BuildContext context){
+    return Container(
+      margin: EdgeInsets.only(top: 5),
+      height: 2,
+      width: MediaQuery.of(context).size.width * 0.25,
+      color: AppColor.primaryColor.shade300,
+    );
+}
+
+  edtField(var edtController, String edtname, {Icon? prefIcon}){
     return TextField(
       controller: edtController,
+      decoration: InputDecoration(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.only(top: 15, right: 20),
+          hintText: edtname,
+          prefixIcon: prefIcon
+      ),
+    );
+  }
+
+  edtPassField(var edtController, {Icon? prefIcon}){
+    return TextField(
+      controller: edtController,
+      obscureText: true,
       decoration: InputDecoration(
           border: InputBorder.none,
           contentPadding: EdgeInsets.only(top: 15, right: 20),
