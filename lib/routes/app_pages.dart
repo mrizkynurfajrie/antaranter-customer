@@ -11,6 +11,7 @@ import 'package:intake_customer/features/main/page_main.dart';
 import 'package:intake_customer/features/profile/page_profile.dart';
 import 'package:intake_customer/features/register/page_register.dart';
 import 'package:intake_customer/features/register/binding_register.dart';
+import 'package:intake_customer/features/setting/page_setting.dart';
 
 import 'app_routes.dart';
 
@@ -43,6 +44,10 @@ class AppPages {
         name: Routes.like,
         page: () => const PageLike(),
         binding: BindingLike()
+    ),
+    GetPage(
+        name: Routes.setting,
+        page: () => const PageSetting(),
     ),
     GetPage(
       name: Routes.create_order,

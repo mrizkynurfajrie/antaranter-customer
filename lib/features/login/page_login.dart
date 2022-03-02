@@ -18,91 +18,93 @@ class PageLogin extends GetView<ControllerLogin> {
         backgroundColor: AppColor.whiteColor,
       ),
       body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            uiComponent().baseBackgroundColor(context),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: 30),
-                  child: Text(
-                    "SIGN IN",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: AppColor.bodyColor.shade800,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                uiComponent().baseLinePrimaryColor(context),
-                Container(
-                  margin: EdgeInsets.only(top: 5),
-                  child: Text(
-                    "Sudah punya akun? Yuk, masuk!",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-                  child: Card(
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)
-                    ),
-                    child: InternationalPhoneNumberInput(
-                      onInputChanged: (PhoneNumber value) {},
-                      textFieldController: controller.edtPhoneControl,
-                      initialValue: controller.number,
-                      hintText: 'Phone Number',
-                      inputBorder: InputBorder.none,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 10, left: 20, right: 20),
-                  child: Card(
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    child: uiComponent().edtPassField(
-                        controller.edtPassword,
-                        prefIcon: Icon(CupertinoIcons.lock_fill)),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 20, left: 35, right: 35),
-                  child: uiComponent().buttonStyle_one(
-                      'Sign In',
-                      context,
-                      AppColor.primaryColor.shade400,
-                          ()=> controller.login()
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                  child: Align(
-                    child: TextButton(
-                      onPressed: ()=> controller.regisRoute(),
-                      child: Text(
-                        "Belum punya akun? Yuk, buat!",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppColor.bodyColor.shade800,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w300,
-                        ),
+        child: SingleChildScrollView(
+          child: Stack(
+            children: <Widget>[
+              uiComponent().baseBackgroundColor(context),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(top: 30),
+                    child: Text(
+                      "SIGN IN",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: AppColor.bodyColor.shade800,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                )
-              ],
-            )
-          ],
+                  uiComponent().baseLinePrimaryColor(context),
+                  Container(
+                    margin: EdgeInsets.only(top: 5),
+                    child: Text(
+                      "Sudah punya akun? Yuk, masuk!",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)
+                      ),
+                      child: InternationalPhoneNumberInput(
+                        onInputChanged: (PhoneNumber value) {},
+                        textFieldController: controller.edtPhoneControl,
+                        initialValue: controller.number,
+                        hintText: 'Phone Number',
+                        inputBorder: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      child: uiComponent().edtPassField(
+                          controller.edtPassword,
+                          prefIcon: Icon(CupertinoIcons.lock_fill)),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20, left: 35, right: 35),
+                    child: uiComponent().buttonStyle_one(
+                        'Sign In',
+                        context,
+                        AppColor.primaryColor.shade400,
+                            ()=> controller.login()
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Align(
+                      child: TextButton(
+                        onPressed: ()=> controller.regisRoute(),
+                        child: Text(
+                          "Belum punya akun? Yuk, buat!",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: AppColor.bodyColor.shade800,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -6,7 +6,13 @@ class ControllerProfile extends GetxController {
   final ApiProfile api;
   ControllerProfile({required this.api});
 
-  routingPage(){
+  routingPageHistory(){
     Get.toNamed(Routes.history);
+  }
+  routingPageLike(){
+    Get.toNamed(Routes.like);
+  }
+  routingPageSetting(){
+    Get.toNamed(Routes.setting);
   }
 }

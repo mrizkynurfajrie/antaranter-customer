@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:intake_customer/features/profile/api_profile.dart';
+import 'package:intake_customer/features/profile/controller_profile.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
@@ -12,6 +13,7 @@ class PageProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileControl = Get.put(ControllerProfile(api: ApiProfile()));
     return PageDecorationTop(
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
@@ -30,7 +32,7 @@ class PageProfile extends StatelessWidget {
             Column(
               children: <Widget>[
                 Container(
-                  height: Get.height *0.25,
+                  // height: Get.height *0.25,
                   width: Get.width,
                   decoration: BoxDecoration(
                     color: AppColor.primaryColor.shade300,
@@ -66,7 +68,7 @@ class PageProfile extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 20),
+                        margin: EdgeInsets.only(top: 20, bottom: 10),
                         child: Text(
                             "Mygmail@gmail.com",
                           style: TextStyles.textTitle,
@@ -76,7 +78,7 @@ class PageProfile extends StatelessWidget {
                   )
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: ()=> profileControl.routingPageHistory(),
                   child: Container(
                     margin: EdgeInsets.only(top: 20, left: 20, right: 20),
                     height: Get.height * 0.10,
@@ -110,9 +112,9 @@ class PageProfile extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: () => profileControl.routingPageLike(),
                   child: Container(
-                    margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
                     width: Get.width,
                     child: Card(
@@ -212,7 +214,7 @@ class PageProfile extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: () => profileControl.routingPageSetting(),
                   child: Container(
                     margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
