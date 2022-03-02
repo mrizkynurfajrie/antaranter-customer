@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -12,36 +13,34 @@ class PageLogin extends GetView<ControllerLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: AppLogos.logoAppBar(AppLogos.logoColored),
+        backgroundColor: AppColor.whiteColor,
+      ),
       body: SafeArea(
         child: Stack(
           children: <Widget>[
             uiComponent().baseBackgroundColor(context),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 0, left: 30),
-                  child: Image(
-                    image: AssetImage("assets/logo/logo-besar.png"),
-                    height: 100,
-                    width: 200,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 0, left: 30),
+                  margin: EdgeInsets.only(top: 30),
                   child: Text(
-                    "Mau barang cepat sampai?\nSini biar kami antar!",
+                    "SIGN IN",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 25,
-                      color: AppColor.primaryColor.shade400,
+                      color: AppColor.bodyColor.shade800,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
+                uiComponent().baseLinePrimaryColor(context),
                 Container(
-                  margin: EdgeInsets.only(top: 20, left: 30),
+                  margin: EdgeInsets.only(top: 5),
                   child: Text(
-                    "Sudah punya akun? Yuk, Masuk!",
+                    "Sudah punya akun? Yuk, masuk!",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w300,
@@ -49,11 +48,11 @@ class PageLogin extends GetView<ControllerLogin> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 5, left: 20, right: 20),
+                  margin: EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)
+                        borderRadius: BorderRadius.circular(5)
                     ),
                     child: InternationalPhoneNumberInput(
                       onInputChanged: (PhoneNumber value) {},
@@ -69,8 +68,9 @@ class PageLogin extends GetView<ControllerLogin> {
                   child: Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    child: uiComponent().edtField(controller.edtPassword,
+                        borderRadius: BorderRadius.circular(5)),
+                    child: uiComponent().edtPassField(
+                        controller.edtPassword,
                         prefIcon: Icon(CupertinoIcons.lock_fill)),
                   ),
                 ),
@@ -86,11 +86,11 @@ class PageLogin extends GetView<ControllerLogin> {
                 Container(
                   margin: EdgeInsets.only(top: 10),
                   child: Align(
-                    alignment: Alignment.center,
                     child: TextButton(
                       onPressed: ()=> controller.regisRoute(),
                       child: Text(
                         "Belum punya akun? Yuk, buat!",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppColor.bodyColor.shade800,
                           fontSize: 16,
