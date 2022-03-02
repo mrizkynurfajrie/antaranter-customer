@@ -14,6 +14,7 @@ dependencies:
   intl_phone_number_input: ^0.7.0+2
   fluttertoast: ^8.0.8
   intl: 0.17.0
+  flutter_osm_plugin: 0.31.0
   flutter: 
     sdk: flutter
 
