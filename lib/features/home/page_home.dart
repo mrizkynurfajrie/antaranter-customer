@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
+import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
@@ -109,7 +110,9 @@ class PageHome extends GetView<ControllerHome> {
                         title: "Kirim Paket",
                         subTitle: "Kirim paket sesuai keinginan anda",
                         icon: AppIcons.boxOrange,
-                        ontap: () {},
+                        ontap: () {
+                          Get.toNamed(Routes.create_order);
+                        },
                       ),
                       horizontalSpace(Get.width * 0.025),
                       MenuButtonHome(
@@ -289,7 +292,7 @@ class MenuButtonHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: () {},
+        onTap: ontap,
         child: CardRounded(
           shadow: Shadows.universal,
           child: Column(
