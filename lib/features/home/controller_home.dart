@@ -32,8 +32,8 @@ class ControllerHome extends GetxController {
 
   void setUser() async {
     var user = await Api2().getUser();
-    username.value = user['username'].toString();
-    image.value = user['image'].toString();
-    phone.value = user['phone'].toString();
+    username.value = user['username'] ?? "Pelanggan";
+    image.value = user['image'] ?? "";
+    phone.value = user['phone'] ?? "08xxxxxxxxxx";
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
+import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
@@ -109,7 +110,9 @@ class PageHome extends GetView<ControllerHome> {
                         title: "Kirim Paket",
                         subTitle: "Kirim paket sesuai keinginan anda",
                         icon: AppIcons.boxOrange,
-                        ontap: () {},
+                        ontap: () {
+                          Get.toNamed(Routes.create_order);
+                        },
                       ),
                       horizontalSpace(Get.width * 0.025),
                       MenuButtonHome(
@@ -156,13 +159,14 @@ class PageHome extends GetView<ControllerHome> {
                       itemCount: 10,
                       itemBuilder: (context, index) {
                         return Container(
-                          margin: EdgeInsets.only(right: 20),
+                          margin: EdgeInsets.only(right: 20, bottom: Insets.xs),
                           width: 160,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: AppColor.whiteColor,
                               boxShadow: Shadows.universal),
                           child: Material(
+                            color: Colors.transparent,
                             child: InkWell(
                               onTap: () {},
                               child: Column(
@@ -288,7 +292,7 @@ class MenuButtonHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: () {},
+        onTap: ontap,
         child: CardRounded(
           shadow: Shadows.universal,
           child: Column(
