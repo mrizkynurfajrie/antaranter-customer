@@ -8,12 +8,12 @@ import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/pages/page_decoration_top.dart';
 
-class PageProfile extends StatelessWidget {
+class PageProfile extends GetView<ControllerProfile> {
   const PageProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final profileControl = Get.put(ControllerProfile(api: ApiProfile()));
+    
     return PageDecorationTop(
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
@@ -78,7 +78,7 @@ class PageProfile extends StatelessWidget {
                   )
                 ),
                 GestureDetector(
-                  onTap: ()=> profileControl.routingPageHistory(),
+                  onTap: ()=> controller.routingPageHistory(),
                   child: Container(
                     margin: EdgeInsets.only(top: 20, left: 20, right: 20),
                     height: Get.height * 0.10,
@@ -112,7 +112,7 @@ class PageProfile extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => profileControl.routingPageLike(),
+                  onTap: () => controller.routingPageLike(),
                   child: Container(
                     margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
@@ -214,7 +214,7 @@ class PageProfile extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => profileControl.routingPageSetting(),
+                  onTap: () => controller.routingPageSetting(),
                   child: Container(
                     margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
