@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
-import 'package:intake_customer/shared/helpers/currency_formatter.dart';
 import 'package:intake_customer/shared/pages/page_decoration_top.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
@@ -34,7 +33,7 @@ class PageCreateOrder extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: IconSizes.lg,
                         height: IconSizes.lg,
                         child: Image.asset(AppIcons.locationTake),
@@ -78,7 +77,7 @@ class PageCreateOrder extends StatelessWidget {
                   verticalSpace(Insets.xs),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: IconSizes.lg,
                         height: IconSizes.lg,
                         child: Image.asset(AppIcons.locationIn),
