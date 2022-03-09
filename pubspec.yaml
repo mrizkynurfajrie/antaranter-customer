@@ -17,6 +17,7 @@ dependencies:
   flutter_osm_plugin: 0.31.0
   cached_network_image: 3.2.0
   shimmer: 2.0.0
+  image_picker: ^0.8.4+10
   flutter: 
     sdk: flutter
 

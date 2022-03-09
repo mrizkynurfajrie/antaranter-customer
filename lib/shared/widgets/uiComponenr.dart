@@ -32,9 +32,10 @@ class uiComponent{
   edtField(var edtController, String edtname, {Icon? prefIcon}){
     return TextField(
       controller: edtController,
+      maxLines: 1,
       decoration: InputDecoration(
           border: InputBorder.none,
-          contentPadding: EdgeInsets.only(top: 15, right: 20),
+          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           hintText: edtname,
           prefixIcon: prefIcon
       ),
