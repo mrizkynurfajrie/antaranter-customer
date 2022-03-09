@@ -155,7 +155,59 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                     ),
                     child: uiComponent().edtField(controller.edt_kota, 'Kota'),
                   ),
-                  uiComponent().baseLineDarkColor(context)
+                  uiComponent().baseLineDarkColor(context),
+                  GestureDetector(
+                    onTap: () => controller.ktpSourceSelector(context),
+                    child: (controller.ktp.value != "")
+                        ? Container(
+                            margin: const EdgeInsets.only(top: 20),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(
+                                File(controller.ktp.toString()),
+                                width: Get.width * 0.8,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          )
+                        : Container(
+                            alignment: Alignment.topCenter,
+                            margin: const EdgeInsets.only(top: 20),
+                            height: 200,
+                            width: Get.width * 0.8,
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                color: Color(0xffffffff)),
+                            child: Center(
+                              child: Icon(
+                                CupertinoIcons.person_fill,
+                                size: 55,
+                                color: AppColor.bodyColor.shade600,
+                              ),
+                            ),
+                          ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    height: 50,
+                    width: Get.width * 0.825,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        color: AppColor.whiteColor
+                    ),
+                    child: uiComponent().edtField(controller.edt_nik, 'NIK'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 5, left: 35, right: 35, bottom: 20),
+                    child: uiComponent().buttonStyle_one(
+                        'Update Profile',
+                        context,
+                        AppColor.primaryColor.shade400,
+                            (){}
+                    ),
+                  ),
                 ],
               )
               ),

@@ -162,56 +162,56 @@ class condition extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Container(
-                          margin: EdgeInsets.all(2),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                           child: Text(
                             '1. Dilarang memberikan/ menerima tawaran offline kurir in-take',
                             textAlign: TextAlign.justify,
                           )
                       ),
                       Container(
-                          margin: EdgeInsets.all(2),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                           child: Text(
                             '2. Pemesanan hanya diperbolehkan melalui aplikasi in-take',
                             textAlign: TextAlign.justify,
                           )
                       ),
                       Container(
-                          margin: EdgeInsets.all(2),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                           child: Text(
                             '3. Aktivitas pemesanan diluar aplikasi in-take bukan tanggung jawab pihak PT. Indo Tekno Karya',
                             textAlign: TextAlign.justify,
                           )
                       ),
                       Container(
-                          margin: EdgeInsets.all(2),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                           child: Text(
                             '4. Pastikan identitas rider ketika rider terima barang',
                             textAlign: TextAlign.justify,
                           )
                       ),
                       Container(
-                          margin: EdgeInsets.all(2),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                           child: Text(
                             '5. Pastikan pembeli anda tidak melakukan usaha penipuan dan dapat dipastikan ada ditempat',
                             textAlign: TextAlign.justify,
                           )
                       ),
                       Container(
-                          margin: EdgeInsets.all(2),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                           child: Text(
                             '6. Jika barang kembali karena perihal penipuan/ penerima tidak ditempat, talangan rider dikembalikan + GANTI ONGKIR KURIR BOLAK BALIK',
                             textAlign: TextAlign.justify,
                           )
                       ),
                       Container(
-                          margin: EdgeInsets.all(2),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                           child: Text(
                             '7. Poin diatas dapat dilakukan jika pembeli dlam waktu 1x24 jam tidak ada respon',
                             textAlign: TextAlign.justify,
                           )
                       ),
                       Container(
-                          margin: EdgeInsets.all(2),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
                           child: Text(
                             '8. Batas waktu nego adalah 3 menit per 1 pemesanan, jika melampaui maka akan otomatis dibatalkan oleh sistem',
                             textAlign: TextAlign.justify,

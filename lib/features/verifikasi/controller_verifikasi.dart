@@ -14,14 +14,16 @@ class ControllerVerifikasi extends GetxController{
   var edt_ponsel = TextEditingController();
   var edt_alamat = TextEditingController();
   var edt_kota = TextEditingController();
+  var edt_nik = TextEditingController();
 
   var nama = ''.obs;
   var pict = ''.obs;
   var phone = ''.obs;
   var email = ''.obs;
   var datePick = ''.obs;
-
   var Img = ''.obs;
+  var ktp = ''.obs;
+  var nik = ''.obs;
 
   final ImagePicker picker = ImagePicker();
 
@@ -33,7 +35,6 @@ class ControllerVerifikasi extends GetxController{
     setProfile();
     super.onInit();
   }
-
   @override
   void onClose() {
     super.onClose();
@@ -42,6 +43,7 @@ class ControllerVerifikasi extends GetxController{
     edt_ponsel.dispose();
     edt_alamat.dispose();
     edt_kota.dispose();
+    edt_nik.dispose();
   }
 
   setProfile()async{
@@ -70,16 +72,15 @@ class ControllerVerifikasi extends GetxController{
     }
   }
 
+  //gambar profile
   getFromCamera()async{
     final XFile? camImage = await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     Img.value = camImage!.path;
   }
-
   getFromFile()async{
     final XFile? fileImage = await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     Img.value = fileImage!.path;
   }
-
   imgSourceSelector(context) {
     showModalBottomSheet(
         context: context,
@@ -100,6 +101,44 @@ class ControllerVerifikasi extends GetxController{
                       title: Text('Image Gallery'),
                       onTap: () {
                         getFromFile();
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                ),
+              ));
+        });
+  }
+
+  //gambar ktp
+  getKtpFromCamera()async{
+    final XFile? camImage = await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
+    ktp.value = camImage!.path;
+  }
+  getKtpFromFile()async{
+    final XFile? fileImage = await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+    ktp.value = fileImage!.path;
+  }
+  ktpSourceSelector(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+              child: Container(
+                child: Wrap(
+                  children: <Widget>[
+                    ListTile(
+                        leading: Icon(Icons.photo_camera),
+                        title: Text('Camera'),
+                        onTap: () {
+                          getKtpFromCamera();
+                          Navigator.of(context).pop();
+                        }),
+                    ListTile(
+                      leading: Icon(Icons.photo_library),
+                      title: Text('Image Gallery'),
+                      onTap: () {
+                        getKtpFromFile();
                         Navigator.of(context).pop();
                       },
                     )
