@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
@@ -9,7 +10,7 @@ import 'package:intake_customer/shared/pages/page_decoration_top.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
-import 'package:intake_customer/shared/widgets/cards/card_rounded_bottom.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PageHome extends GetView<ControllerHome> {
   const PageHome({Key? key}) : super(key: key);
@@ -27,44 +28,62 @@ class PageHome extends GetView<ControllerHome> {
         slivers: [
           //header
           SliverToBoxAdapter(
-            child: CardRoundedBottom(
-              margin: EdgeInsets.zero,
+            child: CardRounded(
+              margin: EdgeInsets.all(Insets.med),
               color: AppColor.primaryColor.shade400,
-              borderRadius: 30,
+              borderRadius: 15,
               child: Obx(
-                () => Column(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                controller.username.value,
-                                style: TextStyles.textTitle,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                controller.phone.value,
-                                style: TextStyles.inter.copyWith(
-                                  color: AppColor.whiteColor,
-                                  fontSize: FontSizes.s12,
-                                ),
-                              )
-                            ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            text: TextSpan(
+                              style: TextStyles.textLg,
+                              text: "Hi, ",
+                              children: [
+                                TextSpan(text: controller.username.value)
+                              ],
+                            ),
+                          ),
+                          Text(
+                            controller.phone.value,
+                            style: TextStyles.inter.copyWith(
+                              color: AppColor.whiteColor,
+                              fontSize: FontSizes.s12,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(90),
+                      child: Container(
+                        height: IconSizes.xxl,
+                        width: IconSizes.xxl,
+                        child: CachedNetworkImage(
+                          fit: BoxFit.cover,
+                          imageUrl: "https://picsum.photo/200",
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) => Shimmer(
+                            gradient: AppColor.shimmerGradient,
+                            child: Container(
+                              color: Colors.white,
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => Image.asset(
+                            "assets/images/fajrie.jpg",
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        CircleAvatar(
-                          backgroundImage:
-                              AssetImage("assets/images/fajrie.jpg"),
-                        )
-                      ],
-                    ),
-                    verticalSpace(20),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -74,7 +93,6 @@ class PageHome extends GetView<ControllerHome> {
           SliverToBoxAdapter(
             child: Column(
               children: [
-                verticalSpace(Get.height * 0.03),
                 Text(
                   "Layanan apa yang anda butuhkan ?",
                   style: TextStyles.textTableOrange,
@@ -104,7 +122,8 @@ class PageHome extends GetView<ControllerHome> {
                           fit: BoxFit.contain,
                         ),
                         ontap: () {
-                          Get.toNamed(Routes.listNebeng);
+                          // Get.toNamed(Routes.listNebeng);
+                          Get.toNamed(Routes.termNebeng);
                         },
                       ),
                     ],

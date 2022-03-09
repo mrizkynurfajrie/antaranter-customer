@@ -9,4 +9,5 @@ abstract class Routes {
   static const main = '/main_page';
   static const register = '/register_page';
   static const listNebeng = '/list_nebeng_page';
+  static const termNebeng = '/term_nebeng_page';
 }
