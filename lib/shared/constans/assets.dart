@@ -12,6 +12,7 @@ class AppIcons {
   static const kurirIcon = 'assets/icons/kurir-icon.png';
   static const nebengIcon = 'assets/icons/nebeng-icon.png';
   static const historyIcon = 'assets/icons/history-icon.png';
+  static const termsIcon = 'assets/icons/terms-icon.png';
 }
 class AppLogos {
   static const logoColored = 'assets/logo/logo-besar.png';
