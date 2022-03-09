@@ -10,7 +10,6 @@ import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded_bottom.dart';
-import 'package:intake_customer/shared/widgets/inputs/input_search.dart';
 
 class PageHome extends GetView<ControllerHome> {
   const PageHome({Key? key}) : super(key: key);
@@ -30,7 +29,7 @@ class PageHome extends GetView<ControllerHome> {
           SliverToBoxAdapter(
             child: CardRoundedBottom(
               margin: EdgeInsets.zero,
-              color: AppColor.primaryColor.shade300,
+              color: AppColor.primaryColor.shade400,
               borderRadius: 30,
               child: Obx(
                 () => Column(
@@ -65,27 +64,6 @@ class PageHome extends GetView<ControllerHome> {
                         )
                       ],
                     ),
-                    verticalSpace(25),
-                    Text(
-                      "Tracking paket kamu",
-                      style: TextStyles.inter
-                          .copyWith(color: AppColor.whiteColor, fontSize: 25),
-                    ),
-                    Text(
-                      "Masukkan Nama Penerima / Barang",
-                      style: TextStyle(
-                        color: AppColor.whiteColor,
-                        fontSize: Sizes.sm,
-                      ),
-                    ),
-                    verticalSpace(25),
-                    SizedBox(
-                      width: Get.width * 0.8,
-                      child: InputSearch(
-                        controller: controller.searchController,
-                        onChanged: (p0) {},
-                      ),
-                    ),
                     verticalSpace(15),
                   ],
                 ),
@@ -107,18 +85,53 @@ class PageHome extends GetView<ControllerHome> {
                   child: Row(
                     children: [
                       MenuButtonHome(
-                        title: "Kirim Paket",
-                        subTitle: "Kirim paket sesuai keinginan anda",
-                        icon: AppIcons.boxOrange,
+                        title: "Kirim Barang",
+                        subTitle: "Kirim barang sesuai keinginan anda",
+                        icon: Image.asset(
+                          AppIcons.kurirIcon,
+                          fit: BoxFit.contain,
+                        ),
                         ontap: () {
                           Get.toNamed(Routes.create_order);
                         },
                       ),
                       horizontalSpace(Get.width * 0.025),
                       MenuButtonHome(
+                        title: "Nebeng",
+                        subTitle: "Yuk nebeng bersama kami",
+                        icon: Image.asset(
+                          AppIcons.nebengIcon,
+                          fit: BoxFit.contain,
+                        ),
+                        ontap: () {},
+                      ),
+                    ],
+                  ),
+                ),
+                verticalSpace(Get.height * 0.03),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Insets.med),
+                  child: Row(
+                    children: [
+                      MenuButtonHome(
+                        title: "Titip",
+                        subTitle: "Titipkan barang anda bersama kami",
+                        icon: Image.asset(
+                          AppIcons.titipIcon,
+                          fit: BoxFit.contain,
+                        ),
+                        ontap: () {
+                          
+                        },
+                      ),
+                      horizontalSpace(Get.width * 0.025),
+                      MenuButtonHome(
                         title: "Riwayat Pengiriman",
-                        subTitle: "Lihat riwayat pengiriman anda",
-                        icon: AppIcons.historyOrder,
+                        subTitle: "Lihat riwayat pesanan anda",
+                        icon: Image.asset(
+                          AppIcons.historyIcon,
+                          fit: BoxFit.contain,
+                        ),
                         ontap: () {},
                       ),
                     ],
@@ -257,6 +270,7 @@ class PageHome extends GetView<ControllerHome> {
                     cornerRadius: 15,
                     color: AppColor.primaryColor,
                     size: Get.width * 0.25,
+                    height: Sizes.lg,
                     label: "Hubungi",
                     onPressed: () {},
                   )
@@ -276,7 +290,7 @@ class PageHome extends GetView<ControllerHome> {
 
 class MenuButtonHome extends StatelessWidget {
   final Function() ontap;
-  final String icon;
+  final Widget icon;
   final String title;
   final String subTitle;
 
@@ -305,10 +319,7 @@ class MenuButtonHome extends StatelessWidget {
                   width: 65,
                   height: 65,
                   color: AppColor.bodyColor.shade200,
-                  child: Image.asset(
-                    icon,
-                    fit: BoxFit.contain,
-                  ),
+                  child: icon,
                 ),
               ),
               verticalSpace(15),

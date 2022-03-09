@@ -8,6 +8,10 @@ class AppIcons {
   static const customerService = 'assets/icons/customer-service.png';
   static const locationIn = 'assets/icons/location-in.png';
   static const locationTake = 'assets/icons/location-take.png';
+  static const titipIcon = 'assets/icons/titip-icon.png';
+  static const kurirIcon = 'assets/icons/kurir-icon.png';
+  static const nebengIcon = 'assets/icons/nebeng-icon.png';
+  static const historyIcon = 'assets/icons/history-icon.png';
 }
 class AppLogos {
   static const logoColored = 'assets/logo/logo-besar.png';
