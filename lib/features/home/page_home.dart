@@ -64,7 +64,7 @@ class PageHome extends GetView<ControllerHome> {
                         )
                       ],
                     ),
-                    verticalSpace(15),
+                    verticalSpace(20),
                   ],
                 ),
               ),
@@ -103,7 +103,9 @@ class PageHome extends GetView<ControllerHome> {
                           AppIcons.nebengIcon,
                           fit: BoxFit.contain,
                         ),
-                        ontap: () {},
+                        ontap: () {
+                          Get.toNamed(Routes.listNebeng);
+                        },
                       ),
                     ],
                   ),
@@ -120,9 +122,7 @@ class PageHome extends GetView<ControllerHome> {
                           AppIcons.titipIcon,
                           fit: BoxFit.contain,
                         ),
-                        ontap: () {
-                          
-                        },
+                        ontap: () {},
                       ),
                       horizontalSpace(Get.width * 0.025),
                       MenuButtonHome(
