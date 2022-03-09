@@ -33,49 +33,49 @@ class PageProfile extends StatelessWidget {
               children: <Widget>[
                 Container(
                   // height: Get.height *0.25,
-                  width: Get.width,
-                  decoration: BoxDecoration(
-                    color: AppColor.primaryColor.shade300,
-                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: CircleAvatar(
-                          radius: 40,
-                          backgroundImage: AssetImage("assets/images/fajrie.jpg"),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Text(
-                            "Muhammad Fajrie",
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: AppColor.whiteColor
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        color: AppColor.primaryColor.shade300,
+                        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))
+                    ),
+                    child: Obx(() => Column(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(top: 10),
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundImage: AssetImage("assets/images/fajrie.jpg"),
                           ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 5),
-                        child: Text(
-                            "081234567899",
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: AppColor.whiteColor
+                        Container(
+                          margin: EdgeInsets.only(top: 10),
+                          child: Text(
+                            profileControl.nama.value,
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: AppColor.whiteColor
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 20, bottom: 10),
-                        child: Text(
-                            "Mygmail@gmail.com",
-                          style: TextStyles.textTitle,
+                        Container(
+                          margin: EdgeInsets.only(top: 5),
+                          child: Text(
+                            profileControl.phone.value,
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: AppColor.whiteColor
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  )
+                        Container(
+                          margin: EdgeInsets.only(top: 20, bottom: 10),
+                          child: Text(
+                            profileControl.email.value,
+                            style: TextStyles.textTitle,
+                          ),
+                        ),
+                      ],
+                    ))
                 ),
                 GestureDetector(
                   onTap: ()=> profileControl.routingPageHistory(),

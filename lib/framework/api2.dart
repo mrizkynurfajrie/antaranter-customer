@@ -36,7 +36,6 @@ class Api2 {
     isLogin ??= false;
     await box.write(CHECK_LOGIN, isLogin);
   }
-
   Future<bool?> getLoginStatus()async{
     return box.read(CHECK_LOGIN);
   }
