@@ -8,10 +8,12 @@ import 'package:intake_customer/features/like/page_like.dart';
 import 'package:intake_customer/features/login/page_login.dart';
 import 'package:intake_customer/features/main/binding_main.dart';
 import 'package:intake_customer/features/main/page_main.dart';
+import 'package:intake_customer/features/nebeng/detail_nebeng/binding_detail_nebeng.dart';
+import 'package:intake_customer/features/nebeng/detail_nebeng/page_detail_nebeng.dart';
 import 'package:intake_customer/features/nebeng/list_nebeng/binding_list_nebeng.dart';
 import 'package:intake_customer/features/nebeng/list_nebeng/page_list_nebeng.dart';
 import 'package:intake_customer/features/nebeng/term_nebeng/binding_term_nebeng.dart';
-import 'package:intake_customer/features/nebeng/term_nebeng/term_nebeng_page.dart';
+import 'package:intake_customer/features/nebeng/term_nebeng/page_term_nebeng.dart';
 import 'package:intake_customer/features/profile/page_profile.dart';
 import 'package:intake_customer/features/register/page_register.dart';
 import 'package:intake_customer/features/register/binding_register.dart';
@@ -22,7 +24,6 @@ import 'package:intake_customer/features/verifikasi/page_verifikasi.dart';
 
 import 'app_routes.dart';
 
-
 class AppPages {
   static final pages = [
     GetPage(
@@ -30,9 +31,9 @@ class AppPages {
       page: () => const PageLogin(),
     ),
     GetPage(
-        name: Routes.register,
-        page: () => const PageRegister(),
-        binding: BindingRegister()
+      name: Routes.register,
+      page: () => const PageRegister(),
+      binding: BindingRegister(),
     ),
     GetPage(
       name: Routes.home,
@@ -45,16 +46,16 @@ class AppPages {
     GetPage(
       name: Routes.history,
       page: () => const PageHistory(),
-      binding: BindingHistory()
+      binding: BindingHistory(),
     ),
     GetPage(
-        name: Routes.like,
-        page: () => const PageLike(),
-        binding: BindingLike()
+      name: Routes.like,
+      page: () => const PageLike(),
+      binding: BindingLike(),
     ),
     GetPage(
-        name: Routes.setting,
-        page: () => const PageSetting(),
+      name: Routes.setting,
+      page: () => const PageSetting(),
     ),
     GetPage(
       name: Routes.termcondition,
@@ -63,7 +64,7 @@ class AppPages {
     GetPage(
       name: Routes.verifikasi,
       page: () => const PageVerifikasi(),
-      binding: BindingVerifikasi()
+      binding: BindingVerifikasi(),
     ),
     GetPage(
       name: Routes.create_order,
@@ -72,17 +73,22 @@ class AppPages {
     GetPage(
       name: Routes.main,
       page: () => const PageMain(),
-      binding: BindingMain()
+      binding: BindingMain(),
     ),
     GetPage(
       name: Routes.listNebeng,
       page: () => const PageListNebeng(),
-      binding: BindingListNebeng()
+      binding: BindingListNebeng(),
     ),
     GetPage(
       name: Routes.termNebeng,
       page: () => const PageTermNebeng(),
-      binding: BindingTermNebeng()
+      binding: BindingTermNebeng(),
+    ),
+    GetPage(
+      name: Routes.detailNebeng,
+      page: () => const PageDetailNebeng(),
+      binding: BindingDetailNebeng(),
     ),
   ];
 }
