@@ -64,12 +64,12 @@ class PageHome extends GetView<ControllerHome> {
                     ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(90),
-                      child: Container(
+                      child: SizedBox(
                         height: IconSizes.xxl,
                         width: IconSizes.xxl,
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
-                          imageUrl: "https://picsum.photo/200",
+                          imageUrl: "https://via.placeholder.com/150",
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => Shimmer(
                             gradient: AppColor.shimmerGradient,
@@ -145,7 +145,7 @@ class PageHome extends GetView<ControllerHome> {
                       ),
                       horizontalSpace(Get.width * 0.025),
                       MenuButtonHome(
-                        title: "Riwayat Pengiriman",
+                        title: "Riwayat Pesanan",
                         subTitle: "Lihat riwayat pesanan anda",
                         icon: Image.asset(
                           AppIcons.historyIcon,

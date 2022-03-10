@@ -314,6 +314,8 @@ class TextStyles {
   static TextStyle get textXsBold =>
       textXs.copyWith(fontWeight: FontWeight.w700);
   static TextStyle get textSm => inter.copyWith(fontSize: FontSizes.s14);
+  static TextStyle get textSmBold =>
+      textSm.copyWith(fontWeight: FontWeight.w700);
   static TextStyle get textBase => inter.copyWith(fontSize: FontSizes.s16);
   static TextStyle get textBaseBold =>
       textBase.copyWith(fontWeight: FontWeight.w700);
