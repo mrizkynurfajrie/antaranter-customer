@@ -6,7 +6,6 @@ import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/widgets/appbar/appbar.dart';
-import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded_clickable.dart';
 
 class PageListNebeng extends GetView<ControllerListNebeng> {
@@ -16,7 +15,7 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.bgPageColor,
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         color: Colors.white,
         title: "Nebeng",
         colorTitle: AppColor.primaryColor,
@@ -46,12 +45,23 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
                         style: TextStyles.textSmBold,
                       ),
                       verticalSpace(Insets.xs),
-                      Text(
-                        "20 januari 2020",
-                        style: TextStyles.small1.copyWith(
-                          color: AppColor.basic.shade400,
-                          fontWeight: FontWeight.w400,
-                        ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.date_range,
+                            size: IconSizes.sm,
+                            color: AppColor.neutral.shade300,
+                          ),
+                          horizontalSpace(Insets.xs),
+                          Text(
+                            "20 januari 2020",
+                            style: TextStyles.small1.copyWith(
+                              color: AppColor.basic.shade400,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -90,7 +100,7 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
                               ),
                               children: [
                                 TextSpan(
-                                  text: " kursi",
+                                  text: " kursi tersedia",
                                   style: TextStyles.small1.copyWith(
                                     color: AppColor.basic.shade400,
                                     fontWeight: FontWeight.w400,
@@ -108,25 +118,37 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
               verticalSpace(Insets.med),
               SizedBox(
                 // color: Colors.blue,
-                height: 60,
+                height: 75,
                 child: Row(
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "09:00",
-                          style: TextStyles.textXs,
-                        ),
-                        Text(
-                          "1j 30mnt",
-                          style: TextStyles.text2xs.copyWith(
-                            color: AppColor.neutral.shade300,
+                        RichText(
+                          textAlign: TextAlign.end,
+                          text: TextSpan(
+                            text: "25 oktober 2022",
+                            style: TextStyles.textXs
+                                .copyWith(color: Colors.black54),
+                            children: [
+                              TextSpan(
+                                text: "\n09:00",
+                              ),
+                            ],
                           ),
                         ),
-                        Text(
-                          "10:30",
-                          style: TextStyles.textXs,
+                        RichText(
+                          textAlign: TextAlign.end,
+                          text: TextSpan(
+                            text: "25 oktober 2022",
+                            style: TextStyles.textXs
+                                .copyWith(color: Colors.black54),
+                            children: [
+                              TextSpan(
+                                text: "\n10:00",
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

@@ -10,6 +10,7 @@ import 'package:intake_customer/shared/pages/page_decoration_top.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
+import 'package:intake_customer/shared/widgets/cards/card_rounded_clickable.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PageHome extends GetView<ControllerHome> {
@@ -221,7 +222,7 @@ class PageHome extends GetView<ControllerHome> {
                                     ),
                                     child: Text(
                                       "Potongan 50% Antar Paket",
-                                      style: TextStyles.h6,
+                                      style: TextStyles.textStd,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -324,42 +325,40 @@ class MenuButtonHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: InkWell(
+      child: CardRoundedClickable(
+        shadow: Shadows.universal,
         onTap: ontap,
-        child: CardRounded(
-          shadow: Shadows.universal,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(65),
-                child: Container(
-                  padding: EdgeInsets.all(12),
-                  width: 65,
-                  height: 65,
-                  color: AppColor.bodyColor.shade200,
-                  child: icon,
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(65),
+              child: Container(
+                padding: EdgeInsets.all(12),
+                width: 65,
+                height: 65,
+                color: AppColor.bodyColor.shade200,
+                child: icon,
               ),
-              verticalSpace(15),
-              Text(
-                title,
-                style: TextStyles.inter.copyWith(
-                  fontSize: FontSizes.s14,
-                  fontWeight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
+            ),
+            verticalSpace(15),
+            Text(
+              title,
+              style: TextStyles.inter.copyWith(
+                fontSize: FontSizes.s14,
+                fontWeight: FontWeight.w600,
               ),
-              verticalSpace(10),
-              Text(
-                subTitle,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: AppColor.bodyColor.shade600,
-                ),
+              textAlign: TextAlign.center,
+            ),
+            verticalSpace(10),
+            Text(
+              subTitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: AppColor.bodyColor.shade600,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

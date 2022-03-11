@@ -14,6 +14,8 @@ class AppIcons {
   static const historyIcon = 'assets/icons/history-icon.png';
   static const termsIcon = 'assets/icons/terms-icon.png';
   static const seat = 'assets/icons/seat.png';
+  static const minivan = 'assets/icons/minivan.png';
+  static const priceTag = 'assets/icons/price-tag.png';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(

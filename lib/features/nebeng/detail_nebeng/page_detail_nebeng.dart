@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/detail_nebeng/controller_detail_nebeng.dart';
+import 'package:intake_customer/shared/constans/assets.dart';
+import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/constans/styles.dart';
+import 'package:intake_customer/shared/widgets/appbar/appbar.dart';
+import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 
 class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
   const PageDetailNebeng({Key? key}) : super(key: key);
@@ -8,8 +13,243 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Detail nebeng ya sayang ya"),
+      backgroundColor: AppColor.bgPageColor,
+      appBar: const CustomAppBar(
+        color: Colors.white,
+        title: "Detail Nebeng",
+        colorTitle: AppColor.primaryColor,
+        useLeading: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(Insets.med),
+              child: Text(
+                "Kendaraan",
+                style: TextStyles.textStd,
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.all(Insets.med),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      AppIcons.smallIcon(
+                        AppIcons.minivan,
+                        size: IconSizes.med,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 40,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Kendaraan',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Color.fromARGB(255, 145, 145, 145),
+                                ),
+                              ),
+                              Text(
+                                "Toyota Innova Luxury",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      AppIcons.smallIcon(
+                        AppIcons.seat,
+                        size: IconSizes.med,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 40,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Kursi tersedia',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Color.fromARGB(255, 145, 145, 145),
+                                ),
+                              ),
+                              Text(
+                                "5",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      AppIcons.smallIcon(
+                        AppIcons.priceTag,
+                        size: IconSizes.med,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 40,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Harga',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Color.fromARGB(255, 145, 145, 145),
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  text: "Rp. ",
+                                  style: TextStyle(
+                                    color: AppColor.primaryColor,
+                                    fontSize: FontSizes.s14,
+                                  ),
+                                  children: [
+                                    TextSpan(text: "70.000"),
+                                    TextSpan(
+                                      text: "/kursi",
+                                      style: TextStyles.small1.copyWith(
+                                        color: AppColor.basic.shade400,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(Insets.med),
+              child: Text(
+                "Rute & Jadwal",
+                style: TextStyles.textStd,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(Insets.med),
+              height: 125,
+              color: Colors.white,
+              child: Row(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      RichText(
+                        textAlign: TextAlign.end,
+                        text: TextSpan(
+                          text: "25 oktober 2022",
+                          style:
+                              TextStyles.textSm.copyWith(color: Colors.black54),
+                          children: [
+                            TextSpan(
+                              text: "\n09:00",
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        textAlign: TextAlign.end,
+                        text: TextSpan(
+                          text: "25 oktober 2022",
+                          style:
+                              TextStyles.textSm.copyWith(color: Colors.black54),
+                          children: [
+                            TextSpan(
+                              text: "\n10:00",
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  horizontalSpace(Insets.xs),
+                  Column(
+                    children: [
+                      AppIcons.smallIcon(
+                        AppIcons.locationStart,
+                        size: Sizes.med,
+                      ),
+                      Expanded(
+                        child: VerticalDivider(
+                          color: AppColor.neutral.shade300,
+                          thickness: 1,
+                          width: 20,
+                        ),
+                      ),
+                      AppIcons.smallIcon(
+                        AppIcons.locationIn,
+                        size: Sizes.med,
+                      ),
+                    ],
+                  ),
+                  horizontalSpace(Insets.xs),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Samarinda",
+                        style: TextStyles.textSm,
+                      ),
+                      Text(
+                        "Balikpapan",
+                        style: TextStyles.textSm,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            verticalSpace(Insets.xl),
+            ButtonPrimary(
+              margin: EdgeInsets.symmetric(horizontal: Insets.med),
+              cornerRadius: 15,
+              color: AppColor.primaryColor,
+              size: Get.width,
+              label: "Pesan sekarang",
+              height: Sizes.xl,
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
