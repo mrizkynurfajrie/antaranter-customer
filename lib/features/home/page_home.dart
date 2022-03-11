@@ -105,43 +105,41 @@ class PageHome extends GetView<ControllerHome> {
                 ),
                 color: AppColor.whiteColor,
                 borderRadius: 15,
-                child: Obx(
-                  () => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      AppIcons.smallIcon(
-                        AppIcons.profileComp,
-                        size: IconSizes.lg,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AppIcons.smallIcon(
+                      AppIcons.profileComp,
+                      size: IconSizes.lg,
+                    ),
+                    horizontalSpace(Insets.sm),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Lengkapi data diri anda untuk mulai menggunakan layanan kami",
+                            style: TextStyles.inter.copyWith(
+                              color: AppColor.neutral,
+                              fontSize: FontSizes.s14,
+                            ),
+                          )
+                        ],
                       ),
-                      horizontalSpace(Insets.sm),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Lengkapi data diri anda untuk mulai menggunakan layanan kami",
-                              style: TextStyles.inter.copyWith(
-                                color: AppColor.neutral,
-                                fontSize: FontSizes.s14,
-                              ),
-                            )
-                          ],
-                        ),
+                    ),
+                    horizontalSpace(Insets.sm),
+                    OutlinedButton(
+                      onPressed: () {},
+                      child: Icon(
+                        Icons.arrow_forward_ios,
                       ),
-                      horizontalSpace(Insets.sm),
-                      OutlinedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          shape: const CircleBorder(),
-                          primary: AppColor.primaryColor,
-                        ),
+                      style: OutlinedButton.styleFrom(
+                        shape: const CircleBorder(),
+                        primary: AppColor.primaryColor,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
