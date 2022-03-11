@@ -16,6 +16,7 @@ class AppIcons {
   static const seat = 'assets/icons/seat.png';
   static const minivan = 'assets/icons/minivan.png';
   static const priceTag = 'assets/icons/price-tag.png';
+  static const profileComp = 'assets/icons/profile-comp.png';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(
