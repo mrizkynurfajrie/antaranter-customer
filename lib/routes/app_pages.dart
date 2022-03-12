@@ -9,7 +9,7 @@ import 'package:intake_customer/features/login/page_login.dart';
 import 'package:intake_customer/features/main/binding_main.dart';
 import 'package:intake_customer/features/main/page_main.dart';
 import 'package:intake_customer/features/nebeng/detail_nebeng/binding_detail_nebeng.dart';
-import 'package:intake_customer/features/nebeng/detail_nebeng/page_detail_nebeng.dart';
+import 'package:intake_customer/features/nebeng/detail_nebeng/page/page_detail_nebeng.dart';
 import 'package:intake_customer/features/nebeng/list_nebeng/binding_list_nebeng.dart';
 import 'package:intake_customer/features/nebeng/list_nebeng/page_list_nebeng.dart';
 import 'package:intake_customer/features/nebeng/term_nebeng/binding_term_nebeng.dart';
