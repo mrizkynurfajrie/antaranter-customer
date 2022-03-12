@@ -13,6 +13,8 @@ import 'package:intake_customer/features/nebeng/detail_nebeng/page/Page_process_
 import 'package:intake_customer/features/nebeng/detail_nebeng/page/page_detail_nebeng.dart';
 import 'package:intake_customer/features/nebeng/list_nebeng/binding_list_nebeng.dart';
 import 'package:intake_customer/features/nebeng/list_nebeng/page_list_nebeng.dart';
+import 'package:intake_customer/features/nebeng/order_nebeng/binding_order_nebeng.dart';
+import 'package:intake_customer/features/nebeng/order_nebeng/page_order_nebeng.dart';
 import 'package:intake_customer/features/nebeng/term_nebeng/binding_term_nebeng.dart';
 import 'package:intake_customer/features/nebeng/term_nebeng/page_term_nebeng.dart';
 import 'package:intake_customer/features/profile/page_profile.dart';
@@ -94,6 +96,11 @@ class AppPages {
     GetPage(
       name: Routes.processOrderNebeng,
       page: () => const PageProcessOrderNebeng(),
+    ),
+    GetPage(
+      name: Routes.orderNebeng,
+      page: () => const PageOrderNebeng(),
+      binding: BindingOrderNebeng(),
     ),
   ];
 }

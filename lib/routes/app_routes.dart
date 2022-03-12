@@ -14,4 +14,5 @@ abstract class Routes {
   static const termNebeng = '/term_nebeng_page';
   static const detailNebeng = '/detail_nebeng_page';
   static const processOrderNebeng = '/process_order_nebeng_page';
+  static const orderNebeng = '/order_nebeng_page';
 }
