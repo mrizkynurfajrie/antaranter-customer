@@ -21,13 +21,14 @@ class AppIcons {
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(
       asset,
-      height: size?? IconSizes.sm,
+      height: size ?? IconSizes.sm,
     );
   }
 }
 
 class AppLogos {
   static const logoColored = 'assets/logo/logo-besar.png';
+  static const smallLogoColored = 'assets/logo/logo-kecil.png';
 
   static Widget logoAppBar(String asset) {
     return Image.asset(
@@ -37,6 +38,6 @@ class AppLogos {
   }
 }
 
-class AppLotties{
-  static const boxOrange = 'assets/lottie/loading-orange.png';
+class AppLotties {
+  static const loadingProcess = 'assets/lottie/loading-orange.json';
 }

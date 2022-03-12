@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/detail_nebeng/controller_detail_nebeng.dart';
+import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
@@ -246,7 +247,9 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
               size: Get.width,
               label: "Pesan sekarang",
               height: Sizes.xl,
-              onPressed: () {},
+              onPressed: () {
+                controller.orderNebeng();
+              },
             ),
           ],
         ),
