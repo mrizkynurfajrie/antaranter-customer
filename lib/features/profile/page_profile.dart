@@ -6,7 +6,7 @@ import 'package:intake_customer/features/profile/controller_profile.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
-import 'package:intake_customer/shared/pages/page_decoration_top.dart';
+import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 
 class PageProfile extends GetView<ControllerProfile> {
   const PageProfile({Key? key}) : super(key: key);

@@ -6,11 +6,11 @@ import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
-import 'package:intake_customer/shared/pages/page_decoration_top.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded_clickable.dart';
+import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PageHome extends GetView<ControllerHome> {

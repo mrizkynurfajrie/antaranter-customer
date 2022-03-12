@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
-import 'package:intake_customer/shared/pages/page_decoration_top.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/input_format/input_format_money.dart';
 import 'package:intake_customer/shared/widgets/inputs/input_icon_underline.dart';
+import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 
 class PageCreateOrder extends StatelessWidget {
   const PageCreateOrder({Key? key}) : super(key: key);
