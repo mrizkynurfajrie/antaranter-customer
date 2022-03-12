@@ -36,3 +36,7 @@ class AppLogos {
     );
   }
 }
+
+class AppLotties{
+  static const boxOrange = 'assets/lottie/loading-orange.png';
+}
