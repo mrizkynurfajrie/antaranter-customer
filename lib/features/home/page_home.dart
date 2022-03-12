@@ -36,7 +36,10 @@ class PageHome extends GetView<ControllerHome> {
             //header
             SliverToBoxAdapter(
               child: CardRounded(
-                margin: EdgeInsets.all(Insets.med),
+                margin: EdgeInsets.symmetric(
+                  horizontal: Insets.med,
+                  vertical: Insets.sm,
+                ),
                 color: AppColor.primaryColor.shade400,
                 borderRadius: 15,
                 child: Obx(
@@ -143,15 +146,127 @@ class PageHome extends GetView<ControllerHome> {
                 ),
               ),
             ),
+            // Order nebeng
+            SliverToBoxAdapter(
+              child: CardRoundedClickable(
+                onTap: () {
+                  Get.toNamed(Routes.orderNebeng);
+                },
+                margin: EdgeInsets.symmetric(
+                  horizontal: Insets.med,
+                  vertical: Insets.sm,
+                ),
+                color: AppColor.whiteColor,
+                borderRadius: 15,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Pesanan nebeng anda",
+                          style: TextStyles.textSm,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: IconSizes.sm,
+                        ),
+                      ],
+                    ),
+                    verticalSpace(Insets.med),
+                    Text(
+                      "Kijang inova",
+                      style: TextStyles.textLg,
+                    ),
+                    verticalSpace(Insets.med),
+                    SizedBox(
+                      // color: Colors.blue,
+                      height: 75,
+                      child: Row(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              RichText(
+                                textAlign: TextAlign.end,
+                                text: TextSpan(
+                                  text: "25 oktober 2022",
+                                  style: TextStyles.textXs
+                                      .copyWith(color: Colors.black54),
+                                  children: [
+                                    TextSpan(
+                                      text: "\n09:00",
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              RichText(
+                                textAlign: TextAlign.end,
+                                text: TextSpan(
+                                  text: "25 oktober 2022",
+                                  style: TextStyles.textXs
+                                      .copyWith(color: Colors.black54),
+                                  children: [
+                                    TextSpan(
+                                      text: "\n10:00",
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          horizontalSpace(Insets.xs),
+                          Column(
+                            children: [
+                              AppIcons.smallIcon(
+                                AppIcons.locationStart,
+                                size: Sizes.sm,
+                              ),
+                              Expanded(
+                                child: VerticalDivider(
+                                  color: AppColor.neutral.shade300,
+                                  thickness: 1,
+                                  width: 20,
+                                ),
+                              ),
+                              AppIcons.smallIcon(
+                                AppIcons.locationIn,
+                                size: Sizes.sm,
+                              ),
+                            ],
+                          ),
+                          horizontalSpace(Insets.xs),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Samarinda",
+                                style: TextStyles.textXs,
+                              ),
+                              Text(
+                                "Balikpapan",
+                                style: TextStyles.textXs,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
             //Menu utama
             SliverToBoxAdapter(
               child: Column(
                 children: [
+                  verticalSpace(Insets.sm),
                   Text(
                     "Layanan apa yang anda butuhkan ?",
                     style: TextStyles.textTableOrange,
                   ),
-                  verticalSpace(Get.height * 0.03),
+                  verticalSpace(Insets.med),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: Insets.med),
                     child: Row(
