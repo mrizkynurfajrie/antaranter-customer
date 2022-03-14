@@ -29,7 +29,7 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
             bottom: Insets.med,
           ),
           onTap: () {
-            Get.toNamed(Routes.detailNebeng);
+            Get.toNamed(Routes.orderNebeng);
           },
           child: Column(
             children: [

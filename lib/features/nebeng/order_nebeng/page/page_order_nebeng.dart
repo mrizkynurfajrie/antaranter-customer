@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_customer/features/nebeng/detail_nebeng/controller_detail_nebeng.dart';
-import 'package:intake_customer/routes/app_routes.dart';
+import 'package:intake_customer/features/nebeng/order_nebeng/controller_order_nebeng.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/widgets/appbar/appbar.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 
-class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
-  const PageDetailNebeng({Key? key}) : super(key: key);
+class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
+  const PageOrderNebeng({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

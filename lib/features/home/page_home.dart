@@ -150,7 +150,7 @@ class PageHome extends GetView<ControllerHome> {
             SliverToBoxAdapter(
               child: CardRoundedClickable(
                 onTap: () {
-                  Get.toNamed(Routes.orderNebeng);
+                  Get.toNamed(Routes.detailNebeng);
                 },
                 margin: EdgeInsets.symmetric(
                   horizontal: Insets.med,
