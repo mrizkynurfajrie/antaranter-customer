@@ -93,7 +93,7 @@ class PageHome extends GetView<ControllerHome> {
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -149,6 +149,7 @@ class PageHome extends GetView<ControllerHome> {
             // Order nebeng
             SliverToBoxAdapter(
               child: CardRoundedClickable(
+                shadow: Shadows.universal,
                 onTap: () {
                   Get.toNamed(Routes.detailNebeng);
                 },
