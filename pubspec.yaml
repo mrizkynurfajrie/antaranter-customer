@@ -19,6 +19,7 @@ dependencies:
   shimmer: 2.0.0
   image_picker: ^0.8.4+10
   lottie: 1.2.2
+  flutter_svg: 1.0.3
   flutter: 
     sdk: flutter
 
