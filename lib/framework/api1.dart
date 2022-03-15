@@ -40,7 +40,7 @@ class Api1 {
 
     log(r.body);
     var data = json.decode(r.body);
-    log(data);
+    // log(data.toString());
     return data;
   }
 

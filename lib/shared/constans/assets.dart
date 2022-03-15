@@ -42,4 +42,5 @@ class AppLogos {
 
 class AppLotties {
   static const loadingProcess = 'assets/lottie/loading-orange.json';
+  static const loadingCar = 'assets/lottie/loading-car.json';
 }
