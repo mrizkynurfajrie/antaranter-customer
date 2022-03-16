@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/framework/api2.dart';
-import 'package:intake_customer/response/loginResponse.dart';
+import 'package:intake_customer/response/userAuth.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'api_login.dart';
@@ -22,7 +22,7 @@ class ControllerLogin extends GetxController {
   var loginStatus = false;
 
   @override
-  void onInit(){
+  void onInit() {
     checkLogin();
     super.onInit();
   }
@@ -38,12 +38,14 @@ class ControllerLogin extends GetxController {
     try {
       loading(true);
       var loginResult = await api.loginApiRunning(
-          phoneNum: edtPhoneControl.text, password: edtPassword.text);
+          phoneNum: edtPhoneControl.text,
+          password: edtPassword.text,
+          fcm: "909090");
       loading(false);
-      if (loginResult != null){
+      if (loginResult != null) {
         var detailUser = loginResult["data"]["user"];
-        loginResponse result = loginResponse.fromJson(detailUser);
-        await Api2().setUser(user: detailUser);
+        var result = UserAuth.fromJson(detailUser);
+        await Api2().setUser(user: result.toJson());
         var tokenUser = loginResult["data"]["token"];
         token.value = tokenUser;
         await Api2().setToken(token: token.value);
@@ -58,15 +60,15 @@ class ControllerLogin extends GetxController {
     }
   }
 
-  checkLogin()async{
+  checkLogin() async {
     var statusLogin = await Api2().getLoginStatus();
     log('cek status : ' + statusLogin.toString());
-    if(statusLogin == true){
+    if (statusLogin == true) {
       Get.offNamed(Routes.main);
     }
   }
 
-  regisRoute(){
+  regisRoute() {
     Get.toNamed(Routes.register);
   }
 }
