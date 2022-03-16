@@ -33,7 +33,10 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
               bottom: Insets.med,
             ),
             onTap: () {
-              Get.toNamed(Routes.orderNebeng);
+              Get.toNamed(
+                Routes.orderNebeng,
+                arguments: controller.listNebeng[index].toJson(),
+              );
             },
             child: Column(
               children: [
@@ -191,6 +194,7 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
                       horizontalSpace(Insets.xs),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "${controller.listNebeng[index].cityOrigin}",
