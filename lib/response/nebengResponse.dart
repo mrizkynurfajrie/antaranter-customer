@@ -86,4 +86,24 @@ class NebengResponse {
         "updatedAt": updatedAt,
         "isDeleted": isDeleted,
     };
+
+        factory NebengResponse.fromArguments(Map<String, dynamic> json) => NebengResponse(
+        id: json["id"],
+        riderId: json["rider_id"],
+        datetimeStart: json["datetimeStart"],
+        datetimeFinish: json["datetimeFinish"],
+        cityOrigin: json["city_origin"],
+        cityDestination: json["city_destination"],
+        dateDep: json["dateDep"],
+        dateArr: json["dateArr"],
+        timeDep: json["timeDep"],
+        timeArr: json["timeArr"],
+        seatAvail: json["seatAvail"],
+        price: json["price"],
+        status: json["status"],
+        note: json["note"],
+        createdAt: json["createdAt"],
+        updatedAt: json["updatedAt"],
+        isDeleted: json["isDeleted"],
+    );
 }
