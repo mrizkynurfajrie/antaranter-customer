@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intake_customer/features/verifikasi/api_verifikasi.dart';
@@ -29,8 +27,6 @@ class ControllerVerifikasi extends GetxController{
   var ktp = ''.obs;
   var nik = ''.obs;
   var id_user = 0.obs;
-  var lat = 0.0.obs;
-  var lng = 0.0.obs;
 
   var loading = false;
 
@@ -42,8 +38,6 @@ class ControllerVerifikasi extends GetxController{
   @override
   void onInit(){
     setProfile();
-    permissionHandler();
-    getlocation();
     super.onInit();
   }
   @override
@@ -160,35 +154,6 @@ class ControllerVerifikasi extends GetxController{
         });
   }
 
-  Future<Position> permissionHandler()async{
-    bool serviceEnabled;
-    LocationPermission? izin;
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if(!serviceEnabled){
-      Geolocator.openLocationSettings();
-      getlocation();
-      // Get.snackbar('Permission', 'Location service is disabled');
-    }
-
-    izin = await Geolocator.checkPermission();
-    if(izin == LocationPermission.denied){
-      Get.snackbar("Location", "We seem have problem with accessing your location");
-    }
-
-    if (izin == LocationPermission.deniedForever) {
-      Get.snackbar("permission", "Please enabled the location permission");
-    }
-
-    return await Geolocator.getCurrentPosition();
-  }
-
-  getlocation()async{
-    Position currentPlace = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    lat.value = currentPlace.latitude;
-    lng.value = currentPlace.longitude;
-    log('cok location : lat -> ${lat.value} lng -> ${lng.value}');
-  }
-
   uploadImgProfile()async{
     try{
       var uploadSelImg = await api.uploadProfileImg(ProfileImg: Img.value);
@@ -224,8 +189,8 @@ class ControllerVerifikasi extends GetxController{
           birth: datePick.value,
           address: edt_alamat.text,
           phone: edt_ponsel.text,
-          lat: lat,
-          lng: lng,
+          lat: await Api2().getLatitude(),
+          lng: await Api2().getLongitude(),
           city: edt_kota.text,
           id_user: id_user.value
       );
