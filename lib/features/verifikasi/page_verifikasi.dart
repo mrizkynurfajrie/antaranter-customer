@@ -110,7 +110,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                               borderRadius: BorderRadius.all(Radius.circular(5)),
                               color: AppColor.whiteColor
                           ),
-                          child: Center(child: Text(controller.datePick.value)),
+                          child: Center(child: Text((controller.datePick.value == '') ? "Tgl. Lahir" : controller.datePick.value)),
                         ),
                       )
                     ],
@@ -205,7 +205,11 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                         'Update Profile',
                         context,
                         AppColor.primaryColor.shade400,
-                            (){}
+                            (){
+                              // controller.uploadImgProfile();
+                              // controller.uploadImgktp();
+                              // controller.updateProfile();
+                            }
                     ),
                   ),
                 ],

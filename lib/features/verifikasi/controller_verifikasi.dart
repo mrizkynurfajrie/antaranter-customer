@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intake_customer/features/verifikasi/api_verifikasi.dart';
 import 'package:intake_customer/framework/api2.dart';
+import 'package:intl/intl.dart';
 
 class ControllerVerifikasi extends GetxController{
   final ApiVerifikasi api;
@@ -24,6 +28,11 @@ class ControllerVerifikasi extends GetxController{
   var Img = ''.obs;
   var ktp = ''.obs;
   var nik = ''.obs;
+  var id_user = 0.obs;
+  var lat = 0.0.obs;
+  var lng = 0.0.obs;
+
+  var loading = false;
 
   final ImagePicker picker = ImagePicker();
 
@@ -33,6 +42,8 @@ class ControllerVerifikasi extends GetxController{
   @override
   void onInit(){
     setProfile();
+    permissionHandler();
+    getlocation();
     super.onInit();
   }
   @override
@@ -52,6 +63,7 @@ class ControllerVerifikasi extends GetxController{
     nama.value = userDetail['username'] ?? "Pelanggan";
     phone.value = userDetail['phone'] ?? "08xxxxxxxxxx";
     email.value = userDetail['email'] ?? "name@email.com";
+    id_user.value = userDetail['id'] ?? 0;
   }
 
   inputDate(BuildContext context)async{
@@ -66,7 +78,7 @@ class ControllerVerifikasi extends GetxController{
 
     if(select != null && select != date){
       date = select;
-      datePick.value = "${date?.toLocal()}".split(' ')[0];
+      datePick.value = DateFormat('dd-MM-yyyy').format(date!);
     }else{
       datePick.value = "Tgl. Lahir";
     }
@@ -147,7 +159,84 @@ class ControllerVerifikasi extends GetxController{
               ));
         });
   }
-}
+
+  Future<Position> permissionHandler()async{
+    bool serviceEnabled;
+    LocationPermission? izin;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if(!serviceEnabled){
+      Geolocator.openLocationSettings();
+      getlocation();
+      // Get.snackbar('Permission', 'Location service is disabled');
+    }
+
+    izin = await Geolocator.checkPermission();
+    if(izin == LocationPermission.denied){
+      Get.snackbar("Location", "We seem have problem with accessing your location");
+    }
+
+    if (izin == LocationPermission.deniedForever) {
+      Get.snackbar("permission", "Please enabled the location permission");
+    }
+
+    return await Geolocator.getCurrentPosition();
+  }
+
+  getlocation()async{
+    Position currentPlace = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    lat.value = currentPlace.latitude;
+    lng.value = currentPlace.longitude;
+    log('cok location : lat -> ${lat.value} lng -> ${lng.value}');
+  }
+
+  uploadImgProfile()async{
+    try{
+      var uploadSelImg = await api.uploadProfileImg(ProfileImg: Img.value);
+      if(uploadSelImg!= null){
+        var selfImgValue = uploadSelImg["data"]["filename"];
+        Img.value = selfImgValue;
+      }
+    }catch(e){
+      log(e.toString());
+    }
+  }
+
+  uploadImgktp()async{
+    try{
+      var uploadSelktp = await api.uploadProfileKtp(ProfileKtp: ktp.value);
+      if(uploadSelktp != null){
+        var selfKtpValue = uploadSelktp["data"]["filename"];
+        ktp.value = selfKtpValue;
+      }
+    }catch(e){
+      log(e.toString());
+    }
+  }
+
+  updateProfile()async{
+    try{
+      loading = true;
+      var verifResult = api.verifikasiApiRunning(
+          name: edt_name.text,
+          ktp: ktp.value,
+          email: edt_email.text,
+          image: Img.value,
+          birth: datePick.value,
+          address: edt_alamat.text,
+          phone: edt_ponsel.text,
+          lat: lat,
+          lng: lng,
+          city: edt_kota.text,
+          id_user: id_user.value
+      );
+      if(verifResult != null){}
+      loading = false;
+    }catch(e){
+      loading = false;
+      log(e.toString());
+    }
+  }
+  }
 
 // Container(
 //   margin: EdgeInsets.only(top: 10),
