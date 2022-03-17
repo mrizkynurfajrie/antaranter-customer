@@ -17,6 +17,8 @@ class AppIcons {
   static const minivan = 'assets/icons/minivan.png';
   static const priceTag = 'assets/icons/price-tag.png';
   static const profileComp = 'assets/icons/profile-comp.png';
+  static const licencePlate = 'assets/icons/licence-plate.png';
+  static const whatsapp = 'assets/icons/whatsapp.png';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(
@@ -40,4 +42,5 @@ class AppLogos {
 
 class AppLotties {
   static const loadingProcess = 'assets/lottie/loading-orange.json';
+  static const loadingCar = 'assets/lottie/loading-car.json';
 }

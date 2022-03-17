@@ -20,7 +20,8 @@ dependencies:
   image_picker: ^0.8.4+10
   lottie: 1.2.2
   geolocator: ^8.2.0
-  flutter: 
+  flutter_svg: 1.0.3
+  flutter:
     sdk: flutter
 
 dev_dependencies: 

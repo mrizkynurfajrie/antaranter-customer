@@ -10,8 +10,10 @@ import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/controller/controller_bind.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/others/page_info.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
+  await initializeDateFormatting('id_ID', null);
   await GetStorage.init();
   runApp(const App());
 }

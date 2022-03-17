@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/term_nebeng/controller_term_nebeng.dart';
 import 'package:intake_customer/routes/app_routes.dart';
@@ -16,22 +17,20 @@ class PageTermNebeng extends GetView<ControllerTermNebeng> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.bgPageColor,
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         color: Colors.white,
         title: "Syarat dan ketentuan",
         colorTitle: AppColor.primaryColor,
         useLeading: true,
       ),
-      body: Container(
-        height: Get.height,
-        width: Get.width,
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             verticalSpace(Insets.med),
             SizedBox(
-              height: 100,
-              width: 100,
+              height: 100.h,
+              width: 100.w,
               child: Image.asset(
                 AppIcons.termsIcon,
                 fit: BoxFit.contain,
@@ -63,7 +62,7 @@ class PageTermNebeng extends GetView<ControllerTermNebeng> {
                 ),
                 borderRadius: BorderRadius.circular(Insets.lg),
               ),
-              height: Get.height * 0.45,
+              height: Get.height * 0.45.h,
               child: Scrollbar(
                 child: ListView(
                   children: [
@@ -185,7 +184,7 @@ class PageTermNebeng extends GetView<ControllerTermNebeng> {
               () => ButtonPrimary(
                 enable: controller.agreementStatus.value,
                 margin: EdgeInsets.symmetric(horizontal: Insets.med),
-                cornerRadius: 15,
+                cornerRadius: Corners.xl,
                 color: AppColor.primaryColor,
                 size: Get.width,
                 label: "LANJUT",
@@ -194,7 +193,6 @@ class PageTermNebeng extends GetView<ControllerTermNebeng> {
                 },
               ),
             ),
-            verticalSpace(Insets.lg),
           ],
         ),
       ),

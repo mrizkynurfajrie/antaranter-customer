@@ -4,6 +4,8 @@ import 'package:intake_customer/features/nebeng/order_nebeng/controller_order_ne
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
+import 'package:intake_customer/shared/helpers/currency_formatter.dart';
+import 'package:intake_customer/shared/helpers/format_date_time.dart';
 import 'package:intake_customer/shared/widgets/appbar/appbar.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 
@@ -87,17 +89,19 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 'Kursi tersedia',
                                 style: TextStyle(
                                   fontSize: 11,
                                   color: Color.fromARGB(255, 145, 145, 145),
                                 ),
                               ),
-                              Text(
-                                "5",
-                                style: TextStyle(
-                                  fontSize: 16,
+                              Obx(
+                                () => Text(
+                                  "${controller.postinganNebeng.value.seatAvail}",
+                                  style: TextStyle(
+                                    fontSize: FontSizes.s16,
+                                  ),
                                 ),
                               ),
                             ],
@@ -131,13 +135,15 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                               ),
                               RichText(
                                 text: TextSpan(
-                                  text: "Rp. ",
+                                  text: CurrencyFormat.convertToIdr(
+                                    controller.postinganNebeng.value.price,
+                                    0,
+                                  ),
                                   style: TextStyle(
                                     color: AppColor.primaryColor,
                                     fontSize: FontSizes.s14,
                                   ),
                                   children: [
-                                    TextSpan(text: "70.000"),
                                     TextSpan(
                                       text: "/kursi",
                                       style: TextStyles.small1.copyWith(
@@ -176,12 +182,15 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                       RichText(
                         textAlign: TextAlign.end,
                         text: TextSpan(
-                          text: "25 oktober 2022",
+                          text: LocaleTime.formatDateLocale(
+                            controller.postinganNebeng.value.dateDep.toString(),
+                          ),
                           style:
                               TextStyles.textSm.copyWith(color: Colors.black54),
                           children: [
                             TextSpan(
-                              text: "\n09:00",
+                              text:
+                                  "\n${controller.postinganNebeng.value.timeDep}",
                             ),
                           ],
                         ),
@@ -189,12 +198,15 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                       RichText(
                         textAlign: TextAlign.end,
                         text: TextSpan(
-                          text: "25 oktober 2022",
+                          text: LocaleTime.formatDateLocale(
+                            controller.postinganNebeng.value.dateArr.toString(),
+                          ),
                           style:
                               TextStyles.textSm.copyWith(color: Colors.black54),
                           children: [
                             TextSpan(
-                              text: "\n10:00",
+                              text:
+                                  "\n${controller.postinganNebeng.value.timeArr}",
                             ),
                           ],
                         ),
@@ -224,13 +236,14 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                   horizontalSpace(Insets.xs),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Samarinda",
+                        "${controller.postinganNebeng.value.cityOrigin}",
                         style: TextStyles.textSm,
                       ),
                       Text(
-                        "Balikpapan",
+                        "${controller.postinganNebeng.value.cityDestination}",
                         style: TextStyles.textSm,
                       ),
                     ],
