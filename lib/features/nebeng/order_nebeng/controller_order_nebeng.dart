@@ -36,6 +36,6 @@ class ControllerOrderNebeng extends GetxController {
     }
     await Future.delayed(Duration(seconds: 2));
     // IF SUCCESS GO TO PAGE DETAIL ORDER NEBENG
-    // Get.offNamedUntil(Routes.detailNebeng, ModalRoute.withName(Routes.main));
+    Get.offNamedUntil(Routes.detailNebeng, ModalRoute.withName(Routes.main));
   }
 }

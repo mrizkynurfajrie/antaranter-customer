@@ -79,7 +79,7 @@ class PageHome extends GetView<ControllerHome> {
                           width: IconSizes.xxl,
                           child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                            imageUrl: "https://via.placeholder.com/150",
+                            imageUrl: controller.image.value,
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) => Shimmer(
                               gradient: AppColor.shimmerGradient,

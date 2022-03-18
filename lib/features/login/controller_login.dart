@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/framework/api2.dart';
@@ -10,6 +11,8 @@ import 'api_login.dart';
 class ControllerLogin extends GetxController {
   final ApiLogin api;
   ControllerLogin({required this.api});
+
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   String initialCountry = 'ID';
   PhoneNumber number = PhoneNumber(isoCode: 'ID');
@@ -37,10 +40,12 @@ class ControllerLogin extends GetxController {
   login() async {
     try {
       loading(true);
+      String? fcmToken = await messaging.getToken();
       var loginResult = await api.loginApiRunning(
-          phoneNum: edtPhoneControl.text,
-          password: edtPassword.text,
-          fcm: "909090");
+        phoneNum: edtPhoneControl.text,
+        password: edtPassword.text,
+        fcm: fcmToken ?? "00",
+      );
       loading(false);
       if (loginResult != null) {
         var detailUser = loginResult["data"]["user"];
