@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'controller_login.dart';
 
 class PageLogin extends GetView<ControllerLogin> {
-  const PageLogin({ Key? key }) : super(key: key);
+  const PageLogin({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +52,7 @@ class PageLogin extends GetView<ControllerLogin> {
                 child: Card(
                   elevation: 4,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)
-                  ),
+                      borderRadius: BorderRadius.circular(5)),
                   child: InternationalPhoneNumberInput(
                     onInputChanged: (PhoneNumber value) {},
                     textFieldController: controller.edtPhoneControl,
@@ -68,25 +68,27 @@ class PageLogin extends GetView<ControllerLogin> {
                   elevation: 4,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
-                  child: uiComponent().edtPassField(
-                      controller.edtPassword,
+                  child: uiComponent().edtPassField(controller.edtPassword,
                       prefIcon: Icon(CupertinoIcons.lock_fill)),
                 ),
               ),
               Container(
                 margin: EdgeInsets.only(top: 20, left: 35, right: 35),
                 child: uiComponent().buttonStyle_one(
-                    'Sign In',
-                    context,
-                    AppColor.primaryColor.shade400,
-                        ()=> controller.login()
+                  'Sign In',
+                  context,
+                  AppColor.primaryColor.shade400,
+                  () {
+                    dismisKeyboard();
+                    controller.login();
+                  },
                 ),
               ),
               Container(
                 margin: EdgeInsets.only(top: 10),
                 child: Align(
                   child: TextButton(
-                    onPressed: ()=> controller.regisRoute(),
+                    onPressed: () => controller.regisRoute(),
                     child: Text(
                       "Belum punya akun? Yuk, buat!",
                       textAlign: TextAlign.center,

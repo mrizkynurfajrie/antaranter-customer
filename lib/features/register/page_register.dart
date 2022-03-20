@@ -4,15 +4,15 @@ import 'package:intake_customer/features/register/controller_register.dart';
 import 'package:flutter/material.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-class PageRegister extends GetView<ControllerRegister>{
+class PageRegister extends GetView<ControllerRegister> {
   const PageRegister({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(
+  Widget build(BuildContext context) => Scaffold(
         backgroundColor: Color(0xfff5f5f5),
         appBar: AppBar(
           title: AppLogos.logoAppBar(AppLogos.logoColored),
@@ -51,8 +51,7 @@ class PageRegister extends GetView<ControllerRegister>{
                   child: Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)
-                    ),
+                        borderRadius: BorderRadius.circular(5)),
                     child: InternationalPhoneNumberInput(
                       onInputChanged: (PhoneNumber value) {},
                       textFieldController: controller.edtPhoneNum,
@@ -68,18 +67,20 @@ class PageRegister extends GetView<ControllerRegister>{
                     elevation: 4,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    child: uiComponent().edtPassField(
-                        controller.edtPswd,
+                    child: uiComponent().edtPassField(controller.edtPswd,
                         prefIcon: Icon(CupertinoIcons.lock_fill)),
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 20, left: 35, right: 35),
                   child: uiComponent().buttonStyle_one(
-                      'Sign Up',
-                      context,
-                      AppColor.primaryColor.shade400,
-                          () => controller.register()
+                    'Sign Up',
+                    context,
+                    AppColor.primaryColor.shade400,
+                    () {
+                      dismisKeyboard();
+                      controller.register();
+                    },
                   ),
                 ),
                 Container(
@@ -88,15 +89,11 @@ class PageRegister extends GetView<ControllerRegister>{
                       'Pastikan nomor ponsel anda aktif & dapat digunakan',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: AppColor.bodyColor.shade600,
-                          fontSize: 14
-                      ),
-                    )
-                )
+                          color: AppColor.bodyColor.shade600, fontSize: 14),
+                    ))
               ],
             ),
           ),
         ),
       );
-
 }

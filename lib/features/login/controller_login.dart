@@ -46,21 +46,28 @@ class ControllerLogin extends GetxController {
         password: edtPassword.text,
         fcm: fcmToken ?? "00",
       );
+      print(loginResult.toString());
       loading(false);
       if (loginResult != null) {
-        var detailUser = loginResult["data"]["user"];
-        var result = UserAuth.fromJson(detailUser);
-        await Api2().setUser(user: result.toJson());
-        var tokenUser = loginResult["data"]["token"];
-        token.value = tokenUser;
-        await Api2().setToken(token: token.value);
-        loginStatus = true;
-        await Api2().setIsLogin(isLogin: loginStatus);
-        Get.offNamed(Routes.main);
+        if (loginResult['success'] == true) {
+          var detailUser = loginResult["data"]["user"];
+          var result = UserAuth.fromJson(detailUser);
+          await Api2().setUser(user: result.toJson());
+          var tokenUser = loginResult["data"]["token"];
+          token.value = tokenUser;
+          await Api2().setToken(token: token.value);
+          loginStatus = true;
+          await Api2().setIsLogin(isLogin: loginStatus);
+          Get.offNamed(Routes.main);
+        } else {
+          var firstError = loginResult['errors'][0];
+          Get.snackbar("Kesalahan", firstError['message']);
+        }
       }
       loading(false);
     } catch (e) {
       log(e.toString());
+      Get.snackbar("Kesalahan", "Terjadi kesalahan");
       loading(false);
     }
   }
