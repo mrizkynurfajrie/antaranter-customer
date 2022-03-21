@@ -35,4 +35,7 @@ class ControllerProfile extends GetxController {
   routingPageSetting(){
     Get.toNamed(Routes.setting);
   }
+  routingLogout(){
+    Get.offAllNamed(Routes.INITIAL);
+  }
 }
