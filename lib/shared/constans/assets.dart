@@ -19,6 +19,9 @@ class AppIcons {
   static const profileComp = 'assets/icons/profile-comp.png';
   static const licencePlate = 'assets/icons/licence-plate.png';
   static const whatsapp = 'assets/icons/whatsapp.png';
+  static const home = 'assets/icons/home.svg';
+  static const activity = 'assets/icons/activity.svg';
+  static const profile = 'assets/icons/profile.svg';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(

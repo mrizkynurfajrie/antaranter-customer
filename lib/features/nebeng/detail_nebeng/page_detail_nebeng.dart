@@ -19,7 +19,6 @@ class PageDetailNebeng extends StatelessWidget {
         color: Colors.white,
         title: "Detail Nebeng",
         colorTitle: AppColor.primaryColor,
-        useLeading: true,
       ),
       body: SingleChildScrollView(
         child: Column(

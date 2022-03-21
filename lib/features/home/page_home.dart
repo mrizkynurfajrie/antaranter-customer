@@ -40,7 +40,7 @@ class PageHome extends GetView<ControllerHome> {
                   horizontal: Insets.med,
                   vertical: Insets.sm,
                 ),
-                color: AppColor.primaryColor.shade400,
+                color: AppColor.primaryColor,
                 borderRadius: 15,
                 child: Obx(
                   () => Row(
