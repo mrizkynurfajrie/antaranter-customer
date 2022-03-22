@@ -22,6 +22,7 @@ class AppIcons {
   static const home = 'assets/icons/home.svg';
   static const activity = 'assets/icons/activity.svg';
   static const profile = 'assets/icons/profile.svg';
+  static const colour = 'assets/icons/colour.png';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(
@@ -46,4 +47,5 @@ class AppLogos {
 class AppLotties {
   static const loadingProcess = 'assets/lottie/loading-orange.json';
   static const loadingCar = 'assets/lottie/loading-car.json';
+  static const empty = 'assets/lottie/empty.json';
 }

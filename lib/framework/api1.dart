@@ -80,7 +80,7 @@ class Api1 {
     var data = jsonDecode(r.body);
     log("status codenya " + r.statusCode.toString());
 
-    log(data);
+    log(data.toString());
     return data;
   }
 }
