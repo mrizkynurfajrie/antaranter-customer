@@ -28,7 +28,7 @@ class CustomBottomNavBar extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             width: Sizes.med,
             height: Sizes.med,
             // margin: EdgeInsets.only(bottom: Insets.xs),
@@ -95,10 +95,10 @@ class CustomBottomNavBar extends StatelessWidget {
                 builder: (control) => Positioned(
                   top: 2.w,
                   right: 0,
-                  child: Get.find<ControllerUserInfo>().hasActiveActivity.isTrue
+                  child: Get.find<ControllerUserInfo>().hasActiveOrder.isTrue
                       ? Icon(
                           Icons.brightness_1,
-                          size: 8.0,
+                          size: 8.0.w,
                           color: AppColor.primaryColor,
                         )
                       : Container(),

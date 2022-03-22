@@ -21,7 +21,7 @@ class ControllerListNebeng extends GetxController
       if (res['success'] == true) {
         var data = res['data'];
         var resultNebeng = (data as List)
-            .map((data) => new NebengResponse.fromJson(data))
+            .map((data) => NebengResponse.fromJson(data))
             .toList();
         listNebeng.addAll(resultNebeng);
         // print(listNebeng);
