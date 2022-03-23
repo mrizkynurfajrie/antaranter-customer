@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/routes/app_routes.dart';
@@ -11,11 +12,21 @@ class ControllerProfile extends GetxController {
   var pict = ''.obs;
   var phone = ''.obs;
   var email = ''.obs;
+  var profilImg = ''.obs;
 
   @override
   void onInit(){
     setProfile();
     super.onInit();
+  }
+
+  Future<void> onRefresh()async{
+    try{
+      await Future.delayed(Duration(milliseconds: 1000));
+      setProfile();
+    }catch(e){
+      log(e.toString());
+    }
   }
 
   setProfile()async{
@@ -24,6 +35,8 @@ class ControllerProfile extends GetxController {
     nama.value = userDetail['username'] ?? "Pelanggan";
     phone.value = userDetail['phone'] ?? "08xxxxxxxxxx";
     email.value = userDetail['email'] ?? "name@email.com";
+    profilImg.value = "https://api.intakekurir.com/images/${pict.value}";
+
   }
 
   routingPageHistory(){

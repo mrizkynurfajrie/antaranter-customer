@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intake_customer/features/verifikasi/api_verifikasi.dart';
 import 'package:intake_customer/framework/api2.dart';
+import 'package:intake_customer/response/userAuth.dart';
 import 'package:intl/intl.dart';
 
 class ControllerVerifikasi extends GetxController{
@@ -13,7 +14,6 @@ class ControllerVerifikasi extends GetxController{
 
   var edt_name = TextEditingController();
   var edt_email = TextEditingController();
-  var edt_ponsel = TextEditingController();
   var edt_alamat = TextEditingController();
   var edt_kota = TextEditingController();
   var edt_nik = TextEditingController();
@@ -23,11 +23,16 @@ class ControllerVerifikasi extends GetxController{
   var phone = ''.obs;
   var email = ''.obs;
   var datePick = ''.obs;
-  var Img = ''.obs;
-  var ktp = ''.obs;
+  var imgPreview = ''.obs;
+  var ktpPreview = ''.obs;
+  var uploadImg = '';
+  var uploadKtp = '';
   var nik = ''.obs;
   var id_user = 0.obs;
+  var lat = 0.0;
+  var lang = 0.0;
 
+  XFile? img;
   var loading = false;
 
   final ImagePicker picker = ImagePicker();
@@ -45,7 +50,6 @@ class ControllerVerifikasi extends GetxController{
     super.onClose();
     edt_name.dispose();
     edt_email.dispose();
-    edt_ponsel.dispose();
     edt_alamat.dispose();
     edt_kota.dispose();
     edt_nik.dispose();
@@ -58,6 +62,9 @@ class ControllerVerifikasi extends GetxController{
     phone.value = userDetail['phone'] ?? "08xxxxxxxxxx";
     email.value = userDetail['email'] ?? "name@email.com";
     id_user.value = userDetail['id'] ?? 0;
+
+    lat = (await Api2().getLatitude())!;
+    lang = (await Api2().getLongitude())!;
   }
 
   inputDate(BuildContext context)async{
@@ -81,11 +88,13 @@ class ControllerVerifikasi extends GetxController{
   //gambar profile
   getFromCamera()async{
     final XFile? camImage = await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-    Img.value = camImage!.path;
+    imgPreview.value = camImage!.path;
+    img = camImage;
   }
   getFromFile()async{
     final XFile? fileImage = await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-    Img.value = fileImage!.path;
+    imgPreview.value = fileImage!.path;
+    // img = fileImage;
   }
   imgSourceSelector(context) {
     showModalBottomSheet(
@@ -119,11 +128,11 @@ class ControllerVerifikasi extends GetxController{
   //gambar ktp
   getKtpFromCamera()async{
     final XFile? camImage = await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-    ktp.value = camImage!.path;
+    ktpPreview.value = camImage!.path;
   }
   getKtpFromFile()async{
     final XFile? fileImage = await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-    ktp.value = fileImage!.path;
+    ktpPreview.value = fileImage!.path;
   }
   ktpSourceSelector(context) {
     showModalBottomSheet(
@@ -156,10 +165,10 @@ class ControllerVerifikasi extends GetxController{
 
   uploadImgProfile()async{
     try{
-      var uploadSelImg = await api.uploadProfileImg(ProfileImg: Img.value);
+      var uploadSelImg = await api.uploadProfileImg(ProfileImg: imgPreview.value);
       if(uploadSelImg!= null){
         var selfImgValue = uploadSelImg["data"]["filename"];
-        Img.value = selfImgValue;
+        uploadImg = selfImgValue;
       }
     }catch(e){
       log(e.toString());
@@ -168,10 +177,10 @@ class ControllerVerifikasi extends GetxController{
 
   uploadImgktp()async{
     try{
-      var uploadSelktp = await api.uploadProfileKtp(ProfileKtp: ktp.value);
+      var uploadSelktp = await api.uploadProfileKtp(ProfileKtp: ktpPreview.value);
       if(uploadSelktp != null){
         var selfKtpValue = uploadSelktp["data"]["filename"];
-        ktp.value = selfKtpValue;
+        uploadKtp = selfKtpValue;
       }
     }catch(e){
       log(e.toString());
@@ -181,49 +190,32 @@ class ControllerVerifikasi extends GetxController{
   updateProfile()async{
     try{
       loading = true;
-      var verifResult = api.verifikasiApiRunning(
+      var verifResult = await api.verifikasiApiRunning(
           name: edt_name.text,
-          ktp: ktp.value,
+          ktp: uploadKtp,
           email: edt_email.text,
-          image: Img.value,
+          image: uploadImg,
           birth: datePick.value,
           address: edt_alamat.text,
-          phone: edt_ponsel.text,
-          lat: await Api2().getLatitude(),
-          lng: await Api2().getLongitude(),
+          nik: edt_nik.text,
+          lat: lat,
+          lng: lang,
           city: edt_kota.text,
           id_user: id_user.value
       );
-      if(verifResult != null){}
+      if(verifResult != null){
+        var result = verifResult["data"];
+        var updateResult = UserAuth.fromJson(result);
+        await Api2().setUser(user: updateResult);
+        Get.snackbar(
+            "Verifikasi",
+            "Your account has been updated",
+            snackPosition: SnackPosition.BOTTOM);
+      }
       loading = false;
     }catch(e){
       loading = false;
       log(e.toString());
     }
   }
-  }
-
-// Container(
-//   margin: EdgeInsets.only(top: 10),
-//   child: CircleAvatar(
-//     radius: 50,
-//     backgroundImage:
-//     AssetImage(controller.pict.value),
-//   ),
-// )
-
-// Container(
-//   alignment: Alignment.topCenter,
-//   margin: EdgeInsets.only(top: 20),
-//   height: 60,
-//   width: 60,
-//   decoration: const BoxDecoration(
-//       borderRadius:
-//       BorderRadius.all(Radius.circular(100)),
-//       color: Color(0xffffffff)),
-//   child: Icon(
-//     CupertinoIcons.person_fill,
-//     size: 55,
-//     color: AppColor.bodyColor.shade600,
-//   ),
-// )
+ }

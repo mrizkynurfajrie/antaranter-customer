@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'api2.dart';
+import 'package:http_parser/http_parser.dart';
 
 class Api1 {
   String baseUrl = 'https://api.intakekurir.com/';
@@ -64,6 +64,7 @@ class Api1 {
 
     Map<String, String> headers = {
       'content-Type': 'application/json',
+      'accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
     log('headers = ' + headers.toString());
@@ -76,26 +77,35 @@ class Api1 {
     var data = jsonDecode(r.body);
     log("status codenya " + r.statusCode.toString());
 
-    // log(data.toString());
+    log(data.toString());
+
     return data;
   }
 
   Future<dynamic> apiJSONMultipartWithToken(String image, String url)async{
     var token = await Api2().getToken();
     Map<String, String> headers = {
-      'content-Type': 'application/json',
+      'content-Type': 'multipart/form-data',
       'Authorization': 'Bearer $token',
     };
+    // log('headers = ' + headers.toString());
+    // log('url = $baseUrl' + url);
+    // log('cek gambar : ' + image.toString());
 
     var r = http.MultipartRequest('POST',Uri.parse(baseUrl+url));
     r.headers.addAll(headers);
-    r.files.add(await http.MultipartFile.fromPath('image', (image == null) ? '' : image));
+    r.files.add(await http.MultipartFile.fromPath(
+        'image',
+        (image == null) ? '' : image,
+        contentType: MediaType('image', 'png')
+    ));
 
     var res = await r.send();
     var response = await http.Response.fromStream(res);
     var responseCode = jsonDecode(response.body);
 
-    log('status code : ' + response.statusCode.toString());
+    // log('status code : ' + response.statusCode.toString());
+    // log(responseCode.toString());
 
     return responseCode;
   }
