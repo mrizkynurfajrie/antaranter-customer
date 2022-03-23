@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intake_customer/features/verifikasi/api_verifikasi.dart';
 import 'package:intake_customer/framework/api2.dart';
-import 'package:intake_customer/response/userAuth.dart';
+// import 'package:intake_customer/response/userAuth.dart';
 import 'package:intl/intl.dart';
 
 class ControllerVerifikasi extends GetxController{
@@ -205,8 +205,8 @@ class ControllerVerifikasi extends GetxController{
       );
       if(verifResult != null){
         var result = verifResult["data"];
-        var updateResult = UserAuth.fromJson(result);
-        await Api2().setUser(user: updateResult);
+        // var updateResult = UserAuth.fromJson(result);
+        // await Api2().setUser(user: updateResult);
         Get.snackbar(
             "Verifikasi",
             "Your account has been updated",

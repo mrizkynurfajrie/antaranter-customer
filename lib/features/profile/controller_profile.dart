@@ -20,14 +20,14 @@ class ControllerProfile extends GetxController {
     super.onInit();
   }
 
-  Future<void> onRefresh()async{
-    try{
-      await Future.delayed(Duration(milliseconds: 1000));
-      setProfile();
-    }catch(e){
-      log(e.toString());
-    }
-  }
+  // Future<void> onRefresh()async{
+  //   try{
+  //     await Future.delayed(Duration(milliseconds: 1000));
+  //     setProfile();
+  //   }catch(e){
+  //     log(e.toString());
+  //   }
+  // }
 
   setProfile()async{
     var userDetail = await Api2().getUser();
@@ -38,6 +38,7 @@ class ControllerProfile extends GetxController {
     profilImg.value = "https://api.intakekurir.com/images/${pict.value}";
 
   }
+
   var controllerUserInfo = Get.find<ControllerUserInfo>();
 
   routingPageHistory() {

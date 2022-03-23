@@ -6,6 +6,9 @@ const String CHECK_LOGIN = "loginState";
 const String CACHE_USER = "user";
 const String CACHE_LATITUDE = "latitude";
 const String CACHE_LONGITUDE = "longitude";
+const String STATUS_ACTIVE_ORDER = "status_active_order";
+const String CACHE_ACTIVE_ORDER = "order";
+
 
 class Api2 {
   final box = GetStorage();
