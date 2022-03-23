@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intake_customer/features/profile/api_profile.dart';
 import 'package:intake_customer/features/profile/controller_profile.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
@@ -18,15 +17,15 @@ class PageProfile extends GetView<ControllerProfile> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-      padding: EdgeInsets.zero,
-      backgroundColor: AppColor.bgPageColor,
-      toolbarColor: AppColor.whiteColor,
-      center: AppLogos.logoAppBar(AppLogos.logoColored),
-      title: "IN-TAKE",
-      enableBack: false,
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
+        padding: EdgeInsets.zero,
+        backgroundColor: AppColor.bgPageColor,
+        toolbarColor: AppColor.whiteColor,
+        center: AppLogos.logoAppBar(AppLogos.logoColored),
+        title: "IN-TAKE",
+        enableBack: false,
+        child: SingleChildScrollView(
+            child: Column(
+            children: <Widget>[
             Container(
                 // height: Get.height *0.25,
                 width: Get.width,
@@ -50,9 +49,9 @@ class PageProfile extends GetView<ControllerProfile> {
                                   ''),
                               progressIndicatorBuilder:
                                   (context, url, downloadProgress) => Shimmer(
-                                gradient: AppColor.shimmerGradient,
-                                child: Container(
-                                  color: Colors.white,
+                                    gradient: AppColor.shimmerGradient,
+                                      child: Container(
+                                      color: Colors.white,
                                 ),
                               ),
                               errorWidget: (context, url, error) => Image.asset(
@@ -258,8 +257,6 @@ class PageProfile extends GetView<ControllerProfile> {
               ),
             ),
           ],
-        ),
-      ),
-    );
+        )));
   }
 }

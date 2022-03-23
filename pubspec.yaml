@@ -19,8 +19,9 @@ dependencies:
   shimmer: 2.0.0
   image_picker: ^0.8.4+10
   lottie: 1.2.2
+  location: ^4.2.0
   flutter_svg: 1.0.3
-  flutter: 
+  flutter:
     sdk: flutter
   firebase_core: ^1.13.1
   firebase_messaging: ^11.2.11

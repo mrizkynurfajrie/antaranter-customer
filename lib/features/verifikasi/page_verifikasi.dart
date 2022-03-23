@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -26,13 +25,13 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                 children: <Widget>[
                   GestureDetector(
                     onTap: () => controller.imgSourceSelector(context),
-                    child: (controller.Img.value != "")
+                    child: (controller.imgPreview != "")
                         ? Container(
                             margin: EdgeInsets.only(top: 20),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.file(
-                                File(controller.Img.toString()),
+                                File(controller.imgPreview.value),
                                 width: 100,
                                 height: 100,
                                 fit: BoxFit.cover,
@@ -110,7 +109,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                               borderRadius: BorderRadius.all(Radius.circular(5)),
                               color: AppColor.whiteColor
                           ),
-                          child: Center(child: Text(controller.datePick.value)),
+                          child: Center(child: Text((controller.datePick.value == '') ? "Tgl. Lahir" : controller.datePick.value)),
                         ),
                       )
                     ],
@@ -124,16 +123,6 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                         color: AppColor.whiteColor
                     ),
                     child: uiComponent().edtField(controller.edt_email, 'Email'),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10, right: 10, left: 10),
-                    height: 50,
-                    width: Get.width * 0.825,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        color: AppColor.whiteColor
-                    ),
-                    child: uiComponent().edtField(controller.edt_ponsel, 'No. Ponsel'),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10, right: 10, left: 10),
@@ -158,13 +147,13 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                   uiComponent().baseLineDarkColor(context),
                   GestureDetector(
                     onTap: () => controller.ktpSourceSelector(context),
-                    child: (controller.ktp.value != "")
+                    child: (controller.ktpPreview != "")
                         ? Container(
                             margin: const EdgeInsets.only(top: 20),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.file(
-                                File(controller.ktp.toString()),
+                                File(controller.ktpPreview.value),
                                 width: Get.width * 0.8,
                                 height: 200,
                                 fit: BoxFit.cover,
@@ -205,7 +194,11 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                         'Update Profile',
                         context,
                         AppColor.primaryColor.shade400,
-                            (){}
+                            ()async{
+                          await controller.uploadImgProfile();
+                          await controller.uploadImgktp();
+                          controller.updateProfile();
+                            }
                     ),
                   ),
                 ],

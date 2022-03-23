@@ -1,14 +1,14 @@
 import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/api_home.dart';
 import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/response/home_response.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
+import 'package:location/location.dart';
 
 class ControllerHome extends GetxController {
   final ApiHome api;
+
   ControllerHome({required this.api});
 
   var controllerUserInfo = Get.find<ControllerUserInfo>();
@@ -17,10 +17,47 @@ class ControllerHome extends GetxController {
 
   var loading = true.obs;
 
+  Location location = Location();
+
   @override
   void onInit() {
+    permissionHandler();
+    getLocation();
     getData();
-    super.onInit();
+  }
+
+  permissionHandler() async {
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+    LocationData _locationData;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _locationData = await location.getLocation();
+  }
+  getLocation() {
+    location.onLocationChanged.listen((LocationData currentLocation) async {
+      if (currentLocation != null) {
+        await Api2().setLatitude(lat: currentLocation.latitude);
+        await Api2().setLongitude(lng: currentLocation.longitude);
+      } else {
+        log("we con't see you");
+      }
+    });
   }
 
   void getData() async {
@@ -39,4 +76,6 @@ class ControllerHome extends GetxController {
     // print(res);
     var user = await Api2().getUser();
   }
+
+
 }

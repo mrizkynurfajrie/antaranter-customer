@@ -4,8 +4,11 @@ const String CACHE_USERNAME = "username";
 const String CACHE_TOKEN = "token";
 const String CHECK_LOGIN = "loginState";
 const String CACHE_USER = "user";
+const String CACHE_LATITUDE = "latitude";
+const String CACHE_LONGITUDE = "longitude";
 const String STATUS_ACTIVE_ORDER = "status_active_order";
 const String CACHE_ACTIVE_ORDER = "order";
+
 
 class Api2 {
   final box = GetStorage();
@@ -16,6 +19,22 @@ class Api2 {
   }
   Future<String?> getUsername() async {
     return box.read(CACHE_USERNAME);
+  }
+
+  Future setLatitude({double? lat}) async {
+    lat ??= 0.0;
+    await box.write(CACHE_LATITUDE, lat);
+  }
+  Future<double?> getLatitude() async {
+    return box.read(CACHE_LATITUDE);
+  }
+
+  Future setLongitude({double? lng}) async {
+    lng ??= 0.0;
+    await box.write(CACHE_LONGITUDE, lng);
+  }
+  Future<double?> getLongitude() async {
+    return box.read(CACHE_LONGITUDE);
   }
 
   Future setUser({dynamic user}) async {
