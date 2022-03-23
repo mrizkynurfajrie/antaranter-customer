@@ -48,7 +48,7 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Kijang inova",
+                          "${controller.listNebeng[index].nebengRider?.vehicleVariant}",
                           style: TextStyles.textSmBold,
                         ),
                         verticalSpace(Insets.xs),

@@ -1,7 +1,7 @@
-import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/routes/app_routes.dart';
+import 'package:intake_customer/shared/controller/controller_user_info.dart';
 import 'api_profile.dart';
 
 class ControllerProfile extends GetxController {
@@ -38,14 +38,23 @@ class ControllerProfile extends GetxController {
     profilImg.value = "https://api.intakekurir.com/images/${pict.value}";
 
   }
+  var controllerUserInfo = Get.find<ControllerUserInfo>();
 
-  routingPageHistory(){
+  routingPageHistory() {
     Get.toNamed(Routes.history);
   }
-  routingPageLike(){
+
+  routingPageLike() {
     Get.toNamed(Routes.like);
   }
-  routingPageSetting(){
+
+  routingPageSetting() {
     Get.toNamed(Routes.setting);
+  }
+
+  routingLogout() async {
+
+    await Api2().removeStorageForLogout();
+    Get.offAllNamed(Routes.INITIAL);
   }
 }

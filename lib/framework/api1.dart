@@ -78,7 +78,6 @@ class Api1 {
     log("status codenya " + r.statusCode.toString());
 
     log(data.toString());
-
     return data;
   }
 

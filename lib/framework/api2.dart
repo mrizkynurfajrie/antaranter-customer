@@ -57,5 +57,32 @@ class Api2 {
   Future<bool?> getLoginStatus()async{
     return box.read(CHECK_LOGIN);
   }
+
+  Future setHasActiveOrder({bool? isHasActiveOrder}) async{
+    isHasActiveOrder ??= false;
+    await box.write(STATUS_ACTIVE_ORDER, isHasActiveOrder);
+  }
+  Future<bool?> getHasActiveOrder()async{
+    return box.read(STATUS_ACTIVE_ORDER);
+  }
+
+  Future setActiveOrder({dynamic activeOrder}) async{
+    activeOrder ??= "";
+    await box.write(CACHE_ACTIVE_ORDER, activeOrder);
+  }
+  Future<dynamic> getActiveOrder()async{
+    return box.read(CACHE_ACTIVE_ORDER);
+  }
+
+
+  Future removeStorageForLogout() async{
+    await box.remove(CACHE_USER);
+    await box.remove(CACHE_TOKEN);
+    await box.remove(CHECK_LOGIN);
+    await box.remove(STATUS_ACTIVE_ORDER);
+    await box.remove(CACHE_ACTIVE_ORDER);
+  }
+
+
 }
 

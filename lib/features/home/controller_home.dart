@@ -9,11 +9,11 @@ class ControllerHome extends GetxController {
   final ApiHome api;
   ControllerHome({required this.api});
 
-  late TextEditingController searchController;
+  var controllerUserInfo = Get.find<ControllerUserInfo>();
 
-  final username = ''.obs;
-  final image = ''.obs;
-  final phone = ''.obs;
+  var homeResponse = HomeResponse().obs;
+
+  var loading = true.obs;
 
   Location location = Location();
 
@@ -23,6 +23,8 @@ class ControllerHome extends GetxController {
     getLocation();
     searchController = TextEditingController();
     setUser();
+  void onInit() {
+    getData();
     super.onInit();
   }
 
@@ -31,8 +33,20 @@ class ControllerHome extends GetxController {
     searchController.dispose();
     super.dispose();
   }
+  void getData() async {
+    try {
+      // await Future.delayed(Duration(seconds: 5));
+      var res = await api.homeUser(controllerUserInfo.user.value.id ?? 0);
+      homeResponse.value = HomeResponse.fromJson(res['data']);
+      // print(homeResponse.value.adsResponse?.ads?.length);
+      homeResponse.refresh();
+      loading.value = false;
+    } catch (e) {
+      print(e.toString());
+      Get.snackbar("Error", "Terjadi kesalahan");
+    }
 
-  void setUser() async {
+    // print(res);
     var user = await Api2().getUser();
     username.value = user['username'] ?? "Pelanggan";
     image.value = user['image'] ?? "";

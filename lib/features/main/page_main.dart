@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/main/controller_main.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/constans/styles.dart';
+import 'package:intake_customer/shared/widgets/buttons/custom_bottom_navbar.dart';
 
 class PageMain extends GetView<ControllerMain> {
   const PageMain({Key? key}) : super(key: key);
@@ -9,30 +11,21 @@ class PageMain extends GetView<ControllerMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Obx(() => controller.pages.elementAt(
-              controller.currentPage.value,
-            )),
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: controller.pageController,
+        onPageChanged: (pageIndex) {
+          controller.changePage(pageIndex);
+        },
+        children: controller.pages,
       ),
       bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
-          selectedItemColor: AppColor.primaryColor.shade400,
-          currentIndex: controller.currentPage.value,
-          onTap: (index) => controller.changePage(index),
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.pedal_bike),
-              label: "Order",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
-            ),
-          ],
+        () => CustomBottomNavBar(
+          selectedIndex: controller.currentPage.value,
+          onTap: (pageIndex) {
+            controller.changePage(pageIndex);
+            controller.pageController.jumpToPage(pageIndex);
+          },
         ),
       ),
     );

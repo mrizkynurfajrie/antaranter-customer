@@ -62,7 +62,42 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                                 ),
                               ),
                               Text(
-                                "Toyota Innova Luxury",
+                                "${controller.postinganNebeng.value.nebengRider?.vehicleVariant}",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      AppIcons.smallIcon(
+                        AppIcons.colour,
+                        size: IconSizes.med,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 40,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Warna Kendaraan',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Color.fromARGB(255, 145, 145, 145),
+                                ),
+                              ),
+                              Text(
+                                "${controller.postinganNebeng.value.nebengRider?.vehicleColor}",
                                 style: TextStyle(
                                   fontSize: 16,
                                 ),

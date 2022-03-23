@@ -58,7 +58,7 @@ class ButtonPrimary extends StatelessWidget {
                         child: Image.asset(
                           icon!,
                           width: IconSizes.lg,
-                          color: iconColor ?? null,
+                          color: iconColor,
                         ),
                       )
                     : horizontalSpace(0),
