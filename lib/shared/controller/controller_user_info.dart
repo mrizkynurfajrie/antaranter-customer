@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
 import 'package:intake_customer/framework/api2.dart';
+import 'package:intake_customer/response/user.dart';
 
 class ControllerUserInfo extends GetxController {
   var hasActiveOrder = false.obs;
+  var user = User().obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     checkUserHasActiveOrder();
+    await setUserData();
   }
 
   void setUserHasActiveOrder(bool status) async {
@@ -24,6 +27,11 @@ class ControllerUserInfo extends GetxController {
   }
 
   void setActiveOrder(int idOrder, String type) async {
-    await Api2().setActiveOrder(activeOrder: {'id': idOrder,'type':type});
+    await Api2().setActiveOrder(activeOrder: {'id': idOrder, 'type': type});
+  }
+
+  setUserData() async {
+    var data = await Api2().getUser();
+    user.value = User.fromJson(data);
   }
 }

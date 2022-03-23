@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
+import 'package:intake_customer/framework/api1.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
+import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
@@ -58,12 +61,16 @@ class PageHome extends GetView<ControllerHome> {
                                 style: TextStyles.textLg,
                                 text: "Hi, ",
                                 children: [
-                                  TextSpan(text: controller.username.value)
+                                  TextSpan(
+                                      text: controller.controllerUserInfo.user
+                                              .value.username ??
+                                          "Pelanggan")
                                 ],
                               ),
                             ),
                             Text(
-                              controller.phone.value,
+                              controller.controllerUserInfo.user.value.phone ??
+                                  "08xxx",
                               style: TextStyles.inter.copyWith(
                                 color: AppColor.whiteColor,
                                 fontSize: FontSizes.s12,
@@ -79,7 +86,9 @@ class PageHome extends GetView<ControllerHome> {
                           width: IconSizes.xxl,
                           child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                            imageUrl: controller.image.value,
+                            imageUrl: imageUrlPath(controller
+                                    .controllerUserInfo.user.value.image ??
+                                ''),
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) => Shimmer(
                               gradient: AppColor.shimmerGradient,
@@ -332,95 +341,108 @@ class PageHome extends GetView<ControllerHome> {
             ),
             //list iklan
             SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: Insets.med),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Penawaran untuk anda",
-                          style: TextStyle(
-                            fontSize: FontSizes.s14,
-                            color: AppColor.primaryColor,
-                          ),
-                        ),
-                        ButtonText(
-                          onPressed: () {},
-                          label: "Lihat semua",
-                          color: AppColor.primaryColor,
-                        ),
-                      ],
-                    ),
-                    verticalSpace(10),
-                    SizedBox(
-                      height: 240,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            margin:
-                                EdgeInsets.only(right: 20, bottom: Insets.xs),
-                            width: 160,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: AppColor.whiteColor,
-                                boxShadow: Shadows.universal),
-                            child: Material(
-                              color: Colors.transparent,
-                              child: InkWell(
-                                onTap: () {},
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 110,
-                                      width: Get.width,
-                                      child: ClipRRect(
+              child: Obx(
+                () => controller.loading.isFalse
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(horizontal: Insets.med),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Penawaran untuk anda",
+                                  style: TextStyle(
+                                    fontSize: FontSizes.s14,
+                                    color: AppColor.primaryColor,
+                                  ),
+                                ),
+                                ButtonText(
+                                  onPressed: () {},
+                                  label: "Lihat semua",
+                                  color: AppColor.primaryColor,
+                                ),
+                              ],
+                            ),
+                            verticalSpace(10),
+                            SizedBox(
+                              height: 240.h,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.homeResponse.value.adsResponse?.ads?.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    margin: EdgeInsets.only(
+                                        right: 20, bottom: Insets.xs),
+                                    width: 160,
+                                    decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
-                                        child: Image.asset(
-                                          "assets/images/demo-pict.jpg",
-                                          fit: BoxFit.cover,
+                                        color: AppColor.whiteColor,
+                                        boxShadow: Shadows.universal),
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 110,
+                                              width: Get.width,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                child: Image.network(
+                                                  imageUrlPath("${controller.homeResponse.value.adsResponse?.ads?[index]?.adsPict}"),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                            verticalSpace(10),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: Insets.med,
+                                              ),
+                                              child: Text(
+                                                "${controller.homeResponse.value.adsResponse?.ads?[index]?.adsTitle}",
+                                                style: TextStyles.textStd,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                            verticalSpace(6),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: Insets.med,
+                                              ),
+                                              child: Text(
+                                                "${controller.homeResponse.value.adsResponse?.ads?[index]?.adsDesc}",
+                                                style: TextStyle(
+                                                    fontSize: FontSizes.s11),
+                                                maxLines: 3,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                    verticalSpace(10),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: Insets.med,
-                                      ),
-                                      child: Text(
-                                        "Potongan 50% Antar Paket",
-                                        style: TextStyles.textStd,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    verticalSpace(6),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: Insets.med,
-                                      ),
-                                      child: Text(
-                                        "Dapatkan potongan harga hingga 50% untuk pengiriman paket di Samarinda",
-                                        style:
-                                            TextStyle(fontSize: FontSizes.s11),
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  );
+                                },
                               ),
                             ),
-                          );
-                        },
-                      ),
+                            verticalSpace(20),
+                          ],
+                        ),
+                      )
+                    : SizedBox(
+                      width: Get.width,
+                      height: 240.h,
+                      child: Center(
+                          child: CircularProgressIndicator(
+                            color: AppColor.primaryColor,
+                          ),
+                        ),
                     ),
-                    verticalSpace(20),
-                  ],
-                ),
               ),
             ),
             //konten bantuan user
@@ -463,7 +485,9 @@ class PageHome extends GetView<ControllerHome> {
                       size: Get.width * 0.25,
                       height: Sizes.lg,
                       label: "Hubungi",
-                      onPressed: () {},
+                      onPressed: () {
+                        
+                      },
                     )
                   ],
                 ),

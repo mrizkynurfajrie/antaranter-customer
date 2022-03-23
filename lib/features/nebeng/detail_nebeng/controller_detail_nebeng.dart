@@ -34,6 +34,8 @@ class ControllerDetailNebeng extends GetxController
       var res = await api.detailNebengOrder(dataOrder['id']);
       orderResponse.value = NebengOrderResponse.fromJson(res['data']);
       change(orderResponse.value, status: RxStatus.success());
+    }else{
+      change(null, status: RxStatus.empty());
     }
   }
 

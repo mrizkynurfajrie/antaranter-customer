@@ -3,14 +3,17 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/framework/api2.dart';
-import 'package:intake_customer/response/userAuth.dart';
+import 'package:intake_customer/response/user.dart';
 import 'package:intake_customer/routes/app_routes.dart';
+import 'package:intake_customer/shared/controller/controller_user_info.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'api_login.dart';
 
 class ControllerLogin extends GetxController {
   final ApiLogin api;
   ControllerLogin({required this.api});
+
+  var controllerUserInfo = Get.find<ControllerUserInfo>();
 
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
@@ -46,12 +49,13 @@ class ControllerLogin extends GetxController {
         password: edtPassword.text,
         fcm: fcmToken ?? "00",
       );
-      print(loginResult.toString());
+      // print(loginResult.toString());
       loading(false);
       if (loginResult != null) {
         if (loginResult['success'] == true) {
           var detailUser = loginResult["data"]["user"];
-          var result = UserAuth.fromJson(detailUser);
+          var result = User.fromJson(detailUser);
+          controllerUserInfo.user.value = result;
           await Api2().setUser(user: result.toJson());
           var tokenUser = loginResult["data"]["token"];
           token.value = tokenUser;

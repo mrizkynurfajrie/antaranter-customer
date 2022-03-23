@@ -59,5 +59,14 @@ class Api2 {
   }
 
 
+  Future removeStorageForLogout() async{
+    await box.remove(CACHE_USER);
+    await box.remove(CACHE_TOKEN);
+    await box.remove(CHECK_LOGIN);
+    await box.remove(STATUS_ACTIVE_ORDER);
+    await box.remove(CACHE_ACTIVE_ORDER);
+  }
+
+
 }
 

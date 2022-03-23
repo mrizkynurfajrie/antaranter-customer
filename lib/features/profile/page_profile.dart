@@ -1,12 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/profile/api_profile.dart';
 import 'package:intake_customer/features/profile/controller_profile.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
+import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PageProfile extends GetView<ControllerProfile> {
   const PageProfile({Key? key}) : super(key: key);
@@ -33,18 +37,36 @@ class PageProfile extends GetView<ControllerProfile> {
                         bottomRight: Radius.circular(30))),
                 child: Obx(() => Column(
                       children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 10),
-                          child: CircleAvatar(
-                            radius: 40,
-                            backgroundImage:
-                                AssetImage("assets/images/fajrie.jpg"),
+                        verticalSpace(Insets.med),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(90),
+                          child: SizedBox(
+                            height: 85.w,
+                            width: 85.w,
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: imageUrlPath(controller
+                                      .controllerUserInfo.user.value.image ??
+                                  ''),
+                              progressIndicatorBuilder:
+                                  (context, url, downloadProgress) => Shimmer(
+                                gradient: AppColor.shimmerGradient,
+                                child: Container(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Image.asset(
+                                "assets/images/fajrie.jpg",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
                         Container(
                           margin: EdgeInsets.only(top: 10),
                           child: Text(
-                            controller.nama.value,
+                            controller.controllerUserInfo.user.value.username ??
+                                "Pelanggan",
                             style: TextStyle(
                                 fontSize: 20, color: AppColor.whiteColor),
                           ),
@@ -52,7 +74,8 @@ class PageProfile extends GetView<ControllerProfile> {
                         Container(
                           margin: EdgeInsets.only(top: 5),
                           child: Text(
-                            controller.phone.value,
+                            controller.controllerUserInfo.user.value.phone ??
+                                "08xxx",
                             style: TextStyle(
                                 fontSize: 16, color: AppColor.whiteColor),
                           ),
@@ -60,7 +83,8 @@ class PageProfile extends GetView<ControllerProfile> {
                         Container(
                           margin: EdgeInsets.only(top: 20, bottom: 10),
                           child: Text(
-                            controller.email.value,
+                            controller.controllerUserInfo.user.value.email ??
+                                "email@email.com",
                             style: TextStyles.textTitle,
                           ),
                         ),

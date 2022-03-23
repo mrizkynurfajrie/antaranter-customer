@@ -4,36 +4,39 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/api_home.dart';
 import 'package:intake_customer/framework/api2.dart';
+import 'package:intake_customer/response/home_response.dart';
+import 'package:intake_customer/shared/controller/controller_user_info.dart';
 
 class ControllerHome extends GetxController {
   final ApiHome api;
   ControllerHome({required this.api});
 
-  late TextEditingController searchController;
+  var controllerUserInfo = Get.find<ControllerUserInfo>();
 
-  final username = ''.obs;
-  final image = ''.obs;
-  final phone = ''.obs;
+  var homeResponse = HomeResponse().obs;
+
+  var loading = true.obs;
 
   @override
   void onInit() {
-    // TODO: implement onInit
-    searchController = TextEditingController();
-    setUser();
+    getData();
     super.onInit();
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    searchController.dispose();
-    super.dispose();
-  }
+  void getData() async {
+    try {
+      // await Future.delayed(Duration(seconds: 5));
+      var res = await api.homeUser(controllerUserInfo.user.value.id ?? 0);
+      homeResponse.value = HomeResponse.fromJson(res['data']);
+      // print(homeResponse.value.adsResponse?.ads?.length);
+      homeResponse.refresh();
+      loading.value = false;
+    } catch (e) {
+      print(e.toString());
+      Get.snackbar("Error", "Terjadi kesalahan");
+    }
 
-  void setUser() async {
+    // print(res);
     var user = await Api2().getUser();
-    username.value = user['username'] ?? "Pelanggan";
-    image.value = user['image'] ?? "";
-    phone.value = user['phone'] ?? "08xxxxxxxxxx";
   }
 }
