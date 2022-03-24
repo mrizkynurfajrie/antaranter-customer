@@ -46,9 +46,7 @@ class PageProfile extends GetView<ControllerProfile> {
                               width: 85.w,
                               child: CachedNetworkImage(
                                 fit: BoxFit.cover,
-                                imageUrl: imageUrlPath(controller
-                                        .controllerUserInfo.user.value.image ??
-                                    ''),
+                                imageUrl: controller.profilImg.value,
                                 progressIndicatorBuilder:
                                     (context, url, downloadProgress) => Shimmer(
                                       gradient: AppColor.shimmerGradient,
@@ -66,8 +64,7 @@ class PageProfile extends GetView<ControllerProfile> {
                           Container(
                             margin: EdgeInsets.only(top: 10),
                             child: Text(
-                              controller.controllerUserInfo.user.value.username ??
-                                  "Pelanggan",
+                              controller.nama.value,
                               style: TextStyle(
                                   fontSize: 20, color: AppColor.whiteColor),
                             ),
@@ -75,8 +72,7 @@ class PageProfile extends GetView<ControllerProfile> {
                           Container(
                             margin: EdgeInsets.only(top: 5),
                             child: Text(
-                              controller.controllerUserInfo.user.value.phone ??
-                                  "08xxx",
+                              controller.phone.value,
                               style: TextStyle(
                                   fontSize: 16, color: AppColor.whiteColor),
                             ),
@@ -84,8 +80,7 @@ class PageProfile extends GetView<ControllerProfile> {
                           Container(
                             margin: EdgeInsets.only(top: 20, bottom: 10),
                             child: Text(
-                              controller.controllerUserInfo.user.value.email ??
-                                  "email@email.com",
+                              controller.email.value,
                               style: TextStyles.textTitle,
                             ),
                           ),
