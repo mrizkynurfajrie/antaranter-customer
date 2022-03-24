@@ -33,6 +33,7 @@ class ControllerOrderNebeng extends GetxController {
     if (idNebeng != null) {
       try {
         var res = await api.orderNebeng(userAuth['id'], idNebeng);
+        await Future.delayed(Duration(seconds: 2));
         // print(res.toString());
         // TODO status activity set true save response
         if (res['success'] == true) {
@@ -42,14 +43,16 @@ class ControllerOrderNebeng extends GetxController {
             orderNebengRes.nebengOrder?.id ?? 0,
             "nebeng",
           );
+          // IF SUCCESS GO TO PAGE DETAIL ORDER NEBENG
+          Get.offAllNamed(Routes.main, arguments: 1);
+        } else {
+          Get.back();
+          Get.snackbar("Gagal", "Gagal melakukan pemesanan");
         }
       } catch (e) {
         // TODO HANDLE ERROR
         print(e.toString());
       }
     }
-    await Future.delayed(Duration(seconds: 2));
-    // IF SUCCESS GO TO PAGE DETAIL ORDER NEBENG
-    Get.offAllNamed(Routes.main, arguments: 1);
   }
 }
