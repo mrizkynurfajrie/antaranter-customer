@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/detail_nebeng/controller_detail_nebeng.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
@@ -113,17 +114,15 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                           AppIcons.minivan,
                           size: IconSizes.med,
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
+                        horizontalSpace(10.w),
                         Expanded(
-                          child: Container(
+                          child: SizedBox(
                             height: 40,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   'Kendaraan',
                                   style: TextStyle(
                                     fontSize: 11,
@@ -132,7 +131,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                                 ),
                                 Text(
                                   "${controller.orderResponse.value.nebengRider?.vehicleVariant}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                   ),
                                 ),
@@ -148,17 +147,15 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                           AppIcons.colour,
                           size: IconSizes.med,
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
+                        horizontalSpace(10.w),
                         Expanded(
-                          child: Container(
+                          child: SizedBox(
                             height: 40,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   'Warna Kendaraan',
                                   style: TextStyle(
                                     fontSize: 11,
@@ -167,7 +164,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                                 ),
                                 Text(
                                   "${controller.orderResponse.value.nebengRider?.vehicleColor}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                   ),
                                 ),
@@ -183,17 +180,15 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                           AppIcons.licencePlate,
                           size: IconSizes.med,
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
+                        horizontalSpace(10.w),
                         Expanded(
-                          child: Container(
+                          child: SizedBox(
                             height: 40,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   'Plat Kendaraan',
                                   style: TextStyle(
                                     fontSize: 11,
@@ -202,7 +197,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                                 ),
                                 Text(
                                   "${controller.orderResponse.value.nebengRider?.platNumber}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                   ),
                                 ),
@@ -218,11 +213,9 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                           AppIcons.priceTag,
                           size: IconSizes.med,
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
+                        horizontalSpace(10.w),
                         Expanded(
-                          child: Container(
+                          child: SizedBox(
                             height: 40,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -450,7 +443,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
             ],
           ),
         ),
-        onLoading: Center(
+        onLoading: const Center(
           child: CircularProgressIndicator(color: AppColor.primaryColor),
         ),
         onEmpty: Center(

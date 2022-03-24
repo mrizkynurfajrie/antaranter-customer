@@ -1,10 +1,9 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/order_nebeng/api_order_nebeng.dart';
 import 'package:intake_customer/framework/api2.dart';
-import 'package:intake_customer/response/nebengResponse.dart';
+import 'package:intake_customer/response/nebeng_response.dart';
 import 'package:intake_customer/response/nebeng_order_response.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
@@ -19,7 +18,6 @@ class ControllerOrderNebeng extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     // print(Get.arguments.toString());
     postinganNebeng.value = NebengResponse.fromArguments(Get.arguments);
@@ -33,6 +31,7 @@ class ControllerOrderNebeng extends GetxController {
     if (idNebeng != null) {
       try {
         var res = await api.orderNebeng(userAuth['id'], idNebeng);
+        await Future.delayed(const Duration(seconds: 2));
         // print(res.toString());
         // TODO status activity set true save response
         if (res['success'] == true) {
@@ -42,14 +41,16 @@ class ControllerOrderNebeng extends GetxController {
             orderNebengRes.nebengOrder?.id ?? 0,
             "nebeng",
           );
+          // IF SUCCESS GO TO PAGE DETAIL ORDER NEBENG
+          Get.offAllNamed(Routes.main, arguments: 1);
+        } else {
+          Get.back();
+          Get.snackbar("Gagal", "Gagal melakukan pemesanan");
         }
       } catch (e) {
         // TODO HANDLE ERROR
-        print(e.toString());
+        log(e.toString());
       }
     }
-    await Future.delayed(Duration(seconds: 2));
-    // IF SUCCESS GO TO PAGE DETAIL ORDER NEBENG
-    Get.offAllNamed(Routes.main, arguments: 1);
   }
 }

@@ -32,6 +32,8 @@ class ControllerUserInfo extends GetxController {
 
   setUserData() async {
     var data = await Api2().getUser();
-    user.value = User.fromJson(data);
+    if (data != null) {
+      user.value = User.fromJson(data);
+    }
   }
 }

@@ -17,25 +17,19 @@ class ControllerDetailNebeng extends GetxController
   var orderResponse = NebengOrderResponse().obs;
 
   @override
-  void onInit() {
-    // TODO: implement onInit
+  void onInit() async {
     super.onInit();
-    if (controllerUserInfo.hasActiveOrder.value) {
-      getDetailOrder();
-    } else {
-      change(null, status: RxStatus.empty());
-    }
+    await getDataOrder();
   }
 
-  void getDetailOrder() async {
+  void getDetailOrder(int id) async {
     change(null, status: RxStatus.loading());
-    var dataOrder = await Api2().getActiveOrder();
-    if (dataOrder != null) {
-      var res = await api.detailNebengOrder(dataOrder['id']);
+    try {
+      var res = await api.detailNebengOrder(id);
       orderResponse.value = NebengOrderResponse.fromJson(res['data']);
       change(orderResponse.value, status: RxStatus.success());
-    }else{
-      change(null, status: RxStatus.empty());
+    } catch (e) {
+      change(null, status: RxStatus.error());
     }
   }
 
@@ -59,6 +53,44 @@ class ControllerDetailNebeng extends GetxController
       } else {
         Get.snackbar('perhatian', "whatsapp no installed android");
       }
+    }
+  }
+
+  getDataOrder() async {
+    // CHECK DULU APAKAH ADA DATA DI CACHE
+    controllerUserInfo.checkUserHasActiveOrder();
+    if (controllerUserInfo.hasActiveOrder.value) {
+      var dataOrder = await Api2().getActiveOrder();
+      return getDetailOrder(dataOrder['id']);
+    }
+    // TODO GET DATA ORDER BY ID
+    getDetailOrderByUser();
+  }
+
+  void getDetailOrderByUser() async {
+    change(null, status: RxStatus.loading());
+    try {
+      var userId = controllerUserInfo.user.value.id;
+      print(userId);
+      if (userId != null) {
+        var res = await api.detailNebengOrderByUserId(userId);
+        if (res['success'] == true) {
+          orderResponse.value = NebengOrderResponse.fromJson(res['data']);
+          controllerUserInfo.setActiveOrder(
+            orderResponse.value.nebengPost?.id ?? 0,
+            "nebeng",
+          );
+          controllerUserInfo.setUserHasActiveOrder(true);
+          change(orderResponse.value, status: RxStatus.success());
+        } else {
+          change(null, status: RxStatus.empty());
+        }
+      } else {
+        throw "error user not found";
+      }
+    } catch (e) {
+      print(e.toString());
+      change(null, status: RxStatus.error());
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:intake_customer/response/main_rider.dart';
-import 'package:intake_customer/response/nebengResponse.dart';
+import 'package:intake_customer/response/nebeng_response.dart';
 import 'package:intake_customer/response/nebeng_order.dart';
 import 'package:intake_customer/response/nebeng_rider.dart';
 

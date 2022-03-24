@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/list_nebeng/api_list_nebeng.dart';
-import 'package:intake_customer/response/nebengResponse.dart';
+import 'package:intake_customer/response/nebeng_response.dart';
 
 class ControllerListNebeng extends GetxController
     with StateMixin<List<NebengResponse>> {
@@ -28,7 +30,7 @@ class ControllerListNebeng extends GetxController
         change(listNebeng, status: RxStatus.success());
       }
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
       change(null, status: RxStatus.error(e.toString()));
     }
   }

@@ -1,8 +1,18 @@
 import 'package:intake_customer/framework/api1.dart';
 
 class ApiDetailNebeng {
-  Future<dynamic> detailNebengOrder(int id) async {
-    var response = await Api1().apiJSONGetWitToken("nebengorders/${id}");
+  Future<dynamic> detailNebengOrder(int orderNebengId) async {
+    var response = await Api1().apiJSONGetWitToken("nebengorders/$orderNebengId");
+    // log('return data = ' + apiLoginResponse.toString());
+
+    return response;
+  }
+
+  Future<dynamic> detailNebengOrderByUserId(int userId) async {
+    final body = {
+      "users_id" : userId,
+    };
+    var response = await Api1().apiJSONPostWithToken("nebengorders/findbyuser",body);
     // log('return data = ' + apiLoginResponse.toString());
 
     return response;
