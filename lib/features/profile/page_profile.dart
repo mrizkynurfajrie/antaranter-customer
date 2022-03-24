@@ -25,7 +25,7 @@ class PageProfile extends GetView<ControllerProfile> {
         enableBack: false,
         child: SingleChildScrollView(
             child: Column(
-            children: <Widget>[
+          children: <Widget>[
             Container(
                 // height: Get.height *0.25,
                 width: Get.width,
@@ -49,9 +49,9 @@ class PageProfile extends GetView<ControllerProfile> {
                                   ''),
                               progressIndicatorBuilder:
                                   (context, url, downloadProgress) => Shimmer(
-                                    gradient: AppColor.shimmerGradient,
-                                      child: Container(
-                                      color: Colors.white,
+                                gradient: AppColor.shimmerGradient,
+                                child: Container(
+                                  color: Colors.white,
                                 ),
                               ),
                               errorWidget: (context, url, error) => Image.asset(
