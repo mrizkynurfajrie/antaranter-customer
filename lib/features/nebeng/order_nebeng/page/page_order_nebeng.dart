@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/order_nebeng/controller_order_nebeng.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
@@ -44,17 +45,15 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                         AppIcons.minivan,
                         size: IconSizes.med,
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
+                      horizontalSpace(10.w),
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           height: 40,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 'Kendaraan',
                                 style: TextStyle(
                                   fontSize: 11,
@@ -63,7 +62,7 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                               ),
                               Text(
                                 "${controller.postinganNebeng.value.nebengRider?.vehicleVariant}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16,
                                 ),
                               ),
@@ -79,17 +78,15 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                         AppIcons.colour,
                         size: IconSizes.med,
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
+                      horizontalSpace(10.w),
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           height: 40,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 'Warna Kendaraan',
                                 style: TextStyle(
                                   fontSize: 11,
@@ -98,7 +95,7 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                               ),
                               Text(
                                 "${controller.postinganNebeng.value.nebengRider?.vehicleColor}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16,
                                 ),
                               ),
@@ -114,11 +111,11 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                         AppIcons.seat,
                         size: IconSizes.med,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           height: 40,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,17 +148,17 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                         AppIcons.priceTag,
                         size: IconSizes.med,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           height: 40,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 'Harga',
                                 style: TextStyle(
                                   fontSize: 11,

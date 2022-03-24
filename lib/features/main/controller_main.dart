@@ -15,14 +15,12 @@ class ControllerMain extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     pageController = PageController(initialPage: currentPage.value);
   }
 
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
     var pageArg = Get.arguments;
     if (pageArg != null) {

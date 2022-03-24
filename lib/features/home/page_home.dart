@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
-import 'package:intake_customer/framework/api1.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
@@ -32,7 +31,7 @@ class PageHome extends GetView<ControllerHome> {
         color: AppColor.primaryColor,
         onRefresh: () async {
           // TODO add init call api for home
-          await Future.delayed(Duration(seconds: 3));
+          await Future.delayed(const Duration(seconds: 3));
         },
         child: CustomScrollView(
           slivers: [
@@ -143,7 +142,7 @@ class PageHome extends GetView<ControllerHome> {
                     horizontalSpace(Insets.sm),
                     OutlinedButton(
                       onPressed: () {},
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_forward_ios,
                       ),
                       style: OutlinedButton.styleFrom(
@@ -437,7 +436,7 @@ class PageHome extends GetView<ControllerHome> {
                     : SizedBox(
                       width: Get.width,
                       height: 240.h,
-                      child: Center(
+                      child: const Center(
                           child: CircularProgressIndicator(
                             color: AppColor.primaryColor,
                           ),
@@ -530,7 +529,7 @@ class MenuButtonHome extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(65),
               child: Container(
-                padding: EdgeInsets.all(12),
+                padding: EdgeInsets.all(Insets.med),
                 width: 65,
                 height: 65,
                 color: AppColor.bodyColor.shade200,

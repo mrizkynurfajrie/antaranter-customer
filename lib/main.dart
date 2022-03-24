@@ -25,8 +25,8 @@ void main() async {
 
 // receive message when app in background
 Future<void> backgroundHandler(RemoteMessage message) async {
-  print(message.data.toString());
-  print(message.notification?.title);
+  log(message.data.toString());
+  // log(message.notification?.title?.toString());
 }
 
 class App extends StatelessWidget {
