@@ -49,6 +49,7 @@ class ControllerHome extends GetxController {
 
     _locationData = await location.getLocation();
   }
+
   getLocation() {
     location.onLocationChanged.listen((LocationData currentLocation) async {
       if (currentLocation != null) {
@@ -64,7 +65,12 @@ class ControllerHome extends GetxController {
     try {
       // await Future.delayed(Duration(seconds: 5));
       var res = await api.homeUser(controllerUserInfo.user.value.id ?? 0);
-      homeResponse.value = HomeResponse.fromJson(res['data']);
+      if (res['success'] == true) {
+        homeResponse.value = HomeResponse.fromJson(res['data']);
+        if (homeResponse.value.user != null) {
+          controllerUserInfo.user.value = homeResponse.value.user!;
+        }
+      }
       // print(homeResponse.value.adsResponse?.ads?.length);
       homeResponse.refresh();
       loading.value = false;
@@ -76,6 +82,4 @@ class ControllerHome extends GetxController {
     // print(res);
     var user = await Api2().getUser();
   }
-
-
 }

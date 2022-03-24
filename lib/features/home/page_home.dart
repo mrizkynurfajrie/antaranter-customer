@@ -109,49 +109,61 @@ class PageHome extends GetView<ControllerHome> {
             ),
             // user status profile
             SliverToBoxAdapter(
-              child: CardRounded(
-                margin: EdgeInsets.symmetric(
-                  horizontal: Insets.med,
-                  vertical: Insets.xs,
-                ),
-                color: AppColor.whiteColor,
-                borderRadius: 15,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    AppIcons.smallIcon(
-                      AppIcons.profileComp,
-                      size: IconSizes.lg,
-                    ),
-                    horizontalSpace(Insets.sm),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Lengkapi data diri anda untuk mulai menggunakan layanan kami",
-                            style: TextStyles.inter.copyWith(
-                              color: AppColor.neutral,
-                              fontSize: FontSizes.s14,
+              child: Obx(
+                () => controller.controllerUserInfo.user.value.status != 2
+                    ? CardRounded(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: Insets.med,
+                          vertical: Insets.xs,
+                        ),
+                        color: AppColor.whiteColor,
+                        borderRadius: 15,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            AppIcons.smallIcon(
+                              AppIcons.profileComp,
+                              size: IconSizes.lg,
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                    horizontalSpace(Insets.sm),
-                    OutlinedButton(
-                      onPressed: () {},
-                      child: const Icon(
-                        Icons.arrow_forward_ios,
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        shape: const CircleBorder(),
-                        primary: AppColor.primaryColor,
-                      ),
-                    ),
-                  ],
-                ),
+                            horizontalSpace(Insets.sm),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    controller.controllerUserInfo.user.value
+                                                .status ==
+                                            0
+                                        ? "Lengkapi data diri anda untuk mulai menggunakan layanan kami"
+                                        : "Admin sedang memverifikasi data anda mohon tunggu 1x24 jam",
+                                    style: TextStyles.inter.copyWith(
+                                      color: AppColor.neutral,
+                                      fontSize: FontSizes.s14,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            horizontalSpace(Insets.sm),
+                            controller.controllerUserInfo.user.value.status == 0
+                                ? OutlinedButton(
+                                    onPressed: () {
+                                      Get.toNamed(Routes.verifikasi);
+                                    },
+                                    child: const Icon(
+                                      Icons.arrow_forward_ios,
+                                    ),
+                                    style: OutlinedButton.styleFrom(
+                                      shape: const CircleBorder(),
+                                      primary: AppColor.primaryColor,
+                                    ),
+                                  )
+                                : const SizedBox(),
+                          ],
+                        ),
+                      )
+                    : const SizedBox(),
               ),
             ),
             // Order nebeng
@@ -288,7 +300,18 @@ class PageHome extends GetView<ControllerHome> {
                             fit: BoxFit.contain,
                           ),
                           ontap: () {
-                            Get.toNamed(Routes.create_order);
+                            if (controller
+                                    .controllerUserInfo.user.value.status ==
+                                2) {
+                              Get.toNamed(Routes.create_order);
+                            } else {
+                              var message = controller.controllerUserInfo.user
+                                          .value.status ==
+                                      0
+                                  ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
+                                  : "Admin sedang memverivikasi data anda mohon tunggu";
+                              Get.snackbar("Pemberitahuan", message);
+                            }
                           },
                         ),
                         horizontalSpace(Get.width * 0.025),
@@ -300,8 +323,18 @@ class PageHome extends GetView<ControllerHome> {
                             fit: BoxFit.contain,
                           ),
                           ontap: () {
-                            // Get.toNamed(Routes.listNebeng);
-                            Get.toNamed(Routes.termNebeng);
+                            if (controller
+                                    .controllerUserInfo.user.value.status ==
+                                2) {
+                              Get.toNamed(Routes.termNebeng);
+                            } else {
+                              var message = controller.controllerUserInfo.user
+                                          .value.status ==
+                                      0
+                                  ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
+                                  : "Admin sedang memverivikasi data anda mohon tunggu";
+                              Get.snackbar("Pemberitahuan", message);
+                            }
                           },
                         ),
                       ],
@@ -368,7 +401,8 @@ class PageHome extends GetView<ControllerHome> {
                               height: 240.h,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: controller.homeResponse.value.adsResponse?.ads?.length,
+                                itemCount: controller.homeResponse.value
+                                    .adsResponse?.ads?.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                     margin: EdgeInsets.only(
@@ -391,7 +425,8 @@ class PageHome extends GetView<ControllerHome> {
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                                 child: Image.network(
-                                                  imageUrlPath("${controller.homeResponse.value.adsResponse?.ads?[index]?.adsPict}"),
+                                                  imageUrlPath(
+                                                      "${controller.homeResponse.value.adsResponse?.ads?[index]?.adsPict}"),
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
@@ -434,14 +469,14 @@ class PageHome extends GetView<ControllerHome> {
                         ),
                       )
                     : SizedBox(
-                      width: Get.width,
-                      height: 240.h,
-                      child: const Center(
+                        width: Get.width,
+                        height: 240.h,
+                        child: const Center(
                           child: CircularProgressIndicator(
                             color: AppColor.primaryColor,
                           ),
                         ),
-                    ),
+                      ),
               ),
             ),
             //konten bantuan user
@@ -453,7 +488,7 @@ class PageHome extends GetView<ControllerHome> {
                 child: Row(
                   children: [
                     SizedBox(
-                      width: 50,
+                      width: 50.w,
                       child: Image.asset(
                         AppIcons.customerService,
                         fit: BoxFit.contain,
@@ -481,12 +516,10 @@ class PageHome extends GetView<ControllerHome> {
                     ButtonPrimary(
                       cornerRadius: 15,
                       color: AppColor.primaryColor,
-                      size: Get.width * 0.25,
+                      size: 100.w,
                       height: Sizes.lg,
                       label: "Hubungi",
-                      onPressed: () {
-                        
-                      },
+                      onPressed: () {},
                     )
                   ],
                 ),
