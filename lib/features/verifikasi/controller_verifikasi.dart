@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intake_customer/features/verifikasi/api_verifikasi.dart';
 import 'package:intake_customer/framework/api2.dart';
+import 'package:intake_customer/response/user.dart';
+import 'package:intake_customer/shared/controller/controller_user_info.dart';
 import 'package:intl/intl.dart';
 
 class ControllerVerifikasi extends GetxController{
@@ -37,6 +39,8 @@ class ControllerVerifikasi extends GetxController{
   final ImagePicker picker = ImagePicker();
 
   DateTime? date = DateTime.now();
+
+  var mainController = Get.find<ControllerUserInfo>();
 
 
   @override
@@ -205,7 +209,8 @@ class ControllerVerifikasi extends GetxController{
       if(verifResult != null){
         var result = verifResult["data"];
         await Api2().setUser(user: result);
-        // var updateResult = User.fromJson(dataKeeper);
+        var user = User.fromJson(result);
+        Get.find<ControllerUserInfo>().user.value = user;
         Get.snackbar(
             "Verifikasi",
             "Your account has been updated",

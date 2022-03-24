@@ -57,7 +57,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
-                      controller.nama.value,
+                      controller.mainController.user.value.username?? 'Username',
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 20,
@@ -68,7 +68,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                   Container(
                     margin: EdgeInsets.only(top: 5),
                     child: Text(
-                      controller.phone.value,
+                      controller.mainController.user.value.phone ?? '0812xxxxxxxx',
                       style: TextStyle(
                           fontSize: 14,
                           color: AppColor.bodyColor.shade600
@@ -78,7 +78,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                   Container(
                     margin: EdgeInsets.only(top: 5, bottom: 10),
                     child: Text(
-                      controller.email.value,
+                      controller.mainController.user.value.email ?? 'user@email.com',
                       style: TextStyle(
                           fontSize: 14,
                           color: AppColor.bodyColor.shade600
