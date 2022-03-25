@@ -31,6 +31,9 @@ class PageHome extends GetView<ControllerHome> {
         color: AppColor.primaryColor,
         onRefresh: () async {
           // TODO add init call api for home
+          await controller.permissionHandler();
+          await controller.getLocation();
+          controller.getData();
           await Future.delayed(const Duration(seconds: 3));
         },
         child: CustomScrollView(
@@ -292,29 +295,29 @@ class PageHome extends GetView<ControllerHome> {
                     padding: EdgeInsets.symmetric(horizontal: Insets.med),
                     child: Row(
                       children: [
-                        MenuButtonHome(
-                          title: "Kirim Barang",
-                          subTitle: "Kirim barang sesuai keinginan anda",
-                          icon: Image.asset(
-                            AppIcons.kurirIcon,
-                            fit: BoxFit.contain,
-                          ),
-                          ontap: () {
-                            if (controller
-                                    .controllerUserInfo.user.value.status ==
-                                2) {
-                              Get.toNamed(Routes.create_order);
-                            } else {
-                              var message = controller.controllerUserInfo.user
-                                          .value.status ==
-                                      0
-                                  ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
-                                  : "Admin sedang memverivikasi data anda mohon tunggu";
-                              Get.snackbar("Pemberitahuan", message);
-                            }
-                          },
-                        ),
-                        horizontalSpace(Get.width * 0.025),
+                        // MenuButtonHome(
+                        //   title: "Kirim Barang",
+                        //   subTitle: "Kirim barang sesuai keinginan anda",
+                        //   icon: Image.asset(
+                        //     AppIcons.kurirIcon,
+                        //     fit: BoxFit.contain,
+                        //   ),
+                        //   ontap: () {
+                        //     if (controller
+                        //             .controllerUserInfo.user.value.status ==
+                        //         2) {
+                        //       Get.toNamed(Routes.create_order);
+                        //     } else {
+                        //       var message = controller.controllerUserInfo.user
+                        //                   .value.status ==
+                        //               0
+                        //           ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
+                        //           : "Admin sedang memverivikasi data anda mohon tunggu";
+                        //       Get.snackbar("Pemberitahuan", message);
+                        //     }
+                        //   },
+                        // ),
+                        // horizontalSpace(Get.width * 0.025),
                         MenuButtonHome(
                           title: "Nebeng",
                           subTitle: "Yuk nebeng bersama kami",
@@ -337,14 +340,7 @@ class PageHome extends GetView<ControllerHome> {
                             }
                           },
                         ),
-                      ],
-                    ),
-                  ),
-                  verticalSpace(Get.height * 0.03),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: Insets.med),
-                    child: Row(
-                      children: [
+                        horizontalSpace(Get.width * 0.025),
                         MenuButtonHome(
                           title: "Titip",
                           subTitle: "Titipkan barang anda bersama kami",
@@ -354,20 +350,37 @@ class PageHome extends GetView<ControllerHome> {
                           ),
                           ontap: () {},
                         ),
-                        horizontalSpace(Get.width * 0.025),
-                        MenuButtonHome(
-                          title: "Riwayat Pesanan",
-                          subTitle: "Lihat riwayat pesanan anda",
-                          icon: Image.asset(
-                            AppIcons.historyIcon,
-                            fit: BoxFit.contain,
-                          ),
-                          ontap: () {},
-                        ),
                       ],
                     ),
                   ),
                   verticalSpace(Get.height * 0.03),
+                  // Padding(
+                  //   padding: EdgeInsets.symmetric(horizontal: Insets.med),
+                  //   child: Row(
+                  //     children: [
+                  //       MenuButtonHome(
+                  //         title: "Titip",
+                  //         subTitle: "Titipkan barang anda bersama kami",
+                  //         icon: Image.asset(
+                  //           AppIcons.titipIcon,
+                  //           fit: BoxFit.contain,
+                  //         ),
+                  //         ontap: () {},
+                  //       ),
+                  //       horizontalSpace(Get.width * 0.025),
+                  //       MenuButtonHome(
+                  //         title: "Riwayat Pesanan",
+                  //         subTitle: "Lihat riwayat pesanan anda",
+                  //         icon: Image.asset(
+                  //           AppIcons.historyIcon,
+                  //           fit: BoxFit.contain,
+                  //         ),
+                  //         ontap: () {},
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // verticalSpace(Get.height * 0.03),
                 ],
               ),
             ),
