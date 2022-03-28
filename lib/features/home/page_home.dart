@@ -12,6 +12,7 @@ import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded_clickable.dart';
+import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -387,33 +388,33 @@ class PageHome extends GetView<ControllerHome> {
             ),
             //list iklan
             SliverToBoxAdapter(
-              child: Obx(
-                () => controller.loading.isFalse
-                    ? Padding(
-                        padding: EdgeInsets.symmetric(horizontal: Insets.med),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Penawaran untuk anda",
-                                  style: TextStyle(
-                                    fontSize: FontSizes.s14,
-                                    color: AppColor.primaryColor,
-                                  ),
-                                ),
-                                ButtonText(
-                                  onPressed: () {},
-                                  label: "Lihat semua",
-                                  color: AppColor.primaryColor,
-                                ),
-                              ],
-                            ),
-                            verticalSpace(10),
-                            SizedBox(
-                              height: 240.h,
-                              child: ListView.builder(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: Insets.med),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Penawaran untuk anda",
+                          style: TextStyle(
+                            fontSize: FontSizes.s14,
+                            color: AppColor.primaryColor,
+                          ),
+                        ),
+                        ButtonText(
+                          onPressed: () {},
+                          label: "Lihat semua",
+                          color: AppColor.primaryColor,
+                        ),
+                      ],
+                    ),
+                    verticalSpace(10),
+                    SizedBox(
+                      height: 240.h,
+                      child: Obx(
+                        () => controller.loading.isFalse
+                            ? ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: controller.homeResponse.value
                                     .adsResponse?.ads?.length,
@@ -476,21 +477,13 @@ class PageHome extends GetView<ControllerHome> {
                                     ),
                                   );
                                 },
-                              ),
-                            ),
-                            verticalSpace(20),
-                          ],
-                        ),
-                      )
-                    : SizedBox(
-                        width: Get.width,
-                        height: 240.h,
-                        child: const Center(
-                          child: CircularProgressIndicator(
-                            color: AppColor.primaryColor,
-                          ),
-                        ),
+                              )
+                            : loadingIndicatorBottom(context),
                       ),
+                    ),
+                    verticalSpace(20),
+                  ],
+                ),
               ),
             ),
             //konten bantuan user
