@@ -326,18 +326,19 @@ class PageHome extends GetView<ControllerHome> {
                             fit: BoxFit.contain,
                           ),
                           ontap: () {
-                            if (controller
-                                    .controllerUserInfo.user.value.status ==
-                                2) {
-                              Get.toNamed(Routes.termNebeng);
-                            } else {
-                              var message = controller.controllerUserInfo.user
-                                          .value.status ==
-                                      0
-                                  ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
-                                  : "Admin sedang memverivikasi data anda mohon tunggu";
-                              Get.snackbar("Pemberitahuan", message);
-                            }
+                            Get.toNamed(Routes.termNebeng);
+                            // if (controller
+                            //         .controllerUserInfo.user.value.status ==
+                            //     2) {
+                            //   Get.toNamed(Routes.termNebeng);
+                            // } else {
+                            //   var message = controller.controllerUserInfo.user
+                            //               .value.status ==
+                            //           0
+                            //       ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
+                            //       : "Admin sedang memverivikasi data anda mohon tunggu";
+                            //   Get.snackbar("Pemberitahuan", message);
+                            // }
                           },
                         ),
                         horizontalSpace(Get.width * 0.025),

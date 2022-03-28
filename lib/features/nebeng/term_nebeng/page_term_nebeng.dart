@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/term_nebeng/controller_term_nebeng.dart';
@@ -9,6 +10,7 @@ import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/widgets/appbar/appbar.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/others/checkbox_label.dart';
+import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 
 class PageTermNebeng extends GetView<ControllerTermNebeng> {
   const PageTermNebeng({Key? key}) : super(key: key);
@@ -63,109 +65,19 @@ class PageTermNebeng extends GetView<ControllerTermNebeng> {
                 borderRadius: BorderRadius.circular(Insets.lg),
               ),
               height: Get.height * 0.45.h,
-              child: Scrollbar(
-                child: ListView(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        text: "1. ",
-                        style:
-                            TextStyles.subtitle1.copyWith(color: Colors.black),
-                        children: [
-                          TextSpan(
-                            text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry.",
-                            style: TextStyles.textStd,
-                          ),
-                        ],
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: "1. ",
-                        style:
-                            TextStyles.subtitle1.copyWith(color: Colors.black),
-                        children: [
-                          TextSpan(
-                            text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry.",
-                            style: TextStyles.textStd,
-                          ),
-                        ],
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: "1. ",
-                        style:
-                            TextStyles.subtitle1.copyWith(color: Colors.black),
-                        children: [
-                          TextSpan(
-                            text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry.",
-                            style: TextStyles.textStd,
-                          ),
-                        ],
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: "1. ",
-                        style:
-                            TextStyles.subtitle1.copyWith(color: Colors.black),
-                        children: [
-                          TextSpan(
-                            text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry.",
-                            style: TextStyles.textStd,
-                          ),
-                        ],
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: "1. ",
-                        style:
-                            TextStyles.subtitle1.copyWith(color: Colors.black),
-                        children: [
-                          TextSpan(
-                            text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry.",
-                            style: TextStyles.textStd,
-                          ),
-                        ],
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: "1. ",
-                        style:
-                            TextStyles.subtitle1.copyWith(color: Colors.black),
-                        children: [
-                          TextSpan(
-                            text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry.",
-                            style: TextStyles.textStd,
-                          ),
-                        ],
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: "1. ",
-                        style:
-                            TextStyles.subtitle1.copyWith(color: Colors.black),
-                        children: [
-                          TextSpan(
-                            text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry.",
-                            style: TextStyles.textStd,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              width: Get.width,
+              child: Obx(
+                () => controller.loading.isFalse
+                    ? Scrollbar(
+                        child: ListView(
+                          children: [
+                            Html(
+                              data: controller.termCondition.value.skDesc,
+                            ),
+                          ],
+                        ),
+                      )
+                    : loadingIndicatorBottom(context),
               ),
             ),
             Padding(
