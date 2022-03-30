@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:intake_customer/features/contact_us/binding_contactus.dart';
+import 'package:intake_customer/features/contact_us/page_conctactus.dart';
 import 'package:intake_customer/features/create_order/page_create_order.dart';
 import 'package:intake_customer/features/history/binding_history.dart';
 import 'package:intake_customer/features/history/page_history.dart';
@@ -68,6 +70,11 @@ class AppPages {
       name: Routes.verifikasi,
       page: () => const PageVerifikasi(),
       binding: BindingVerifikasi(),
+    ),
+    GetPage(
+      name: Routes.contactus,
+      page: () => const PageContactUs(),
+      binding: BindingContactUs(),
     ),
     GetPage(
       name: Routes.create_order,

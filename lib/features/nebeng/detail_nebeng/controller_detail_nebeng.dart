@@ -1,6 +1,4 @@
-import 'dart:developer';
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/detail_nebeng/api_detail_nebeng.dart';
 import 'package:intake_customer/framework/api2.dart';
@@ -38,6 +36,7 @@ class ControllerDetailNebeng extends GetxController
     var whatsappURlAndroid =
         "https://wa.me/$whatsapp?text=${Uri.parse("halo driver saya telah memesan nebeng anda")}";
     var whatappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
+
     if (Platform.isIOS) {
       // for iOS phone only
       if (await canLaunch(whatappURLIos)) {

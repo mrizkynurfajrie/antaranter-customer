@@ -23,6 +23,11 @@ class AppIcons {
   static const activity = 'assets/icons/activity.svg';
   static const profile = 'assets/icons/profile.svg';
   static const colour = 'assets/icons/colour.png';
+  static const wa = 'assets/logo/wa-logo.png';
+  static const ig = 'assets/logo/ig-logo.png';
+  static const fb = 'assets/logo/fb-logo.png';
+  static const email = 'assets/logo/email-logo.png';
+  static const web = 'assets/logo/web-logo.png';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(

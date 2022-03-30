@@ -13,7 +13,7 @@ class PageRegister extends GetView<ControllerRegister> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           title: AppLogos.logoAppBar(AppLogos.logoColored),
           backgroundColor: AppColor.whiteColor,
@@ -24,7 +24,7 @@ class PageRegister extends GetView<ControllerRegister> {
             child: Column(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 30),
+                  margin: const EdgeInsets.only(top: 30),
                   child: Text(
                     "SIGN UP",
                     textAlign: TextAlign.center,
@@ -37,8 +37,8 @@ class PageRegister extends GetView<ControllerRegister> {
                 ),
                 uiComponent().baseLinePrimaryColor(context),
                 Container(
-                  margin: EdgeInsets.only(top: 5),
-                  child: Text(
+                  margin: const EdgeInsets.only(top: 5),
+                  child: const Text(
                     "Yuk, gabung sama kami!",
                     style: TextStyle(
                       fontSize: 18,
@@ -47,7 +47,7 @@ class PageRegister extends GetView<ControllerRegister> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+                  margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
@@ -62,17 +62,17 @@ class PageRegister extends GetView<ControllerRegister> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                  margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                   child: Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     child: uiComponent().edtPassField(controller.edtPswd,
-                        prefIcon: Icon(CupertinoIcons.lock_fill)),
+                        prefIcon: const Icon(CupertinoIcons.lock_fill)),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 20, left: 35, right: 35),
+                  margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
                   child: uiComponent().buttonStyle_one(
                     'Sign Up',
                     context,
@@ -84,7 +84,7 @@ class PageRegister extends GetView<ControllerRegister> {
                   ),
                 ),
                 Container(
-                    margin: EdgeInsets.only(top: 10),
+                    margin: const EdgeInsets.only(top: 10),
                     child: Text(
                       'Pastikan nomor ponsel anda aktif & dapat digunakan',
                       textAlign: TextAlign.center,
