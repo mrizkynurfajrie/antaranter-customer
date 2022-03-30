@@ -41,7 +41,7 @@ class PageContactUs extends StatelessWidget {
                 ),
                 uiComponent().baseLineDarkColor(context),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: ()=> contactController.ourWa(),
                   child: Container(
                     margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
@@ -134,7 +134,7 @@ class PageContactUs extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: ()=> contactController.ourEmail(),
                   child: Container(
                     margin: const EdgeInsets.only(top: 5, left: 20, right: 20),
                     height: Get.height * 0.10,
@@ -165,7 +165,7 @@ class PageContactUs extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: ()=> contactController.ourWeb(),
                   child: Container(
                     margin: const EdgeInsets.only(top: 5, left: 20, right: 20),
                     height: Get.height * 0.10,
