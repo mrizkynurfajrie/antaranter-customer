@@ -10,6 +10,7 @@ import 'package:intake_customer/routes/app_pages.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/controller/controller_bind.dart';
+import 'package:intake_customer/shared/helpers/local_notification_service.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/others/page_info.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -17,6 +18,7 @@ import 'package:intl/date_symbol_data_local.dart';
 void main() async {
   await initializeDateFormatting('id_ID', null);
   WidgetsFlutterBinding.ensureInitialized();
+  LocalNotificationService.initialize();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   await GetStorage.init();
