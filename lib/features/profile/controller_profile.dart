@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
 import 'api_profile.dart';
@@ -20,11 +19,5 @@ class ControllerProfile extends GetxController {
 
   routingPageSetting() {
     Get.toNamed(Routes.setting);
-  }
-
-  routingLogout() async {
-
-    await Api2().removeStorageForLogout();
-    Get.offAllNamed(Routes.INITIAL);
   }
 }
