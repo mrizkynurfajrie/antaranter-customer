@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
+import 'package:intake_customer/response/ads.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
@@ -355,7 +356,7 @@ class PageHome extends GetView<ControllerHome> {
                       ],
                     ),
                   ),
-                  verticalSpace(Get.height * 0.03),
+                  verticalSpace(Insets.med),
                   // Padding(
                   //   padding: EdgeInsets.symmetric(horizontal: Insets.med),
                   //   child: Row(
@@ -409,79 +410,25 @@ class PageHome extends GetView<ControllerHome> {
                         ),
                       ],
                     ),
-                    verticalSpace(10),
+                    verticalSpace(Insets.med),
                     SizedBox(
-                      height: 240.h,
+                      height: 140.h,
                       child: Obx(
                         () => controller.loading.isFalse
                             ? ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: controller.homeResponse.value
                                     .adsResponse?.ads?.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    margin: EdgeInsets.only(
-                                        right: 20, bottom: Insets.xs),
-                                    width: 160,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: AppColor.whiteColor,
-                                        boxShadow: Shadows.universal),
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        onTap: () {},
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                              height: 110,
-                                              width: Get.width,
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                child: Image.network(
-                                                  imageUrlPath(
-                                                      "${controller.homeResponse.value.adsResponse?.ads?[index]?.adsPict}"),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            verticalSpace(10),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: Insets.med,
-                                              ),
-                                              child: Text(
-                                                "${controller.homeResponse.value.adsResponse?.ads?[index]?.adsTitle}",
-                                                style: TextStyles.textStd,
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                            verticalSpace(6),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: Insets.med,
-                                              ),
-                                              child: Text(
-                                                "${controller.homeResponse.value.adsResponse?.ads?[index]?.adsDesc}",
-                                                style: TextStyle(
-                                                    fontSize: FontSizes.s11),
-                                                maxLines: 3,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
+                                itemBuilder: (context, index) => AdsItem(
+                                  ads: controller.homeResponse.value.adsResponse
+                                          ?.ads?[index] ??
+                                      Ads(),
+                                ),
                               )
                             : loadingIndicatorBottom(context),
                       ),
                     ),
-                    verticalSpace(20),
+                    verticalSpace(Insets.med),
                   ],
                 ),
               ),
@@ -534,7 +481,7 @@ class PageHome extends GetView<ControllerHome> {
             ),
             //jarak dasar
             SliverToBoxAdapter(
-              child: verticalSpace(20),
+              child: verticalSpace(Insets.med),
             )
           ],
         ),
@@ -570,13 +517,13 @@ class MenuButtonHome extends StatelessWidget {
               borderRadius: BorderRadius.circular(65),
               child: Container(
                 padding: EdgeInsets.all(Insets.med),
-                width: 65,
-                height: 65,
+                width: 65.w,
+                height: 65.w,
                 color: AppColor.bodyColor.shade200,
                 child: icon,
               ),
             ),
-            verticalSpace(15),
+            verticalSpace(Insets.sm),
             Text(
               title,
               style: TextStyles.inter.copyWith(
@@ -585,12 +532,66 @@ class MenuButtonHome extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            verticalSpace(10),
+            verticalSpace(Insets.xs),
             Text(
               subTitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColor.bodyColor.shade600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AdsItem extends StatelessWidget {
+  const AdsItem({Key? key, required this.ads}) : super(key: key);
+
+  final Ads ads;
+
+  @override
+  Widget build(BuildContext context) {
+    return CardRounded(
+      margin: EdgeInsets.only(right: Insets.lg, bottom: Insets.xs),
+      width: 130,
+      padding: EdgeInsets.zero,
+      child: InkWell(
+        onTap: () {},
+        child: Column(
+          children: [
+            SizedBox(
+              height: IconSizes.xxl,
+              width: Get.width,
+              child: Image.network(
+                imageUrlPath("${ads.adsPict}"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            verticalSpace(Insets.xs),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: Insets.sm,
+              ),
+              child: Text(
+                "${ads.adsTitle}",
+                style: TextStyles.textXs,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            verticalSpace(Insets.xs),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: Insets.sm,
+              ),
+              child: Text(
+                "${ads.adsDesc}",
+                style: TextStyle(fontSize: FontSizes.s10),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
