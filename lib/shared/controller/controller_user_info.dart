@@ -30,6 +30,10 @@ class ControllerUserInfo extends GetxController {
     await Api2().setActiveOrder(activeOrder: {'id': idOrder, 'type': type});
   }
 
+  void removeActiveOrder() async {
+    await Api2().removeActiveOrder();
+  }
+
   setUserData() async {
     var data = await Api2().getUser();
     if (data != null) {

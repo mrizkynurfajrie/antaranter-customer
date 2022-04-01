@@ -27,6 +27,7 @@ class NebengResponse {
     this.seatAvail,
     this.price,
     this.status,
+    this.statusUpdate,
     this.note,
     this.createdAt,
     this.updatedAt,
@@ -48,6 +49,7 @@ class NebengResponse {
   int? seatAvail;
   int? price;
   int? status;
+  int? statusUpdate;
   String? note;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -77,6 +79,7 @@ class NebengResponse {
         seatAvail: json["seatAvail"],
         price: json["price"],
         status: json["status"],
+        statusUpdate: json["status_update"],
         note: json["note"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
@@ -103,6 +106,7 @@ class NebengResponse {
         "seatAvail": seatAvail,
         "price": price,
         "status": status,
+        "status_update": statusUpdate,
         "note": note,
         "createdAt": createdAt,
         "updatedAt": updatedAt,
@@ -126,6 +130,7 @@ class NebengResponse {
         seatAvail: json["seatAvail"],
         price: json["price"],
         status: json["status"],
+        statusUpdate: json["status_update"],
         note: json["note"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],

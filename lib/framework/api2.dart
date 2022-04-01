@@ -76,6 +76,9 @@ class Api2 {
   Future<dynamic> getActiveOrder()async{
     return box.read(CACHE_ACTIVE_ORDER);
   }
+  Future<dynamic> removeActiveOrder()async{
+    return box.remove(CACHE_ACTIVE_ORDER);
+  }
 
 
   Future removeStorageForLogout() async{

@@ -17,4 +17,16 @@ class ApiDetailNebeng {
 
     return response;
   }
+
+
+  Future<dynamic> cancelNebengOrder(int idOrder) async {
+    final body = {
+      "status" : 4,
+      "id" : idOrder,
+    };
+    var response = await Api1().apiJSONPostWithToken("nebengorders/updatestatus",body);
+    // log('return data = ' + apiLoginResponse.toString());
+
+    return response;
+  }
 }

@@ -392,23 +392,14 @@ class PageHome extends GetView<ControllerHome> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: Insets.med),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Penawaran untuk anda",
-                          style: TextStyle(
-                            fontSize: FontSizes.s14,
-                            color: AppColor.primaryColor,
-                          ),
-                        ),
-                        ButtonText(
-                          onPressed: () {},
-                          label: "Lihat semua",
-                          color: AppColor.primaryColor,
-                        ),
-                      ],
+                    Text(
+                      "Penawaran untuk anda",
+                      style: TextStyle(
+                        fontSize: FontSizes.s16,
+                        color: AppColor.primaryColor,
+                      ),
                     ),
                     verticalSpace(Insets.med),
                     SizedBox(

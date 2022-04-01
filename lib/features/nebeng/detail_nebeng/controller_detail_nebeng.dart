@@ -1,8 +1,11 @@
+import 'dart:developer';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/detail_nebeng/api_detail_nebeng.dart';
 import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/response/nebeng_order_response.dart';
+import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,6 +16,8 @@ class ControllerDetailNebeng extends GetxController
 
   var controllerUserInfo = Get.find<ControllerUserInfo>();
   var orderResponse = NebengOrderResponse().obs;
+
+  var loadingCancel = false.obs;
 
   @override
   void onInit() async {
@@ -94,6 +99,42 @@ class ControllerDetailNebeng extends GetxController
     } catch (e) {
       print(e.toString());
       change(null, status: RxStatus.error(e.toString()));
+    }
+  }
+
+  void cancelOrderNebeng() async {
+    try {
+      var result = await Get.defaultDialog(
+        title: "Konfirmasi",
+        middleText: "Anda yakin ingin membatalkan pesanan ?",
+        textCancel: "Tidak",
+        textConfirm: "Iya",
+        cancelTextColor: AppColor.primaryColor,
+        confirmTextColor: Colors.white,
+        buttonColor: AppColor.primaryColor,
+        onConfirm: () {
+          Get.back(result: true);
+        },
+      );
+      loadingCancel.value = true;
+      if (result == true) {
+        var res = await api.cancelNebengOrder(
+          orderResponse.value.nebengOrder?.id ?? 0,
+        );
+        log(res.toString());
+        if (res['success'] == true) {
+          controllerUserInfo.removeActiveOrder();
+          controllerUserInfo.setUserHasActiveOrder(false);
+          change(null, status: RxStatus.empty());
+        } else {
+          throw "Terjadi kesalahan";
+        }
+      }
+      loadingCancel.value = false;
+    } catch (e) {
+      print(e.toString());
+      loadingCancel.value = false;
+      Get.snackbar("Kesalahan", e.toString());
     }
   }
 }

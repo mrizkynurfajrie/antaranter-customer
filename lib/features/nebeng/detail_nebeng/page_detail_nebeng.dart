@@ -9,6 +9,7 @@ import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/helpers/currency_formatter.dart';
 import 'package:intake_customer/shared/helpers/format_date_time.dart';
 import 'package:intake_customer/shared/widgets/appbar/appbar.dart';
+import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -424,22 +425,28 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                   ),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(Insets.med),
-                width: Get.width,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Batalkan pesanan",
-                    style: TextStyles.textSm.copyWith(
-                      color: Colors.black,
-                    ),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    primary: AppColor.primaryColor,
-                  ),
-                ),
-              ),
+              controller.orderResponse.value.nebengPost?.statusUpdate == 1
+                  ? Container(
+                      padding: EdgeInsets.all(Insets.med),
+                      width: Get.width,
+                      child: 
+                      controller.loadingCancel.isFalse?
+                      OutlinedButton(
+                        onPressed: () {
+                          controller.cancelOrderNebeng();
+                        },
+                        child: Text(
+                          "Batalkan pesanan",
+                          style: TextStyles.textSm.copyWith(
+                            color: Colors.black,
+                          ),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          primary: AppColor.errorColor,
+                        ),
+                      ):loadingIndicator(context),
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),
