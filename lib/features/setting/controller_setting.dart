@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:intake_customer/framework/api2.dart';
+import 'package:intake_customer/response/user.dart';
 import 'package:intake_customer/routes/app_routes.dart';
+import 'package:intake_customer/shared/controller/controller_user_info.dart';
 
 class ControllerSetting extends GetxController{
 
@@ -17,6 +19,7 @@ class ControllerSetting extends GetxController{
   }
 
   logout()async{
+    Get.find<ControllerUserInfo>().user.value = User();
     await Api2().removeStorageForLogout();
     Get.offAllNamed(Routes.INITIAL);
   }
