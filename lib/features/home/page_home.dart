@@ -473,7 +473,9 @@ class PageHome extends GetView<ControllerHome> {
                       size: 100.w,
                       height: Sizes.lg,
                       label: "Hubungi",
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(Routes.contactus);
+                      },
                     )
                   ],
                 ),
