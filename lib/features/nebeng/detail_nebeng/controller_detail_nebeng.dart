@@ -74,22 +74,26 @@ class ControllerDetailNebeng extends GetxController
       if (userId != null) {
         var res = await api.detailNebengOrderByUserId(userId);
         if (res['success'] == true) {
-          orderResponse.value = NebengOrderResponse.fromJson(res['data']);
-          controllerUserInfo.setActiveOrder(
-            orderResponse.value.nebengOrder?.id ?? 0,
-            "nebeng",
-          );
-          controllerUserInfo.setUserHasActiveOrder(true);
-          change(orderResponse.value, status: RxStatus.success());
+          try {
+            orderResponse.value = NebengOrderResponse.fromJson(res['data']);
+            controllerUserInfo.setActiveOrder(
+              orderResponse.value.nebengOrder?.id ?? 0,
+              "nebeng",
+            );
+            controllerUserInfo.setUserHasActiveOrder(true);
+            change(orderResponse.value, status: RxStatus.success());
+          } catch (e) {
+            change(null, status: RxStatus.empty());
+          }
         } else {
-          change(null, status: RxStatus.empty());
+          throw "Terjadi kesalahan";
         }
       } else {
         throw "error user not found";
       }
     } catch (e) {
       print(e.toString());
-      change(null, status: RxStatus.error());
+      change(null, status: RxStatus.error(e.toString()));
     }
   }
 }
