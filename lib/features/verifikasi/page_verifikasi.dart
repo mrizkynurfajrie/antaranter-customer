@@ -134,15 +134,46 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                     ),
                     child: uiComponent().edtField(controller.edt_alamat, 'Alamat'),
                   ),
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    height: 50,
-                    width: Get.width * 0.825,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        color: AppColor.whiteColor
+                  GestureDetector(
+                    onTap: () => controller.popUpProvinsi(),
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10, right: 10, left: 10),
+                      height: 50,
+                      width: Get.width * 0.825,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          color: AppColor.whiteColor),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 16, 0, 0),
+                        child: Text(
+                          (controller.name_provinsi.value == '') ? 'Provinsi' : controller.name_provinsi.value,
+                          style: TextStyle(
+                              fontSize: 16, color: AppColor.bodyColor.shade700),
+                        ),
+                      ),
                     ),
-                    child: uiComponent().edtField(controller.edt_kota, 'Kota'),
+                  ),
+                  GestureDetector(
+                    onTap: ()=>controller.popUpKota(),
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 5),
+                      height: 50,
+                      width: Get.width * 0.825,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          color: AppColor.whiteColor
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 16, 0, 0),
+                        child: Text(
+                          (controller.name_kota.value == '') ? 'Kota' : controller.name_kota.value,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: AppColor.bodyColor.shade700
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   uiComponent().baseLineDarkColor(context),
                   GestureDetector(
