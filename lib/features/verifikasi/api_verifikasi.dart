@@ -1,20 +1,23 @@
+import 'dart:developer';
+
 import 'package:intake_customer/framework/api1.dart';
 
 class ApiVerifikasi{
 
-  Future<dynamic> verifikasiApiRunning ({
-  required var name,
-  required var ktp,
-  required var email,
-  required var image,
-  required var birth,
-  required var address,
-  required var nik,
-  required var lat,
-  required var lng,
-  required var city,
-  required var id_user
-}) async {
+  Future<dynamic> getProvinsi()async{
+    var daftarProvinsi = await Api1().apiJSONGetWitToken('provincies/list');
+    return daftarProvinsi;
+  }
+
+  Future<dynamic> getKota(int idProvinsi)async{
+    final bodyJson = {
+      "province_id" : idProvinsi
+    };
+    var daftarKota = await Api1().apiJSONPostWithToken('cities/findbyprovince', bodyJson);
+    return daftarKota;
+  }
+
+  Future<dynamic> verifikasiApiRunning ({required var name, required var ktp, required var email, required var image, required var birth, required var address, required var nik, required var lat, required var lng, required var city, required var id_user}) async {
 
     final inputBody = {
       "username" : name,
@@ -30,7 +33,8 @@ class ApiVerifikasi{
     };
 
     var apiVerifikasiResponse = await Api1().apiJSONPostWithToken('users/update-profile/$id_user', inputBody);
-    // log("Cek data : " + apiVerifikasiResponse.toString());
+
+    log("Cek input : " + inputBody.toString());
 
     return apiVerifikasiResponse;
 

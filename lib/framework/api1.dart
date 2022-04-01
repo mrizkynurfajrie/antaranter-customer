@@ -35,7 +35,6 @@ class Api1 {
     http.Response r = await http.get(Uri.parse(baseUrl+url), headers: headers);
     log("status codenya " + r.statusCode.toString());
 
-    log(r.body);
     var data = json.decode(r.body);
     // log(data.toString());
     return data;
@@ -77,7 +76,7 @@ class Api1 {
     var data = jsonDecode(r.body);
     log("status codenya " + r.statusCode.toString());
 
-    log(data.toString());
+    // log(data.toString());
     return data;
   }
 
