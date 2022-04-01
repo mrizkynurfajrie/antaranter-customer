@@ -122,39 +122,39 @@ class PageProfile extends GetView<ControllerProfile> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () => controller.routingPageLike(),
-              child: Container(
-                margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                height: Get.height * 0.10,
-                width: Get.width,
-                child: Card(
-                  elevation: 4,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                          margin: const EdgeInsets.only(left: 15),
-                          child: Icon(
-                            CupertinoIcons.heart_fill,
-                            size: 45,
-                            color: AppColor.primaryColor.shade300,
-                          )),
-                      Container(
-                          margin: const EdgeInsets.only(left: 10),
-                          child: Text(
-                            'Favorit',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 20,
-                                color: AppColor.bodyColor.shade600),
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            // GestureDetector(
+            //   onTap: () => controller.routingPageLike(),
+            //   child: Container(
+            //     margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+            //     height: Get.height * 0.10,
+            //     width: Get.width,
+            //     child: Card(
+            //       elevation: 4,
+            //       shape: const RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.all(Radius.circular(20))),
+            //       child: Row(
+            //         children: <Widget>[
+            //           Container(
+            //               margin: const EdgeInsets.only(left: 15),
+            //               child: Icon(
+            //                 CupertinoIcons.heart_fill,
+            //                 size: 45,
+            //                 color: AppColor.primaryColor.shade300,
+            //               )),
+            //           Container(
+            //               margin: const EdgeInsets.only(left: 10),
+            //               child: Text(
+            //                 'Favorit',
+            //                 style: TextStyle(
+            //                     fontWeight: FontWeight.w600,
+            //                     fontSize: 20,
+            //                     color: AppColor.bodyColor.shade600),
+            //               )),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
             GestureDetector(
               onTap: () {},
               child: Container(
@@ -188,39 +188,39 @@ class PageProfile extends GetView<ControllerProfile> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                height: Get.height * 0.10,
-                width: Get.width,
-                child: Card(
-                  elevation: 4,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                          margin: const EdgeInsets.only(left: 15),
-                          child: Icon(
-                            Icons.motorcycle,
-                            size: 45,
-                            color: AppColor.primaryColor.shade300,
-                          )),
-                      Container(
-                          margin: const EdgeInsets.only(left: 10),
-                          child: Text(
-                            'Bergabung',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 20,
-                                color: AppColor.bodyColor.shade600),
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            // GestureDetector(
+            //   onTap: () {},
+            //   child: Container(
+            //     margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+            //     height: Get.height * 0.10,
+            //     width: Get.width,
+            //     child: Card(
+            //       elevation: 4,
+            //       shape: const RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.all(Radius.circular(20))),
+            //       child: Row(
+            //         children: <Widget>[
+            //           Container(
+            //               margin: const EdgeInsets.only(left: 15),
+            //               child: Icon(
+            //                 Icons.motorcycle,
+            //                 size: 45,
+            //                 color: AppColor.primaryColor.shade300,
+            //               )),
+            //           Container(
+            //               margin: const EdgeInsets.only(left: 10),
+            //               child: Text(
+            //                 'Bergabung',
+            //                 style: TextStyle(
+            //                     fontWeight: FontWeight.w600,
+            //                     fontSize: 20,
+            //                     color: AppColor.bodyColor.shade600),
+            //               )),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
             GestureDetector(
               onTap: () => controller.routingPageSetting(),
               child: Container(
