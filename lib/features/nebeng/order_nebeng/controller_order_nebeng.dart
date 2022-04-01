@@ -45,7 +45,8 @@ class ControllerOrderNebeng extends GetxController {
           Get.offAllNamed(Routes.main, arguments: 1);
         } else {
           Get.back();
-          Get.snackbar("Gagal", "Gagal melakukan pemesanan");
+          String? error = res['errors'][0]['message']['message'];
+          Get.snackbar("Gagal memesan", error ?? "Gagal melakukan pemesanan");
         }
       } catch (e) {
         // TODO HANDLE ERROR

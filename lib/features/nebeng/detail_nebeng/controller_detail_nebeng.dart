@@ -76,7 +76,7 @@ class ControllerDetailNebeng extends GetxController
         if (res['success'] == true) {
           orderResponse.value = NebengOrderResponse.fromJson(res['data']);
           controllerUserInfo.setActiveOrder(
-            orderResponse.value.nebengPost?.id ?? 0,
+            orderResponse.value.nebengOrder?.id ?? 0,
             "nebeng",
           );
           controllerUserInfo.setUserHasActiveOrder(true);
