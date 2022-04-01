@@ -40,41 +40,41 @@ class PageContactUs extends StatelessWidget {
                   ),
                 ),
                 uiComponent().baseLineDarkColor(context),
-                GestureDetector(
-                  onTap: ()=> contactController.ourWa(),
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                    height: Get.height * 0.10,
-                    width: Get.width,
-                    child: Card(
-                      elevation: 4,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                              margin: const EdgeInsets.only(top: 15, bottom: 15, left: 20),
-                              child: Image.asset(AppIcons.wa)),
-                          Container(
-                              margin: const EdgeInsets.only(top: 15, bottom: 15, right: 20, left: 10),
-                              child: Text(
-                                'WhatsApp',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 20,
-                                    color: AppColor.bodyColor.shade600),
-                              )
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: ()=> contactController.ourWa(),
+                //   child: Container(
+                //     margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                //     height: Get.height * 0.10,
+                //     width: Get.width,
+                //     child: Card(
+                //       elevation: 4,
+                //       shape: const RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.all(Radius.circular(20))
+                //       ),
+                //       child: Row(
+                //         children: <Widget>[
+                //           Container(
+                //               margin: const EdgeInsets.only(top: 15, bottom: 15, left: 20),
+                //               child: Image.asset(AppIcons.wa)),
+                //           Container(
+                //               margin: const EdgeInsets.only(top: 15, bottom: 15, right: 20, left: 10),
+                //               child: Text(
+                //                 'WhatsApp',
+                //                 style: TextStyle(
+                //                     fontWeight: FontWeight.w300,
+                //                     fontSize: 20,
+                //                     color: AppColor.bodyColor.shade600),
+                //               )
+                //           )
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 GestureDetector(
                   onTap: ()=> contactController.ourIg(),
                   child: Container(
-                    margin: const EdgeInsets.only(top: 5, left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
                     width: Get.width,
                     child: Card(

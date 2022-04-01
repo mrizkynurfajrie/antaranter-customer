@@ -5,28 +5,28 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ControllerContactUs extends GetxController{
 
-  ourWa() async {
-    var whatsapp = "+6282259304664";
-    var whatsappURlAndroid = "https://wa.me/$whatsapp?text=${Uri.parse("halo driver saya telah memesan nebeng anda")}";
-    var whatappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
-
-    if (Platform.isIOS) {
-      // for iOS phone only
-      if (await canLaunch(whatappURLIos)) {
-        await launch(whatappURLIos, forceSafariVC: false);
-      } else {
-        Get.snackbar('Attention', "whatsapp no installed");
-      }
-    } else {
-      // android , web
-
-      if (await canLaunch(whatsappURlAndroid)) {
-        await launch(whatsappURlAndroid);
-      } else {
-        Get.snackbar('Attention', "whatsapp no installed android");
-      }
-    }
-  }
+  // ourWa() async {
+  //   var whatsapp = "+6282259304664";
+  //   var whatsappURlAndroid = "https://wa.me/$whatsapp?text=${Uri.parse("halo driver saya telah memesan nebeng anda")}";
+  //   var whatappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
+  //
+  //   if (Platform.isIOS) {
+  //     // for iOS phone only
+  //     if (await canLaunch(whatappURLIos)) {
+  //       await launch(whatappURLIos, forceSafariVC: false);
+  //     } else {
+  //       Get.snackbar('Attention', "whatsapp no installed");
+  //     }
+  //   } else {
+  //     // android , web
+  //
+  //     if (await canLaunch(whatsappURlAndroid)) {
+  //       await launch(whatsappURlAndroid);
+  //     } else {
+  //       Get.snackbar('Attention', "whatsapp no installed android");
+  //     }
+  //   }
+  // }
 
   ourIg()async{
     var igUrl = "https://www.instagram.com/indoteknokarya_id/";
