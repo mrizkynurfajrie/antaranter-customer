@@ -101,6 +101,7 @@ class PageTermNebeng extends GetView<ControllerTermNebeng> {
                 size: Get.width,
                 label: "LANJUT",
                 onPressed: () {
+                  controller.agreeTermNebeng();
                   Get.toNamed(Routes.listNebeng);
                 },
               ),

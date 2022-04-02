@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
+import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/response/ads.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
@@ -327,20 +328,32 @@ class PageHome extends GetView<ControllerHome> {
                             AppIcons.nebengIcon,
                             fit: BoxFit.contain,
                           ),
-                          ontap: () {
-                            Get.toNamed(Routes.termNebeng);
-                            // if (controller
-                            //         .controllerUserInfo.user.value.status ==
-                            //     2) {
-                            //   Get.toNamed(Routes.termNebeng);
-                            // } else {
-                            //   var message = controller.controllerUserInfo.user
-                            //               .value.status ==
-                            //           0
-                            //       ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
-                            //       : "Admin sedang memverivikasi data anda mohon tunggu";
-                            //   Get.snackbar("Pemberitahuan", message);
-                            // }
+                          ontap: () async {
+                            var agreement = await Api2().getAgreementNebeng();
+                            var route = '';
+                            if (agreement != null) {
+                              if (agreement == true) {
+                                route = Routes.listNebeng;
+                              } else {
+                                route = Routes.termNebeng;
+                              }
+                            } else {
+                              route = Routes.termNebeng;
+                            }
+
+                            if (controller
+                                    .controllerUserInfo.user.value.status ==
+                                2) {
+                              
+                              Get.toNamed(route);
+                            } else {
+                              var message = controller.controllerUserInfo.user
+                                          .value.status ==
+                                      0
+                                  ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
+                                  : "Admin sedang memverivikasi data anda mohon tunggu";
+                              Get.snackbar("Pemberitahuan", message);
+                            }
                           },
                         ),
                         horizontalSpace(Get.width * 0.025),
