@@ -18,6 +18,10 @@ class ControllerSetting extends GetxController{
     Get.toNamed(Routes.contactus);
   }
 
+  routeToAboutApp(){
+    Get.toNamed(Routes.aboutApp);
+  }
+
   logout()async{
     Get.find<ControllerUserInfo>().user.value = User();
     await Api2().removeStorageForLogout();

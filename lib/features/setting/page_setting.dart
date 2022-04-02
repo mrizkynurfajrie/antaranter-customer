@@ -92,7 +92,7 @@ class PageSetting extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: ()=> settingController.routeToAboutApp(),
                   child: Container(
                     margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
