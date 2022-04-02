@@ -8,6 +8,7 @@ const String CACHE_LATITUDE = "latitude";
 const String CACHE_LONGITUDE = "longitude";
 const String STATUS_ACTIVE_ORDER = "status_active_order";
 const String CACHE_ACTIVE_ORDER = "order";
+const String CHECK_AGREEMENT_NEBENG = "agreement_nebeng";
 
 
 class Api2 {
@@ -65,6 +66,7 @@ class Api2 {
     isHasActiveOrder ??= false;
     await box.write(STATUS_ACTIVE_ORDER, isHasActiveOrder);
   }
+
   Future<bool?> getHasActiveOrder()async{
     return box.read(STATUS_ACTIVE_ORDER);
   }
@@ -87,6 +89,16 @@ class Api2 {
     await box.remove(CHECK_LOGIN);
     await box.remove(STATUS_ACTIVE_ORDER);
     await box.remove(CACHE_ACTIVE_ORDER);
+    await box.remove(CHECK_AGREEMENT_NEBENG);
+  }
+
+  Future setAgreementNebeng({bool? status}) async{
+    status ??= false;
+    await box.write(CHECK_AGREEMENT_NEBENG, status);
+  }
+  
+  Future<bool?> getAgreementNebeng()async{
+    return box.read(CHECK_AGREEMENT_NEBENG);
   }
 
 

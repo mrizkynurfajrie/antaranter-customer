@@ -24,6 +24,7 @@ class ControllerSetting extends GetxController{
 
   logout()async{
     Get.find<ControllerUserInfo>().user.value = User();
+    Get.find<ControllerUserInfo>().hasActiveOrder.value = false;
     await Api2().removeStorageForLogout();
     Get.offAllNamed(Routes.INITIAL);
   }
