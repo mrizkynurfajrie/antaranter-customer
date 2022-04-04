@@ -72,14 +72,12 @@ class ControllerHome extends GetxController {
         }
       }
       // print(homeResponse.value.adsResponse?.ads?.length);
+      controllerUserInfo.user.refresh();
       homeResponse.refresh();
       loading.value = false;
     } catch (e) {
       print(e.toString());
       Get.snackbar("Error", "Terjadi kesalahan");
     }
-
-    // print(res);
-    var user = await Api2().getUser();
   }
 }

@@ -37,7 +37,10 @@ class ControllerDetailNebeng extends GetxController
   }
 
   openwhatsapp() async {
-    var whatsapp = "+6285250223238";
+    log(orderResponse.value.mainRider!.phone!.toString());
+    var editedPhone =
+        orderResponse.value.mainRider?.phone?.replaceFirst(RegExp(r'^0+'), "");
+    var whatsapp = "+62$editedPhone";
     var whatsappURlAndroid =
         "https://wa.me/$whatsapp?text=${Uri.parse("halo driver saya telah memesan nebeng anda")}";
     var whatappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";

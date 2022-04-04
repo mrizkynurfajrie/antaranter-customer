@@ -344,7 +344,6 @@ class PageHome extends GetView<ControllerHome> {
                             if (controller
                                     .controllerUserInfo.user.value.status ==
                                 2) {
-                              
                               Get.toNamed(route);
                             } else {
                               var message = controller.controllerUserInfo.user
@@ -567,6 +566,7 @@ class AdsItem extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: IconSizes.xxl,
@@ -586,6 +586,7 @@ class AdsItem extends StatelessWidget {
                 style: TextStyles.textXs,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.left,
               ),
             ),
             verticalSpace(Insets.xs),
@@ -598,6 +599,7 @@ class AdsItem extends StatelessWidget {
                 style: TextStyle(fontSize: FontSizes.s10),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.left,
               ),
             ),
           ],
