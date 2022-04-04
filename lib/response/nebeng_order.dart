@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:intake_customer/response/nebeng_response.dart';
+
 NebengOrder nebengOrderFromJson(String str) => NebengOrder.fromJson(json.decode(str));
 
 String nebengOrderToJson(NebengOrder data) => json.encode(data.toJson());
@@ -13,6 +15,7 @@ class NebengOrder {
         this.status,
         this.updatedAt,
         this.createdAt,
+        this.post
     });
 
     int? id;
@@ -22,6 +25,7 @@ class NebengOrder {
     int? status;
     DateTime? updatedAt;
     DateTime? createdAt;
+    NebengResponse? post;
 
     factory NebengOrder.fromJson(Map<String, dynamic> json) => NebengOrder(
         id: json["id"],
@@ -31,6 +35,9 @@ class NebengOrder {
         status: json["status"],
         updatedAt: DateTime.parse(json["updatedAt"]),
         createdAt: DateTime.parse(json["createdAt"]),
+        post: json["post"] == null
+            ? null
+            : NebengResponse.fromJson(json["post"])
     );
 
     Map<String, dynamic> toJson() => {
@@ -41,5 +48,6 @@ class NebengOrder {
         "status": status,
         "updatedAt": updatedAt?.toIso8601String(),
         "createdAt": createdAt?.toIso8601String(),
+        "post": post?.toJson()
     };
 }
