@@ -5,7 +5,7 @@ import 'package:intake_customer/features/history/api_history.dart';
 import 'package:intake_customer/response/nebeng_order.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
 
-class ControllerHistory extends GetxController {
+class ControllerHistory extends GetxController{
   final ApiHistory api;
 
   ControllerHistory({required this.api});

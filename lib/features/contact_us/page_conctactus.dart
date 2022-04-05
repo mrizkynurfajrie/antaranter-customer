@@ -24,11 +24,11 @@ class PageContactUs extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 70, vertical: 10),
-                  child: const Image(image: AssetImage('assets/logo/logo-besar.png')),
+                  margin: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
+                  child: const Image(image: AssetImage('assets/logo/logo-horizontal.png')),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
+                  margin: const EdgeInsets.only(top: 5, left: 10, right: 10),
                   child: Text(
                     'Jika butuh bantuan kami\nMohon hubungi pada kontak berikut',
                     textAlign: TextAlign.center,
