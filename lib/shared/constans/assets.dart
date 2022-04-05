@@ -23,11 +23,11 @@ class AppIcons {
   static const activity = 'assets/icons/activity.svg';
   static const profile = 'assets/icons/profile.svg';
   static const colour = 'assets/icons/colour.png';
-  static const wa = 'assets/logo/wa-logo.png';
-  static const ig = 'assets/logo/ig-logo.png';
-  static const fb = 'assets/logo/fb-logo.png';
-  static const email = 'assets/logo/email-logo.png';
-  static const web = 'assets/logo/web-logo.png';
+  static const wa = 'assets/icons/wa-icon.png';
+  static const ig = 'assets/icons/ig-icon.png';
+  static const fb = 'assets/icons/fb-icon.png';
+  static const email = 'assets/icons/email-icon.png';
+  static const web = 'assets/icons/web-icon.png';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(
@@ -38,6 +38,7 @@ class AppIcons {
 }
 
 class AppLogos {
+  // static const logoColored = 'assets/logo/Logo-Intake-FINAL.png';
   static const logoColored = 'assets/logo/logo-besar.png';
   static const smallLogoColored = 'assets/logo/logo-kecil.png';
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/history/controller_history.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intl/intl.dart';
 
 class PageHistory extends GetView<ControllerHistory> {
   const PageHistory({Key? key}) : super(key: key);
@@ -51,15 +52,15 @@ class PageHistory extends GetView<ControllerHistory> {
                         Container(
                           margin: EdgeInsets.only(left: 10, top: 5),
                           child: Text(
-                            controller.allData[index].status == 4 ? 'Batalkan' : 'Selesai',
+                            DateFormat('dd-MM-yyyy').format(controller.allData[index].createdAt!),
                             style: TextStyle(fontSize: 14),
                           ),
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                           child: Text(
-                            controller.allData[index].createdAt.toString(),
-                            style: TextStyle(fontSize: 14),
+                            controller.allData[index].status == 4 ? 'Batalkan' : 'Selesai',
+                            style: TextStyle(fontSize: 14, color: Colors.red),
                           ),
                         ),
                       ],
