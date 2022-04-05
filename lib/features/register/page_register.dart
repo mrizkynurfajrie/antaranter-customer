@@ -4,7 +4,8 @@ import 'package:intake_customer/features/register/controller_register.dart';
 import 'package:flutter/material.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
-import 'package:intake_customer/shared/helpers/utils.dart';
+import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
+import 'package:intake_customer/shared/widgets/others/checkbox_label.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -12,14 +13,15 @@ class PageRegister extends GetView<ControllerRegister> {
   const PageRegister({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) =>
+      Scaffold(
         backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           title: AppLogos.logoAppBar(AppLogos.logoColored),
           backgroundColor: AppColor.whiteColor,
           automaticallyImplyLeading: false,
         ),
-        body: SafeArea(
+        body: Obx(()=> SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -72,28 +74,33 @@ class PageRegister extends GetView<ControllerRegister> {
                   ),
                 ),
                 Container(
+                  margin: EdgeInsets.only(top: 10, bottom: 0, left: 36.5, right: 20),
+                  child: CheckboxLabel(onChange: (status) {
+                    controller.regisAgreemnet(status);
+                  }, label: 'Saya telah setuju dengan syarat & ketentuan\naplikasi',),
+                ),
+                Container(
                   margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
                   child: uiComponent().buttonStyle_one(
                     'Sign Up',
                     context,
                     AppColor.primaryColor.shade400,
-                    () {
-                      dismisKeyboard();
-                      controller.register();
-                    },
+                        () => controller.checkAgreement(),
                   ),
                 ),
-                Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      'Pastikan nomor ponsel anda aktif & dapat digunakan',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: AppColor.bodyColor.shade600, fontSize: 14),
-                    ))
+                Visibility(
+                  visible: controller.regisAgree.value,
+                  child: Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: ButtonText(
+                          onPressed: ()=> controller.termCondtionPage(),
+                          textStyle: TextStyle(color: AppColor.primaryColor.shade600, fontWeight: FontWeight.w400),
+                          label: 'Mohon perhatikan syarat dan ketentuan kami'),
+                  ),
+                )
               ],
             ),
           ),
-        ),
+        )),
       );
 }

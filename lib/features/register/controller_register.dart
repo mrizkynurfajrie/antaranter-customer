@@ -2,7 +2,10 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:intake_customer/features/register/api_register.dart';
+import 'package:intake_customer/routes/app_routes.dart';
+import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class ControllerRegister extends GetxController {
@@ -16,6 +19,27 @@ class ControllerRegister extends GetxController {
   var edtPswd = TextEditingController();
 
   var loading = false;
+  var regisAgree = false.obs;
+
+  void regisAgreemnet(bool status) => regisAgree.value = status;
+
+
+  checkAgreement(){
+    if(regisAgree.value == true){
+      dismisKeyboard();
+      register();
+    }else{
+      Get.snackbar(
+          "Register",
+          'Please make sure your are agree with our term and condition',
+          snackPosition: SnackPosition.BOTTOM
+      );
+    }
+  }
+
+  termCondtionPage(){
+    Get.toNamed(Routes.termcondition);
+  }
 
   @override
   void onClose() {

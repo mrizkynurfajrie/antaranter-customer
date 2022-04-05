@@ -25,7 +25,7 @@ class PageAboutApp extends StatelessWidget {
               height: 70,
               width: 220,
               child: const Image(
-                image: AssetImage('assets/logo/logo-besar.png'),
+                image: AssetImage('assets/logo/logo-horizontal.png'),
               ),
             ),
           ),
