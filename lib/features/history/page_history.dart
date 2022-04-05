@@ -22,21 +22,23 @@ class PageHistory extends GetView<ControllerHistory> {
           foregroundColor: AppColor.primaryColor.shade300,
           backgroundColor: AppColor.whiteColor,
         ),
-        body: Obx(() => controller.allData.value.length != 0
+        body: Obx(() => controller.allData.value.isNotEmpty
             ? ListView.builder(
                 controller: controller.loadController,
                 itemCount: controller.allData.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-                    decoration: BoxDecoration(
-                        color: AppColor.whiteColor,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                  return Card(
+                    elevation: 4,
+                    color: AppColor.whiteColor,
+                    margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                    ),
                     child: Row(
                       children: <Widget>[
                         Container(
                           margin:
-                              EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                              const EdgeInsets.only(left: 15, top: 20, bottom: 20),
                           child: Icon(
                             CupertinoIcons.gobackward,
                             color: AppColor.primaryColor.shade600,
@@ -47,29 +49,35 @@ class PageHistory extends GetView<ControllerHistory> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.only(left: 10, top: 5),
-                              child: Text(
-                                '${controller.allData[index].post?.cityOrigin} - ${controller.allData[index].post?.cityDestination}',
-                                style: TextStyle(fontSize: 18),
+                              margin: const EdgeInsets.only(left: 10, top: 5),
+                              child: SizedBox(
+                                width: Get.width * 0.77,
+                                child: Text(
+                                  '${controller.allData[index].post?.cityOrigin} - ${controller.allData[index].post?.cityDestination}',
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      overflow: TextOverflow.ellipsis
+                                  ),
+                                ),
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 10, top: 5),
+                              margin: const EdgeInsets.only(left: 10, top: 5),
                               child: Text(
                                 DateFormat('dd-MM-yyyy').format(
                                     controller.allData[index].createdAt!),
-                                style: TextStyle(fontSize: 14),
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
                             Container(
                               margin:
-                                  EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                                  const EdgeInsets.only(left: 10, top: 5, bottom: 5),
                               child: Text(
                                 controller.allData[index].status == 4
                                     ? 'Batalkan'
                                     : 'Selesai',
                                 style:
-                                    TextStyle(fontSize: 14, color: Colors.red),
+                                    const TextStyle(fontSize: 14, color: Colors.red),
                               ),
                             ),
                           ],
