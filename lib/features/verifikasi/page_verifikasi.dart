@@ -27,7 +27,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                     onTap: () => controller.imgSourceSelector(context),
                     child: (controller.imgPreview != "")
                         ? Container(
-                            margin: EdgeInsets.only(top: 20),
+                            margin: const EdgeInsets.only(top: 20),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.file(
@@ -40,7 +40,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                           )
                         : Container(
                             alignment: Alignment.topCenter,
-                            margin: EdgeInsets.only(top: 20),
+                            margin: const EdgeInsets.only(top: 20),
                             height: 60,
                             width: 60,
                             decoration: const BoxDecoration(
@@ -55,7 +55,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                           ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 10),
+                    margin: const EdgeInsets.only(top: 10),
                     child: Text(
                       controller.mainController.user.value.username?? 'Username',
                       style: TextStyle(
@@ -66,7 +66,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 5),
+                    margin: const EdgeInsets.only(top: 5),
                     child: Text(
                       controller.mainController.user.value.phone ?? '0812xxxxxxxx',
                       style: TextStyle(
@@ -76,7 +76,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 5, bottom: 10),
+                    margin: const EdgeInsets.only(top: 5, bottom: 10),
                     child: Text(
                       controller.mainController.user.value.email ?? 'user@email.com',
                       style: TextStyle(
@@ -90,10 +90,10 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                        margin: EdgeInsets.only(top: 10, right: 5, left: 10),
+                        margin: const EdgeInsets.only(top: 10, right: 5, left: 10),
                         height: 50,
                         width: Get.width * 0.55,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             color: AppColor.whiteColor
                         ),
@@ -102,10 +102,10 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                       GestureDetector(
                         onTap: ()=> controller.inputDate(context),
                         child: Container(
-                          margin: EdgeInsets.only(top: 10, right: 10, left: 5),
+                          margin: const EdgeInsets.only(top: 10, right: 10, left: 5),
                           height: 50,
                           width: Get.width * 0.25,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(5)),
                               color: AppColor.whiteColor
                           ),
@@ -115,20 +115,20 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 10, right: 10, left: 10),
+                    margin: const EdgeInsets.only(top: 10, right: 10, left: 10),
                     height: 50,
                     width: Get.width * 0.825,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         color: AppColor.whiteColor
                     ),
                     child: uiComponent().edtField(controller.edt_email, 'Email'),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 10, right: 10, left: 10),
+                    margin: const EdgeInsets.only(top: 10, right: 10, left: 10),
                     height: 50,
                     width: Get.width * 0.825,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         color: AppColor.whiteColor
                     ),
@@ -137,10 +137,10 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                   GestureDetector(
                     onTap: () => controller.popUpProvinsi(),
                     child: Container(
-                      margin: EdgeInsets.only(top: 10, right: 10, left: 10),
+                      margin: const EdgeInsets.only(top: 10, right: 10, left: 10),
                       height: 50,
                       width: Get.width * 0.825,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           color: AppColor.whiteColor),
                       child: Padding(
@@ -156,10 +156,10 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                   GestureDetector(
                     onTap: ()=>controller.popUpKota(),
                     child: Container(
-                      margin: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 5),
+                      margin: const EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 5),
                       height: 50,
                       width: Get.width * 0.825,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           color: AppColor.whiteColor
                       ),
@@ -210,17 +210,17 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                           ),
                   ),
                   Container(
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     height: 50,
                     width: Get.width * 0.825,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         color: AppColor.whiteColor
                     ),
                     child: uiComponent().edtField(controller.edt_nik, 'NIK'),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 5, left: 35, right: 35, bottom: 20),
+                    margin: const EdgeInsets.only(top: 5, left: 35, right: 35, bottom: 20),
                     child: uiComponent().buttonStyle_one(
                         'Update Profile',
                         context,

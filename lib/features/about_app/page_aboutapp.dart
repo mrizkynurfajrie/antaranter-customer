@@ -33,8 +33,8 @@ class PageAboutApp extends StatelessWidget {
           Center(
             child: Card(
               elevation: 4,
-              margin: EdgeInsets.all(20),
-              shape: RoundedRectangleBorder(
+              margin: const EdgeInsets.all(20),
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10))
               ),
               child: Container(

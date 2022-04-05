@@ -25,7 +25,7 @@ class PageLogin extends GetView<ControllerLogin> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 child: Text(
                   "SIGN IN",
                   textAlign: TextAlign.center,
@@ -38,8 +38,8 @@ class PageLogin extends GetView<ControllerLogin> {
               ),
               uiComponent().baseLinePrimaryColor(context),
               Container(
-                margin: EdgeInsets.only(top: 5),
-                child: Text(
+                margin: const EdgeInsets.only(top: 5),
+                child: const Text(
                   "Sudah punya akun? Yuk, masuk!",
                   style: TextStyle(
                     fontSize: 18,
@@ -48,7 +48,7 @@ class PageLogin extends GetView<ControllerLogin> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+                margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                 child: Card(
                   elevation: 4,
                   shape: RoundedRectangleBorder(
@@ -63,17 +63,17 @@ class PageLogin extends GetView<ControllerLogin> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                 child: Card(
                   elevation: 4,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   child: uiComponent().edtPassField(controller.edtPassword,
-                      prefIcon: Icon(CupertinoIcons.lock_fill)),
+                      prefIcon: const Icon(CupertinoIcons.lock_fill)),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20, left: 35, right: 35),
+                margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
                 child: uiComponent().buttonStyle_one(
                   'Sign In',
                   context,
@@ -85,7 +85,7 @@ class PageLogin extends GetView<ControllerLogin> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: Align(
                   child: TextButton(
                     onPressed: () => controller.regisRoute(),

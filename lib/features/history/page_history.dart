@@ -93,7 +93,7 @@ class PageHistory extends GetView<ControllerHistory> {
                     LottieBuilder.asset(AppLotties.empty),
                     verticalSpace(Insets.med),
                     Text(
-                      "Anda belum pernah melakukan pemesanan",
+                      "Riwayat Pesanan anda",
                       style: TextStyles.textStdBold,
                     )
                   ],

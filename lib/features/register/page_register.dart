@@ -74,7 +74,7 @@ class PageRegister extends GetView<ControllerRegister> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 10, bottom: 0, left: 36.5, right: 20),
+                  margin: const EdgeInsets.only(top: 10, bottom: 0, left: 36.5, right: 20),
                   child: CheckboxLabel(onChange: (status) {
                     controller.regisAgreemnet(status);
                   }, label: 'Saya telah setuju dengan syarat & ketentuan\naplikasi',),

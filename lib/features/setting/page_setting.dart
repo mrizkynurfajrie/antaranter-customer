@@ -24,7 +24,7 @@ class PageSetting extends StatelessWidget {
                 GestureDetector(
                   onTap: ()=> settingController.routeToverifikasi(),
                   child: Container(
-                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
                     width: Get.width,
                     child: Card(
@@ -36,7 +36,7 @@ class PageSetting extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, left: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, left: 20),
                               child: Text(
                                 'Verifikasi & Atur Akun',
                                 style: TextStyle(
@@ -45,7 +45,7 @@ class PageSetting extends StatelessWidget {
                                     color: AppColor.bodyColor.shade600),
                               )),
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, right: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, right: 20),
                               child: Icon(
                                 CupertinoIcons.right_chevron,
                                 size: 15,
@@ -59,7 +59,7 @@ class PageSetting extends StatelessWidget {
                 GestureDetector(
                   onTap: ()=> settingController.routeToTermCondition(),
                   child: Container(
-                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
                     width: Get.width,
                     child: Card(
@@ -71,7 +71,7 @@ class PageSetting extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, left: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, left: 20),
                               child: Text(
                                 'Syarat & Ketentuan',
                                 style: TextStyle(
@@ -80,7 +80,7 @@ class PageSetting extends StatelessWidget {
                                     color: AppColor.bodyColor.shade600),
                               )),
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, right: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, right: 20),
                               child: Icon(
                                 CupertinoIcons.right_chevron,
                                 size: 15,
@@ -94,7 +94,7 @@ class PageSetting extends StatelessWidget {
                 GestureDetector(
                   onTap: ()=> settingController.routeToAboutApp(),
                   child: Container(
-                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
                     width: Get.width,
                     child: Card(
@@ -106,7 +106,7 @@ class PageSetting extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, left: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, left: 20),
                               child: Text(
                                 'Tentang Aplikasi',
                                 style: TextStyle(
@@ -115,7 +115,7 @@ class PageSetting extends StatelessWidget {
                                     color: AppColor.bodyColor.shade600),
                               )),
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, right: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, right: 20),
                               child: Icon(
                                 CupertinoIcons.right_chevron,
                                 size: 15,
@@ -164,7 +164,7 @@ class PageSetting extends StatelessWidget {
                 GestureDetector(
                   onTap: ()=> settingController.routeToContactUs(),
                   child: Container(
-                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
                     width: Get.width,
                     child: Card(
@@ -176,7 +176,7 @@ class PageSetting extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, left: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, left: 20),
                               child: Text(
                                 'Hubungi Kami',
                                 style: TextStyle(
@@ -185,7 +185,7 @@ class PageSetting extends StatelessWidget {
                                     color: AppColor.bodyColor.shade600),
                               )),
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, right: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, right: 20),
                               child: Icon(
                                 CupertinoIcons.right_chevron,
                                 size: 15,
@@ -234,7 +234,7 @@ class PageSetting extends StatelessWidget {
                 GestureDetector(
                   onTap: ()=> settingController.logout(),
                   child: Container(
-                    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                     height: Get.height * 0.10,
                     width: Get.width,
                     child: Card(
@@ -246,7 +246,7 @@ class PageSetting extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, left: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, left: 20),
                               child: Text(
                                 'Keluar',
                                 style: TextStyle(
@@ -255,7 +255,7 @@ class PageSetting extends StatelessWidget {
                                     color: AppColor.bodyColor.shade600),
                               )),
                           Container(
-                              margin: EdgeInsets.only(top: 15, bottom: 15, right: 20),
+                              margin: const EdgeInsets.only(top: 15, bottom: 15, right: 20),
                               child: Icon(
                                 CupertinoIcons.right_chevron,
                                 size: 15,
