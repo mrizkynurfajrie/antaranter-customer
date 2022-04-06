@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
+import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'controller_login.dart';
@@ -72,9 +73,12 @@ class PageLogin extends GetView<ControllerLogin> {
                       prefIcon: const Icon(CupertinoIcons.lock_fill)),
                 ),
               ),
+              
               Container(
                 margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
-                child: uiComponent().buttonStyle_one(
+                child: 
+                controller.loading.isFalse ? 
+                uiComponent().buttonStyle_one(
                   'Sign In',
                   context,
                   AppColor.primaryColor.shade400,
@@ -82,7 +86,7 @@ class PageLogin extends GetView<ControllerLogin> {
                     dismisKeyboard();
                     controller.login();
                   },
-                ),
+                ): loadingIndicator(context),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 10),

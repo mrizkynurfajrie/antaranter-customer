@@ -6,6 +6,7 @@ import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/others/checkbox_label.dart';
+import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -81,12 +82,14 @@ class PageRegister extends GetView<ControllerRegister> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
-                  child: uiComponent().buttonStyle_one(
+                  child: 
+                  controller.loading.isFalse ? 
+                  uiComponent().buttonStyle_one(
                     'Sign Up',
                     context,
                     AppColor.primaryColor.shade400,
                         () => controller.checkAgreement(),
-                  ),
+                  ):loadingIndicator(context),
                 ),
                 Visibility(
                   visible: controller.regisAgree.value,

@@ -28,6 +28,7 @@ class AppIcons {
   static const fb = 'assets/icons/fb-icon.png';
   static const email = 'assets/icons/email-icon.png';
   static const web = 'assets/icons/web-icon.png';
+  static const dummyAvatar = 'assets/images/avatar_dummy.png';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(

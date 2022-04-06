@@ -40,7 +40,7 @@ class ControllerVerifikasi extends GetxController {
   RxList<DaftarPronvinsi> allProvincie = <DaftarPronvinsi>[].obs;
   RxList<DaftarKota> allKota = <DaftarKota>[].obs;
 
-  var loading = false;
+  var loading = false.obs;
 
   final ImagePicker picker = ImagePicker();
 
@@ -89,14 +89,14 @@ class ControllerVerifikasi extends GetxController {
 
   //gambar profile
   getFromCamera() async {
-    final XFile? camImage = await picker.pickImage(
-        source: ImageSource.camera, imageQuality: 50);
+    final XFile? camImage =
+        await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     imgPreview.value = camImage!.path;
   }
 
   getFromFile() async {
-    final XFile? fileImage = await picker.pickImage(
-        source: ImageSource.gallery, imageQuality: 50);
+    final XFile? fileImage =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     imgPreview.value = fileImage!.path;
   }
 
@@ -106,39 +106,39 @@ class ControllerVerifikasi extends GetxController {
         builder: (BuildContext bc) {
           return SafeArea(
               child: Container(
-                child: Wrap(
-                  children: <Widget>[
-                    ListTile(
-                        leading: Icon(Icons.photo_camera),
-                        title: Text('Camera'),
-                        onTap: () {
-                          getFromCamera();
-                          Navigator.of(context).pop();
-                        }),
-                    ListTile(
-                      leading: Icon(Icons.photo_library),
-                      title: Text('Image Gallery'),
-                      onTap: () {
-                        getFromFile();
-                        Navigator.of(context).pop();
-                      },
-                    )
-                  ],
-                ),
-              ));
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                    leading: Icon(Icons.photo_camera),
+                    title: Text('Camera'),
+                    onTap: () {
+                      getFromCamera();
+                      Navigator.of(context).pop();
+                    }),
+                ListTile(
+                  leading: Icon(Icons.photo_library),
+                  title: Text('Image Gallery'),
+                  onTap: () {
+                    getFromFile();
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ),
+          ));
         });
   }
 
   //gambar ktp
   getKtpFromCamera() async {
-    final XFile? camImage = await picker.pickImage(
-        source: ImageSource.camera, imageQuality: 50);
+    final XFile? camImage =
+        await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     ktpPreview.value = camImage!.path;
   }
 
   getKtpFromFile() async {
-    final XFile? fileImage = await picker.pickImage(
-        source: ImageSource.gallery, imageQuality: 50);
+    final XFile? fileImage =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     ktpPreview.value = fileImage!.path;
   }
 
@@ -148,92 +148,92 @@ class ControllerVerifikasi extends GetxController {
         builder: (BuildContext bc) {
           return SafeArea(
               child: Container(
-                child: Wrap(
-                  children: <Widget>[
-                    ListTile(
-                        leading: Icon(Icons.photo_camera),
-                        title: Text('Camera'),
-                        onTap: () {
-                          getKtpFromCamera();
-                          Navigator.of(context).pop();
-                        }),
-                    ListTile(
-                      leading: Icon(Icons.photo_library),
-                      title: Text('Image Gallery'),
-                      onTap: () {
-                        getKtpFromFile();
-                        Navigator.of(context).pop();
-                      },
-                    )
-                  ],
-                ),
-              ));
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                    leading: Icon(Icons.photo_camera),
+                    title: Text('Camera'),
+                    onTap: () {
+                      getKtpFromCamera();
+                      Navigator.of(context).pop();
+                    }),
+                ListTile(
+                  leading: Icon(Icons.photo_library),
+                  title: Text('Image Gallery'),
+                  onTap: () {
+                    getKtpFromFile();
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ),
+          ));
         });
   }
 
   //pilih provinsi
-  getProvincies()async{
-    try{
-      loading = true;
+  getProvincies() async {
+    try {
+      loading.value = true;
       var provinsi = await api.getProvinsi();
-      if(provinsi != null){
+      if (provinsi != null) {
         var daftarProvin = provinsi["data"];
         allProvincie(RxList<DaftarPronvinsi>.from(
-          daftarProvin.map((e) => DaftarPronvinsi.fromJson(e))));
+            daftarProvin.map((e) => DaftarPronvinsi.fromJson(e))));
       }
-      loading = false;
-    }catch(e){
-      loading = false;
+      loading.value = false;
+    } catch (e) {
+      loading.value = false;
       log(e.toString());
     }
   }
-  popUpProvinsi(){
+
+  popUpProvinsi() {
     Get.defaultDialog(
-      title: 'Provinsi',
-      titleStyle: TextStyle(
+        title: 'Provinsi',
+        titleStyle: TextStyle(
           color: AppColor.primaryColor.shade600,
-      ),
-      content: Container(
-        height: Get.height * 0.4,
-        width: Get.width * 0.8,
-        child: ListView.builder(
-            controller: loadController,
-            itemCount: allProvincie.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  id_provinsi = allProvincie[index].id;
-                  name_provinsi.value = allProvincie[index].name;
-                  getKota();
-                  Navigator.pop(context);
-                },
-                child: ListTile(
-                  title: Text(allProvincie[index].name),
-                ),
-              );
-            })
-      )
-    );
+        ),
+        content: Container(
+            height: Get.height * 0.4,
+            width: Get.width * 0.8,
+            child: ListView.builder(
+                controller: loadController,
+                itemCount: allProvincie.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      id_provinsi = allProvincie[index].id;
+                      name_provinsi.value = allProvincie[index].name;
+                      getKota();
+                      Navigator.pop(context);
+                    },
+                    child: ListTile(
+                      title: Text(allProvincie[index].name),
+                    ),
+                  );
+                })));
   }
 
   //pilih kota
-  getKota()async{
-    try{
-      loading = true;
+  getKota() async {
+    try {
+      loading.value = true;
       allKota.clear();
       var kota = await api.getKota((id_provinsi == 0) ? 0 : id_provinsi);
-      if(kota != null){
+      if (kota != null) {
         var daftarKota = kota["data"];
         allKota(RxList<DaftarKota>.from(
             daftarKota.map((e) => DaftarKota.fromJson(e))));
       }
-      loading = false;
-    }catch(e){
-      loading = false;
+      loading.value = false;
+    } catch (e) {
+      loading.value = false;
       log(e.toString());
     }
   }
-  popUpKota(){
+
+  popUpKota() {
     Get.defaultDialog(
         title: 'Kota',
         titleStyle: TextStyle(
@@ -255,64 +255,92 @@ class ControllerVerifikasi extends GetxController {
                       title: Text(allKota[index].name),
                     ),
                   );
-                })
-        )
-    );
+                })));
   }
 
-  uploadImgProfile()async{
-    try{
-      var uploadSelImg = await api.uploadProfileImg(ProfileImg: imgPreview.value);
-      if(uploadSelImg!= null){
+  uploadImgProfile() async {
+    try {
+      var uploadSelImg =
+          await api.uploadProfileImg(ProfileImg: imgPreview.value);
+      if (uploadSelImg != null) {
         var selfImgValue = uploadSelImg["data"]["filename"];
         uploadImg = selfImgValue;
       }
-    }catch(e){
-      log(e.toString());
-    }
-  }
-  uploadImgktp()async{
-    try{
-      var uploadSelktp = await api.uploadProfileKtp(ProfileKtp: ktpPreview.value);
-      if(uploadSelktp != null){
-        var selfKtpValue = uploadSelktp["data"]["filename"];
-        uploadKtp = selfKtpValue;
-      }
-    }catch(e){
+    } catch (e) {
       log(e.toString());
     }
   }
 
-  updateProfile()async{
-    try{
-      loading = true;
-      var verifResult = await api.verifikasiApiRunning(
-          name: edt_name.text,
-          ktp: uploadKtp,
-          email: edt_email.text,
-          image: uploadImg,
-          birth: datePick.value,
-          address: edt_alamat.text,
-          nik: edt_nik.text,
-          lat: lat,
-          lng: lang,
-          city: name_kota.value,
-          id_user: mainController.user.value.id
-      );
-      if(verifResult != null){
-        var result = verifResult["data"];
-        await Api2().setUser(user: result);
-        var user = User.fromJson(result);
-        Get.find<ControllerUserInfo>().user.value = user;
-        Get.snackbar(
-            "Verifikasi",
-            "Your account has been updated",
-            snackPosition: SnackPosition.BOTTOM);
+  uploadImgktp() async {
+    try {
+      var uploadSelktp =
+          await api.uploadProfileKtp(ProfileKtp: ktpPreview.value);
+      if (uploadSelktp != null) {
+        var selfKtpValue = uploadSelktp["data"]["filename"];
+        uploadKtp = selfKtpValue;
       }
-      loading = false;
-    }catch(e){
-      loading = false;
+    } catch (e) {
       log(e.toString());
     }
   }
- }
+
+  updateProfile() async {
+    try {
+      loading.value = true;
+      var verifResult = await api.verifikasiApiRunning(
+        name: edt_name.text,
+        ktp: uploadKtp,
+        email: edt_email.text,
+        image: uploadImg,
+        birth: datePick.value,
+        address: edt_alamat.text,
+        nik: edt_nik.text,
+        lat: lat,
+        lng: lang,
+        city: name_kota.value,
+        id_user: mainController.user.value.id,
+      );
+      log(verifResult.toString());
+      if (verifResult['success'] == true) {
+        var result = verifResult["data"];
+        await Api2().setUser(user: result);
+        var user = User.fromJson(result);
+        mainController.user.value = user;
+        if (mainController.user.value.ktpPict != null &&
+            mainController.user.value.nik != null) {
+          var resultUserVerify =
+              await api.verifyUser(id: mainController.user.value.id);
+          log(resultUserVerify.toString());
+          if (resultUserVerify['success'] == true) {
+            mainController.user.value.status = 2;
+            mainController.user.refresh();
+            Get.snackbar(
+              "verification",
+              "Your account has been updated",
+              snackPosition: SnackPosition.BOTTOM,
+            );
+          } else {
+            throw "Something error verify user";
+          }
+        } else {
+          Get.snackbar(
+            "verification",
+            "Your account has been updated, please fill in your identity card and identity number",
+            snackPosition: SnackPosition.BOTTOM,
+          );
+        }
+      } else {
+        throw "Something error update data";
+      }
+      loading.value = false;
+    } catch (e) {
+      loading.value = false;
+      log(e.toString());
+      Get.snackbar(
+        "Failed",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+}

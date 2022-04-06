@@ -18,7 +18,7 @@ class ControllerRegister extends GetxController {
   var edtPhoneNum = TextEditingController();
   var edtPswd = TextEditingController();
 
-  var loading = false;
+  var loading = false.obs;
   var regisAgree = false.obs;
 
   void regisAgreemnet(bool status) => regisAgree.value = status;
@@ -50,27 +50,26 @@ class ControllerRegister extends GetxController {
 
   register() async {
     try {
-      loading = true;
+      loading.value = true;
       var regisResult = await api.registerApiRunning(
           phone: edtPhoneNum.text, password: edtPswd.text);
       print(regisResult);
-      loading = false;
       if(regisResult != null){
         var successStatus = regisResult["success"];
         if(successStatus == true){
           Get.snackbar(
               "Register",
-              'Register is success'
+              'Register is success, please login'
           );
         }else{
           var firstError = regisResult['errors'][0];
           Get.snackbar("Kesalahan", firstError['message']);
         }
       }
-      loading = false;
+      loading.value = false;
     } catch (e) {
       log(e.toString());
-      loading = false;
+      loading.value = false;
     }
   }
 }

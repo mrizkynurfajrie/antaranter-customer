@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/verifikasi/controller_verifikasi.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 
 class PageVerifikasi extends GetView<ControllerVerifikasi>{
@@ -221,7 +222,9 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 5, left: 35, right: 35, bottom: 20),
-                    child: uiComponent().buttonStyle_one(
+                    child: 
+                    controller.loading.isFalse?
+                    uiComponent().buttonStyle_one(
                         'Update Profile',
                         context,
                         AppColor.primaryColor.shade400,
@@ -230,7 +233,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                           await controller.uploadImgktp();
                           controller.updateProfile();
                             }
-                    ),
+                    ): loadingIndicator(context),
                   ),
                 ],
               )
