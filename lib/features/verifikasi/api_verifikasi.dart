@@ -54,4 +54,17 @@ class ApiVerifikasi{
     return upload;
   }
 
+  // 
+  Future<dynamic> verifyUser ({required var id}) async {
+
+    final body = {
+      "id" : id,
+    };
+
+    var apiVerifikasiResponse = await Api1().apiJSONPostWithToken('users/approve', body);
+
+    return apiVerifikasiResponse;
+
+  }
+
 }

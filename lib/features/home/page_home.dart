@@ -102,7 +102,7 @@ class PageHome extends GetView<ControllerHome> {
                               ),
                             ),
                             errorWidget: (context, url, error) => Image.asset(
-                              "assets/images/fajrie.jpg",
+                              AppIcons.dummyAvatar,
                               fit: BoxFit.cover,
                             ),
                           ),

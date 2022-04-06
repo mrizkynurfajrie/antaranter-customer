@@ -55,7 +55,7 @@ class PageProfile extends GetView<ControllerProfile> {
                                 ),
                               ),
                               errorWidget: (context, url, error) => Image.asset(
-                                "assets/images/fajrie.jpg",
+                                AppIcons.dummyAvatar,
                                 fit: BoxFit.cover,
                               ),
                             ),

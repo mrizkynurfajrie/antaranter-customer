@@ -81,6 +81,7 @@ class ControllerDetailNebeng extends GetxController
       print(userId);
       if (userId != null) {
         var res = await api.detailNebengOrderByUserId(userId);
+        log(res.toString());
         if (res['success'] == true) {
           try {
             orderResponse.value = NebengOrderResponse.fromJson(res['data']);
