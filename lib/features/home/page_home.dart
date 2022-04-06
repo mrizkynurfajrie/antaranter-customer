@@ -561,7 +561,7 @@ class AdsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CardRounded(
       margin: EdgeInsets.only(right: Insets.lg, bottom: Insets.xs),
-      width: 130,
+      width: 250.w,
       padding: EdgeInsets.zero,
       child: InkWell(
         onTap: () {},
@@ -569,7 +569,7 @@ class AdsItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: IconSizes.xxl,
+              height: Sizes.xxl,
               width: Get.width,
               child: Image.network(
                 imageUrlPath("${ads.adsPict}"),
@@ -584,7 +584,7 @@ class AdsItem extends StatelessWidget {
               child: Text(
                 "${ads.adsTitle}",
                 style: TextStyles.textXs,
-                maxLines: 2,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.left,
               ),
