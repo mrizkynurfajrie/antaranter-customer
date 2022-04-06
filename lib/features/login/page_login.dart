@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import '../../shared/widgets/pages/page_decoration_top.dart';
 import 'controller_login.dart';
 
 class PageLogin extends GetView<ControllerLogin> {
@@ -14,13 +16,24 @@ class PageLogin extends GetView<ControllerLogin> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xfff5f5f5),
-      appBar: AppBar(
-        title: AppLogos.logoAppBar(AppLogos.logoColored),
-        backgroundColor: AppColor.whiteColor,
+    return PageDecorationTop(
+      padding: EdgeInsets.zero,
+      backgroundColor: AppColor.bgPageColor,
+      toolbarColor: AppColor.whiteColor,
+      toolbarElevation: 2,
+      center: Row(
+        children: [
+          AppLogos.logoAppBar(AppLogos.logoMark),
+          horizontalSpace(Insets.med),
+          Text(
+            "AntarAnter",
+            style: TextStyles.textLogo,
+          ),
+        ],
       ),
-      body: SafeArea(
+      title: "IN-TAKE",
+      enableBack: false,
+      child: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,20 +86,19 @@ class PageLogin extends GetView<ControllerLogin> {
                       prefIcon: const Icon(CupertinoIcons.lock_fill)),
                 ),
               ),
-              
               Container(
                 margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
-                child: 
-                controller.loading.isFalse ? 
-                uiComponent().buttonStyle_one(
-                  'Sign In',
-                  context,
-                  AppColor.primaryColor.shade400,
-                  () {
-                    dismisKeyboard();
-                    controller.login();
-                  },
-                ): loadingIndicator(context),
+                child: controller.loading.isFalse
+                    ? uiComponent().buttonStyle_one(
+                        'Sign In',
+                        context,
+                        AppColor.primaryColor.shade400,
+                        () {
+                          dismisKeyboard();
+                          controller.login();
+                        },
+                      )
+                    : loadingIndicator(context),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 10),

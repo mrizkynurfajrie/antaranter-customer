@@ -82,13 +82,16 @@ class PageTermNebeng extends GetView<ControllerTermNebeng> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: Insets.xl),
-              child: CheckboxLabel(
-                onChange: (status) {
-                  controller.changeAgreemnetStatus(status);
-                },
-                label: "Saya telah baca dan menyetujui syarat dan ketentuan",
-                colorBorder: AppColor.primaryColor,
-                labelStyle: TextStyles.textStd,
+              child: Obx(
+                () => CheckboxLabel(
+                  active: controller.loading.isFalse,
+                  onChange: (status) {
+                    controller.changeAgreemnetStatus(status);
+                  },
+                  label: "Saya telah baca dan menyetujui syarat dan ketentuan",
+                  colorBorder: AppColor.primaryColor,
+                  labelStyle: TextStyles.textStd,
+                ),
               ),
             ),
             verticalSpace(Insets.lg),

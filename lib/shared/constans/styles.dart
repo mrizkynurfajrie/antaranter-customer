@@ -252,6 +252,12 @@ class TextStyles {
         fontWeight: FontWeight.w500,
       );
 
+  static TextStyle get textLogo => inter.copyWith(
+        fontSize: FontSizes.s20,
+        color: AppColor.primaryColor,
+        fontWeight: FontWeight.w500,
+      );
+
   static TextStyle get h1 => inter.copyWith(
       fontWeight: FontWeight.w700,
       fontSize: FontSizes.s56,

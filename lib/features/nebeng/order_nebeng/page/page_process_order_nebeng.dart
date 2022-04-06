@@ -17,7 +17,7 @@ class PageProcessOrderNebeng extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              AppLogos.smallLogoColored,
+              AppLogos.logoMark,
               width: Get.width * 0.4,
             ),
             Lottie.asset(

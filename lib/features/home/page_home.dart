@@ -27,7 +27,20 @@ class PageHome extends GetView<ControllerHome> {
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.whiteColor,
-      center: AppLogos.logoAppBar(AppLogos.logoColored),
+      toolbarElevation: 2,
+      center: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          AppLogos.logoAppBar(
+            AppLogos.logoMark,
+          ),
+          horizontalSpace(Insets.med),
+          Text(
+            "AntarAnter",
+            style: TextStyles.textLogo,
+          ),
+        ],
+      ),
       title: "IN-TAKE",
       enableBack: false,
       child: RefreshIndicator(

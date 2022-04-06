@@ -29,10 +29,21 @@ class ControllerDetailNebeng extends GetxController
     change(null, status: RxStatus.loading());
     try {
       var res = await api.detailNebengOrder(id);
-      orderResponse.value = NebengOrderResponse.fromJson(res['data']);
-      change(orderResponse.value, status: RxStatus.success());
+      if (res['success'] == true) {
+        orderResponse.value = NebengOrderResponse.fromJson(res['data']);
+        if (orderResponse.value.nebengPost?.status == 3 ||
+            orderResponse.value.nebengPost?.status == 4) {
+          controllerUserInfo.removeActiveOrder();
+          controllerUserInfo.setUserHasActiveOrder(false);
+          change(null, status: RxStatus.empty());
+        }else{
+          change(orderResponse.value, status: RxStatus.success());  
+        } 
+      }else {
+        throw "Terjadi kesalahan";
+      }
     } catch (e) {
-      change(null, status: RxStatus.error());
+      change(null, status: RxStatus.error(e.toString()));
     }
   }
 
@@ -61,6 +72,14 @@ class ControllerDetailNebeng extends GetxController
         Get.snackbar('perhatian', "whatsapp no installed android");
       }
     }
+  }
+
+  callEmergency() async {
+    if (await canLaunch("tel:110")) {
+        await launch("tel:110");
+      } else {
+        Get.snackbar('gagal', "Tidak dapat membuka telpon silahakn menelpon ke nomor 112");
+      }
   }
 
   getDataOrder() async {

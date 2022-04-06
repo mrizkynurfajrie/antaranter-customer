@@ -65,14 +65,17 @@ class ControllerLogin extends GetxController {
           Get.offNamed(Routes.main);
         } else {
           var firstError = loginResult['errors'][0];
-          Get.snackbar("Kesalahan", firstError['message']);
+          throw firstError['message'];
+          // Get.snackbar("Kesalahan", firstError['message']);
         }
+      } else {
+        throw "Terjadi kesalahan";
       }
       loading(false);
     } catch (e) {
+      loading(false);
       log(e.toString());
       Get.snackbar("Kesalahan", "Terjadi kesalahan");
-      loading(false);
     }
   }
 

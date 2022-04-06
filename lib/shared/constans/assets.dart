@@ -42,11 +42,12 @@ class AppLogos {
   static const logoColored = 'assets/logo/logo-horizontal.png';
   static const smallLogoColored = 'assets/logo/logo-name.png';
   static const verticalLogo = 'assets/logo/logo-vertical.png';
+  static const logoMark = 'assets/logo/logo-mark.png';
 
   static Widget logoAppBar(String asset) {
     return Image.asset(
       asset,
-      height: IconSizes.xl,
+      height: IconSizes.med,
     );
   }
 }

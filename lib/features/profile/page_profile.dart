@@ -17,14 +17,25 @@ class PageProfile extends GetView<ControllerProfile> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-        padding: EdgeInsets.zero,
-        backgroundColor: AppColor.bgPageColor,
-        toolbarColor: AppColor.whiteColor,
-        center: AppLogos.logoAppBar(AppLogos.logoColored),
-        title: "IN-TAKE",
-        enableBack: false,
-        child: SingleChildScrollView(
-            child: Column(
+      padding: EdgeInsets.zero,
+      backgroundColor: AppColor.bgPageColor,
+      toolbarColor: AppColor.whiteColor,
+      toolbarElevation: 2,
+      center: Row(
+        children: [
+          AppLogos.logoAppBar(AppLogos.logoMark),
+          horizontalSpace(Insets.med),
+          Text(
+            "AntarAnter",
+            style: TextStyles.textLogo,
+          ),
+        ],
+      ),
+      title: "IN-TAKE",
+      enableBack: false,
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Column(
           children: <Widget>[
             Container(
                 // height: Get.height *0.25,
@@ -256,6 +267,8 @@ class PageProfile extends GetView<ControllerProfile> {
               ),
             ),
           ],
-        )));
+        ),
+      ),
+    );
   }
 }

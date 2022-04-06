@@ -4,9 +4,11 @@ import 'package:intake_customer/features/register/controller_register.dart';
 import 'package:flutter/material.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/others/checkbox_label.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
+import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -15,14 +17,24 @@ class PageRegister extends GetView<ControllerRegister> {
 
   @override
   Widget build(BuildContext context) =>
-      Scaffold(
-        backgroundColor: const Color(0xfff5f5f5),
-        appBar: AppBar(
-          title: AppLogos.logoAppBar(AppLogos.logoColored),
-          backgroundColor: AppColor.whiteColor,
-          automaticallyImplyLeading: false,
-        ),
-        body: Obx(()=> SafeArea(
+      PageDecorationTop(
+      padding: EdgeInsets.zero,
+      backgroundColor: AppColor.bgPageColor,
+      toolbarColor: AppColor.whiteColor,
+      toolbarElevation: 2,
+      center: Row(
+        children: [
+          AppLogos.logoAppBar(AppLogos.logoMark),
+          horizontalSpace(Insets.med),
+          Text(
+            "AntarAnter",
+            style: TextStyles.textLogo,
+          ),
+        ],
+      ),
+      title: "IN-TAKE",
+      enableBack: false,
+      child: Obx(()=> SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[

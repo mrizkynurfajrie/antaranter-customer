@@ -43,6 +43,9 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
             ),
           ),
         ),
+        onEmpty: const Center(
+          child: Text("Tidak ada postingan driver"),
+        )
       ),
     );
   }
