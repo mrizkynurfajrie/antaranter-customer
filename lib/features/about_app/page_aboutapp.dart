@@ -25,7 +25,18 @@ class PageAboutApp extends StatelessWidget {
               height: 70,
               width: 220,
               child: const Image(
-                image: AssetImage('assets/logo/logo-horizontal.png'),
+                image: AssetImage('assets/logo/logo-splash.png'),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            child: Text(
+                'AntarAnter',
+              style: TextStyle(
+                fontSize: 35,
+                color: AppColor.primaryColor.shade600,
+                fontWeight: FontWeight.w600
               ),
             ),
           ),

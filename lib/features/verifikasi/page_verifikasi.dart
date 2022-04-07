@@ -202,10 +202,14 @@ class PageVerifikasi extends GetView<ControllerVerifikasi>{
                                     BorderRadius.all(Radius.circular(10)),
                                 color: Color(0xffffffff)),
                             child: Center(
-                              child: Icon(
-                                CupertinoIcons.person_fill,
-                                size: 55,
-                                color: AppColor.bodyColor.shade600,
+                              child: Text(
+                                  'KTP',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: AppColor.primary.shade300,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 25
+                                ),
                               ),
                             ),
                           ),
