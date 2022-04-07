@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
 import 'package:intake_customer/framework/api2.dart';
@@ -113,7 +114,7 @@ class PageHome extends GetView<ControllerHome> {
                                 color: Colors.white,
                               ),
                             ),
-                            errorWidget: (context, url, error) => Image.asset(
+                            errorWidget: (context, url, error) => SvgPicture.asset(
                               AppIcons.dummyAvatar,
                               fit: BoxFit.cover,
                             ),

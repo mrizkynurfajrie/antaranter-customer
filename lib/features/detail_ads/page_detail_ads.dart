@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/detail_ads/controller_detail_ads.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
-import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
-import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
