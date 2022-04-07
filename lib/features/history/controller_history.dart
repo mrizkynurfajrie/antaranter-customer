@@ -40,4 +40,9 @@ class ControllerHistory extends GetxController{
       loading = false;
     }
   }
+
+  Future<void> onRefresh()async{
+    await Future.delayed(Duration(milliseconds: 1000));
+    history();
+  }
 }
