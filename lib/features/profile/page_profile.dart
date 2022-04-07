@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/profile/controller_profile.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
@@ -65,7 +66,7 @@ class PageProfile extends GetView<ControllerProfile> {
                                   color: Colors.white,
                                 ),
                               ),
-                              errorWidget: (context, url, error) => Image.asset(
+                              errorWidget: (context, url, error) => SvgPicture.asset(
                                 AppIcons.dummyAvatar,
                                 fit: BoxFit.cover,
                               ),

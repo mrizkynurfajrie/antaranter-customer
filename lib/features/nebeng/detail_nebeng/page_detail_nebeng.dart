@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/detail_nebeng/controller_detail_nebeng.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
@@ -75,7 +76,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                                   ),
                                 ),
                                 errorWidget: (context, url, error) =>
-                                    Image.asset(
+                                    SvgPicture.asset(
                                   AppIcons.dummyAvatar,
                                   fit: BoxFit.cover,
                                 ),

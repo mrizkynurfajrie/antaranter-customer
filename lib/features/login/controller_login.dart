@@ -49,7 +49,7 @@ class ControllerLogin extends GetxController {
         password: edtPassword.text,
         fcm: fcmToken ?? "00",
       );
-      // print(loginResult.toString());
+      print(loginResult.toString());
       loading(false);
       if (loginResult != null) {
         if (loginResult['success'] == true) {

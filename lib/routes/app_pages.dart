@@ -4,6 +4,8 @@ import 'package:intake_customer/features/about_app/page_aboutapp.dart';
 import 'package:intake_customer/features/contact_us/binding_contactus.dart';
 import 'package:intake_customer/features/contact_us/page_conctactus.dart';
 import 'package:intake_customer/features/create_order/page_create_order.dart';
+import 'package:intake_customer/features/detail_ads/binding_detail_ads.dart';
+import 'package:intake_customer/features/detail_ads/page_detail_ads.dart';
 import 'package:intake_customer/features/history/binding_history.dart';
 import 'package:intake_customer/features/history/page_history.dart';
 import 'package:intake_customer/features/home/page_home.dart';
@@ -115,6 +117,11 @@ class AppPages {
       name: Routes.aboutApp,
       page: () => const PageAboutApp(),
       binding: BindingAboutApp(),
+    ),
+    GetPage(
+      name: Routes.detailAds,
+      page: () => const PageDetailAds(),
+      binding: BindingDetailAds(),
     ),
   ];
 }

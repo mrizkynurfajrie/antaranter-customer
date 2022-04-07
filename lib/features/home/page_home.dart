@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
 import 'package:intake_customer/framework/api2.dart';
@@ -11,7 +12,6 @@ import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
-import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded_clickable.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
@@ -114,7 +114,7 @@ class PageHome extends GetView<ControllerHome> {
                                 color: Colors.white,
                               ),
                             ),
-                            errorWidget: (context, url, error) => Image.asset(
+                            errorWidget: (context, url, error) => SvgPicture.asset(
                               AppIcons.dummyAvatar,
                               fit: BoxFit.cover,
                             ),
@@ -371,7 +371,7 @@ class PageHome extends GetView<ControllerHome> {
                         horizontalSpace(Get.width * 0.025),
                         MenuButtonHome(
                           title: "Titip",
-                          subTitle: "Titipkan barang anda bersama kami",
+                          subTitle: "*Layanan ini akan segera hadir",
                           icon: Image.asset(
                             AppIcons.titipIcon,
                             fit: BoxFit.contain,
@@ -416,36 +416,38 @@ class PageHome extends GetView<ControllerHome> {
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: Insets.med),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Penawaran untuk anda",
-                      style: TextStyle(
-                        fontSize: FontSizes.s16,
-                        color: AppColor.primaryColor,
+                child: SizedBox(
+                  height: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Penawaran untuk anda",
+                        style: TextStyle(
+                          fontSize: FontSizes.s16,
+                          color: AppColor.primaryColor,
+                        ),
                       ),
-                    ),
-                    verticalSpace(Insets.med),
-                    SizedBox(
-                      height: 140.h,
-                      child: Obx(
+                      verticalSpace(Insets.med),
+                      Obx(
                         () => controller.loading.isFalse
-                            ? ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: controller.homeResponse.value
-                                    .adsResponse?.ads?.length,
-                                itemBuilder: (context, index) => AdsItem(
-                                  ads: controller.homeResponse.value.adsResponse
-                                          ?.ads?[index] ??
-                                      Ads(),
+                            ? Expanded(
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.homeResponse.value
+                                      .adsResponse?.ads?.length,
+                                  itemBuilder: (context, index) => AdsItem(
+                                    ads: controller.homeResponse.value
+                                            .adsResponse?.ads?[index] ??
+                                        Ads(),
+                                  ),
                                 ),
                               )
                             : loadingIndicatorBottom(context),
                       ),
-                    ),
-                    verticalSpace(Insets.med),
-                  ],
+                      verticalSpace(Insets.med),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -575,18 +577,26 @@ class AdsItem extends StatelessWidget {
     return CardRounded(
       margin: EdgeInsets.only(right: Insets.lg, bottom: Insets.xs),
       width: 250.w,
-      padding: EdgeInsets.zero,
+      padding: EdgeInsets.only(bottom: Insets.xs),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Get.toNamed(Routes.detailAds,arguments: ads.id);
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: Sizes.xxl,
-              width: Get.width,
-              child: Image.network(
-                imageUrlPath("${ads.adsPict}"),
-                fit: BoxFit.cover,
+            Expanded(
+              child: CardRounded(
+                borderRadius: 0,
+                margin: EdgeInsets.zero,
+                padding: EdgeInsets.zero,
+                child: Image.network(
+                  imageUrlPath(
+                    "${ads.adsPict}",
+                  ),
+                  width: Get.width,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             verticalSpace(Insets.xs),
@@ -596,7 +606,7 @@ class AdsItem extends StatelessWidget {
               ),
               child: Text(
                 "${ads.adsTitle}",
-                style: TextStyles.textXs,
+                style: TextStyles.textXsBold,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.left,
@@ -615,6 +625,7 @@ class AdsItem extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
             ),
+            verticalSpace(Insets.xs),
           ],
         ),
       ),

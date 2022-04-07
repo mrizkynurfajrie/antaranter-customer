@@ -86,20 +86,20 @@ class PageLogin extends GetView<ControllerLogin> {
                       prefIcon: const Icon(CupertinoIcons.lock_fill)),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
-                child: controller.loading.isFalse
-                    ? uiComponent().buttonStyle_one(
-                        'Sign In',
-                        context,
-                        AppColor.primaryColor.shade400,
-                        () {
-                          dismisKeyboard();
-                          controller.login();
-                        },
-                      )
-                    : loadingIndicator(context),
-              ),
+              Obx(() => Container(
+                    margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
+                    child: controller.loading.isFalse
+                        ? uiComponent().buttonStyle_one(
+                            'Sign In',
+                            context,
+                            AppColor.primaryColor.shade400,
+                            () {
+                              dismisKeyboard();
+                              controller.login();
+                            },
+                          )
+                        : loadingIndicator(context),
+                  ),),
               Container(
                 margin: const EdgeInsets.only(top: 10),
                 child: Align(
