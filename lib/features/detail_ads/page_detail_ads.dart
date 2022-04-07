@@ -35,7 +35,7 @@ class PageDetailAds extends GetView<ControllerDetailAds> {
         () => Stack(
           children: [
             WebView(
-              initialUrl: "https://flutter.dev",
+              initialUrl: "https://antaranter.indoteknokarya.com/ads/${controller.idAds}",
               javascriptMode: JavascriptMode.unrestricted,
               onProgress: (int progress) {
                 print("WebView is loading (progress : %)");
