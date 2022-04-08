@@ -25,7 +25,7 @@ class PageContactUs extends StatelessWidget {
               children: <Widget>[
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
-                  child: const Image(image: AssetImage('assets/logo/logo-horizontal.png')),
+                  child: const Image(image: AssetImage('assets/logo/logo-mark.png'), height: 70,),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 5, left: 10, right: 10),
