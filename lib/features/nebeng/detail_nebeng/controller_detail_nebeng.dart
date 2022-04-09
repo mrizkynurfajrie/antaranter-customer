@@ -31,8 +31,8 @@ class ControllerDetailNebeng extends GetxController
       var res = await api.detailNebengOrder(id);
       if (res['success'] == true) {
         orderResponse.value = NebengOrderResponse.fromJson(res['data']);
-        if (orderResponse.value.nebengPost?.status == 3 ||
-            orderResponse.value.nebengPost?.status == 4) {
+        if (orderResponse.value.nebengOrder?.status == 3 ||
+            orderResponse.value.nebengOrder?.status == 4) {
           controllerUserInfo.removeActiveOrder();
           controllerUserInfo.setUserHasActiveOrder(false);
           change(null, status: RxStatus.empty());
