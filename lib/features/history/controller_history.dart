@@ -14,7 +14,7 @@ class ControllerHistory extends GetxController{
 
   RxList<NebengOrder> allData = <NebengOrder>[].obs;
 
-  var loading = false;
+  var loading = false.obs;
 
   var controllerUserInfo = Get.find<ControllerUserInfo>();
 
@@ -26,7 +26,7 @@ class ControllerHistory extends GetxController{
 
   history() async {
     try {
-      loading = true;
+      loading.value = true;
       var runningHistoryApi = await api.historyApiRunning(
           users_id: controllerUserInfo.user.value.id);
       if (runningHistoryApi != null) {
@@ -34,10 +34,10 @@ class ControllerHistory extends GetxController{
         allData(RxList<NebengOrder>.from(
             response.map((e) => NebengOrder.fromJson(e))));
       }
-      loading = false;
+      loading.value = false;
     } catch (e) {
       log(e.toString());
-      loading = false;
+      loading.value = false;
     }
   }
 

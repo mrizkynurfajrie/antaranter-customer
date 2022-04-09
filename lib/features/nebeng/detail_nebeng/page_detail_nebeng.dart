@@ -487,7 +487,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                         ),
                       ),
                     ),
-                    controller.orderResponse.value.nebengPost?.status == 2
+                    controller.orderResponse.value.nebengOrder?.status == 2
                         ? Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: Insets.med,

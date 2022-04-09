@@ -114,7 +114,8 @@ class PageHome extends GetView<ControllerHome> {
                                 color: Colors.white,
                               ),
                             ),
-                            errorWidget: (context, url, error) => SvgPicture.asset(
+                            errorWidget: (context, url, error) =>
+                                SvgPicture.asset(
                               AppIcons.dummyAvatar,
                               fit: BoxFit.cover,
                             ),
@@ -443,7 +444,11 @@ class PageHome extends GetView<ControllerHome> {
                                   ),
                                 ),
                               )
-                            : loadingIndicatorBottom(context),
+                            : Expanded(
+                                child: Center(
+                                  child: loadingIndicatorBottom(context),
+                                ),
+                              ),
                       ),
                       verticalSpace(Insets.med),
                     ],
@@ -580,7 +585,7 @@ class AdsItem extends StatelessWidget {
       padding: EdgeInsets.only(bottom: Insets.xs),
       child: InkWell(
         onTap: () {
-          Get.toNamed(Routes.detailAds,arguments: ads.id);
+          Get.toNamed(Routes.detailAds, arguments: ads.id);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
