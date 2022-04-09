@@ -18,6 +18,7 @@ class ControllerListNebeng extends GetxController
 
   void getData() async {
     change(null, status: RxStatus.loading());
+    listNebeng.clear();
     try {
       var res = await api.listNebeng();
       if (res['success'] == true) {
@@ -39,5 +40,10 @@ class ControllerListNebeng extends GetxController
       log(e.toString());
       change(null, status: RxStatus.error(e.toString()));
     }
+  }
+
+  Future<void> onRefresh()async{
+    await Future.delayed(Duration(milliseconds: 1000));
+    getData();
   }
 }

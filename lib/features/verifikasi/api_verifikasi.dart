@@ -17,7 +17,7 @@ class ApiVerifikasi{
     return daftarKota;
   }
 
-  Future<dynamic> verifikasiApiRunning ({required var name, required var ktp, required var email, required var image, required var birth, required var address, required var nik, required var lat, required var lng, required var city, required var id_user}) async {
+  Future<dynamic> verifikasiApiRunning ({required var name, required var ktp, required var email, required var image, required var birth, required var address, required var nik, required var city, required var id_user}) async {
 
     final inputBody = {
       "username" : name,
@@ -27,8 +27,6 @@ class ApiVerifikasi{
       "birth" : birth,
       "address" : address,
       "nik" : nik,
-      "lat" : lat,
-      "lang" : lng,
       "city" : city
     };
 

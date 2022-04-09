@@ -29,11 +29,11 @@ class ControllerVerifikasi extends GetxController {
   var uploadImg = '';
   var uploadKtp = '';
   var id_user = 0.obs;
-  var lat = 0.0;
-  var lang = 0.0;
   var id_provinsi = 0;
   var name_provinsi = ''.obs;
   var name_kota = ''.obs;
+
+  var checker = false;
 
   ScrollController loadController = ScrollController();
 
@@ -50,7 +50,7 @@ class ControllerVerifikasi extends GetxController {
 
   @override
   void onInit() {
-    setProfile();
+    // setProfile();
     getProvincies();
     super.onInit();
   }
@@ -64,10 +64,10 @@ class ControllerVerifikasi extends GetxController {
     edt_nik.dispose();
   }
 
-  setProfile() async {
-    lat = (await Api2().getLatitude())!;
-    lang = (await Api2().getLongitude())!;
-  }
+  // setProfile() async {
+  //   lat = (await Api2().getLatitude())!;
+  //   lang = (await Api2().getLongitude())!;
+  // }
 
   inputDate(BuildContext context) async {
     final DateTime? select = await showDatePicker(
@@ -284,6 +284,16 @@ class ControllerVerifikasi extends GetxController {
     }
   }
 
+  validator()async{
+    if(checker == true){
+      await uploadImgProfile();
+      await uploadImgktp();
+      updateProfile();
+    }else{
+      log('Something is wrong');
+    }
+  }
+
   updateProfile() async {
     try {
       loading.value = true;
@@ -295,8 +305,6 @@ class ControllerVerifikasi extends GetxController {
         birth: datePick.value,
         address: edt_alamat.text,
         nik: edt_nik.text,
-        lat: lat,
-        lng: lang,
         city: name_kota.value,
         id_user: mainController.user.value.id,
       );

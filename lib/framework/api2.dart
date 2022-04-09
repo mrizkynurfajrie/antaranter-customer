@@ -22,21 +22,21 @@ class Api2 {
     return box.read(CACHE_USERNAME);
   }
 
-  Future setLatitude({double? lat}) async {
-    lat ??= 0.0;
-    await box.write(CACHE_LATITUDE, lat);
-  }
-  Future<double?> getLatitude() async {
-    return box.read(CACHE_LATITUDE);
-  }
+  // Future setLatitude({double? lat}) async {
+  //   lat ??= 0.0;
+  //   await box.write(CACHE_LATITUDE, lat);
+  // }
+  // Future<double?> getLatitude() async {
+  //   return box.read(CACHE_LATITUDE);
+  // }
 
-  Future setLongitude({double? lng}) async {
-    lng ??= 0.0;
-    await box.write(CACHE_LONGITUDE, lng);
-  }
-  Future<double?> getLongitude() async {
-    return box.read(CACHE_LONGITUDE);
-  }
+  // Future setLongitude({double? lng}) async {
+  //   lng ??= 0.0;
+  //   await box.write(CACHE_LONGITUDE, lng);
+  // }
+  // Future<double?> getLongitude() async {
+  //   return box.read(CACHE_LONGITUDE);
+  // }
 
   Future setUser({dynamic user}) async {
     user ??= "";

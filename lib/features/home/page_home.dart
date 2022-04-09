@@ -47,8 +47,8 @@ class PageHome extends GetView<ControllerHome> {
         color: AppColor.primaryColor,
         onRefresh: () async {
           // TODO add init call api for home
-          await controller.permissionHandler();
-          await controller.getLocation();
+          // await controller.permissionHandler();
+          // await controller.getLocation();
           controller.getData();
           await Future.delayed(const Duration(seconds: 3));
         },

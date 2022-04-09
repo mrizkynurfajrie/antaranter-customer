@@ -109,7 +109,7 @@ class PageLogin extends GetView<ControllerLogin> {
                       "Belum punya akun? Yuk, buat!",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: AppColor.bodyColor.shade800,
+                        color: AppColor.primaryColor.shade600,
                         fontSize: 16,
                         fontWeight: FontWeight.w300,
                       ),

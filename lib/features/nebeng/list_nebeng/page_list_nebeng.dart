@@ -25,13 +25,15 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
       center: null,
       padding: EdgeInsets.zero,
       child: controller.obx(
-        (state) => ListView.builder(
+        (state) => RefreshIndicator(
+            child: ListView.builder(
           padding:
-              EdgeInsets.symmetric(vertical: Insets.sm, horizontal: Insets.sm),
+          EdgeInsets.symmetric(vertical: Insets.sm, horizontal: Insets.sm),
           itemCount: controller.listNebeng.length,
           itemBuilder: (context, index) =>
               NebengPostingItem(nebengPost: controller.listNebeng[index]),
         ),
+            onRefresh: ()async=> controller.onRefresh()),
         onLoading: Container(
           height: Get.height,
           width: Get.width,
