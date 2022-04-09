@@ -31,7 +31,7 @@ class PageHistory extends GetView<ControllerHistory> {
             child: Obx(
               () => controller.loading.isFalse
                   ? controller.allData.isNotEmpty
-                      ? ListView.builder(
+                  ? ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           controller: controller.loadController,
@@ -101,7 +101,7 @@ class PageHistory extends GetView<ControllerHistory> {
                               ),
                             );
                           })
-                      : SizedBox(
+                  : SizedBox(
                           height: Get.height - 85.h,
                           width: Get.width,
                           child: Center(
