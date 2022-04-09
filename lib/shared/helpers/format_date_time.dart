@@ -191,4 +191,37 @@ class LocaleTime {
         "${dateTime.day} $month ${dateTime.year}";
     return dateTimeConvert;
   }
+  static String formatDateTimeLocale(String value) {
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    DateTime dateTime = dateFormat.parse(value);
+    var month;
+    var dateTimeConvert;
+    if (dateTime.month == 01) {
+      month = "Januari";
+    } else if (dateTime.month == 02) {
+      month = "Februari";
+    } else if (dateTime.month == 03) {
+      month = "Maret";
+    } else if (dateTime.month == 04) {
+      month = "April";
+    } else if (dateTime.month == 05) {
+      month = "Mei";
+    } else if (dateTime.month == 06) {
+      month = "Juni";
+    } else if (dateTime.month == 07) {
+      month = "Juli";
+    } else if (dateTime.month == 08) {
+      month = "Agustus";
+    } else if (dateTime.month == 09) {
+      month = "September";
+    } else if (dateTime.month == 10) {
+      month = "Oktober";
+    } else if (dateTime.month == 11) {
+      month = "November";
+    } else if (dateTime.month == 12) {
+      month = "Desember";
+    }
+    dateTimeConvert = "${dateTime.day} $month ${dateTime.year} ${dateTime.hour}:${dateTime.minute}";
+    return dateTimeConvert;
+  }
 }

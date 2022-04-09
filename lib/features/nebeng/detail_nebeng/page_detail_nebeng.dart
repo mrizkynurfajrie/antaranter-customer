@@ -366,6 +366,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                           horizontalSpace(Insets.xs),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 "${controller.orderResponse.value.nebengPost?.cityOrigin}",
@@ -416,7 +417,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                                 ),
                               ),
                               Text(
-                                LocaleTime.formatDateLocale(
+                                LocaleTime.formatDateTimeLocale(
                                   controller.orderResponse.value.nebengOrder
                                           ?.createdAt
                                           .toString() ??
@@ -429,12 +430,40 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                               ),
                             ],
                           ),
+                          verticalSpace(Insets.sm),
+                          controller.orderResponse.value.nebengOrder?.status ==
+                                  2
+                              ? Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Waktu keberangkatan",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: AppColor.neutral.shade500,
+                                      ),
+                                    ),
+                                    Text(
+                                      LocaleTime.formatDateTimeLocale(
+                                        controller.orderResponse.value
+                                                .nebengPost?.datetimeStart
+                                                .toString() ??
+                                            '',
+                                      ),
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: AppColor.neutral.shade500,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : const SizedBox(),
                         ],
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(
-                        vertical: Insets.xs,
                         horizontal: Insets.med,
                       ),
                       width: Get.width,
@@ -452,13 +481,15 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                         ),
                         style: OutlinedButton.styleFrom(
                           primary: AppColor.primaryColor,
+                          side: const BorderSide(
+                            color: AppColor.successColor,
+                          ),
                         ),
                       ),
                     ),
                     controller.orderResponse.value.nebengPost?.status == 2
                         ? Container(
                             padding: EdgeInsets.symmetric(
-                              vertical: Insets.xs,
                               horizontal: Insets.med,
                             ),
                             width: Get.width,
@@ -476,6 +507,9 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                               ),
                               style: OutlinedButton.styleFrom(
                                 primary: AppColor.primaryColor,
+                                side: const BorderSide(
+                                  color: AppColor.errorColor,
+                                ),
                               ),
                             ),
                           )
@@ -529,6 +563,13 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                     )
                   ],
                 ),
+              ),
+            ),
+            onError: (e) => SizedBox(
+              height: Get.height - 100.h,
+              width: Get.width,
+              child: const Center(
+                child: Text("Terjadi kesalahan"),
               ),
             ),
           ),

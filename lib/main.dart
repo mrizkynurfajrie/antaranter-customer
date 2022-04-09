@@ -106,7 +106,7 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
       designSize: const Size(375, 779),
       builder: () => GetMaterialApp(
         navigatorKey: Get.key,
-        title: 'INTAKE-CUSTOMER',
+        title: 'AntarAnter',
         theme: ThemeData(
           platform: TargetPlatform.android,
           brightness: Brightness.light,
