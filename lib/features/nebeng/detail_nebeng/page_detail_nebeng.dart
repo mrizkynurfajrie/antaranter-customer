@@ -4,14 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/detail_nebeng/controller_detail_nebeng.dart';
+import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/helpers/currency_formatter.dart';
 import 'package:intake_customer/shared/helpers/format_date_time.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
-import 'package:intake_customer/shared/widgets/appbar/appbar.dart';
-import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:lottie/lottie.dart';
@@ -66,10 +65,14 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                               child: CachedNetworkImage(
                                 fit: BoxFit.cover,
                                 imageUrl: imageUrlPath(controller
-                                        .controllerUserInfo.user.value.image ??
+                                        .orderResponse
+                                        .value
+                                        .mainRider
+                                        ?.image ??
                                     ''),
                                 progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Shimmer(
+                                    (context, url, downloadProgress) =>
+                                        Shimmer(
                                   gradient: AppColor.shimmerGradient,
                                   child: Container(
                                     color: Colors.white,
