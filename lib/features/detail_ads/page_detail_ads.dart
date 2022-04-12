@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/detail_ads/controller_detail_ads.dart';
+import 'package:intake_customer/framework/api1.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -35,7 +36,7 @@ class PageDetailAds extends GetView<ControllerDetailAds> {
         () => Stack(
           children: [
             WebView(
-              initialUrl: "https://antaranter.indoteknokarya.com/ads/${controller.idAds}",
+              initialUrl: "${Api1().webUrl}ads/${controller.idAds}",
               javascriptMode: JavascriptMode.unrestricted,
               onProgress: (int progress) {
                 print("WebView is loading (progress : %)");
@@ -52,7 +53,7 @@ class PageDetailAds extends GetView<ControllerDetailAds> {
             ),
             controller.loading.isTrue
                 ? const Align(
-                  alignment: Alignment.topCenter,
+                    alignment: Alignment.topCenter,
                     child: LinearProgressIndicator(),
                   )
                 : const SizedBox(),
