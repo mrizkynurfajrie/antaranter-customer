@@ -90,13 +90,10 @@ class PageHistory extends GetView<ControllerHistory> {
                                         Container(
                                           margin: const EdgeInsets.only(
                                               left: 10, top: 5, bottom: 5),
-                                          child: Text(
-                                            controller.allData[index].status == 4
-                                                ? 'Batalkan'
-                                                : 'Selesai',
-                                            style: const TextStyle(
-                                                fontSize: 14, color: Colors.red),
-                                          ),
+                                          child: controller.allData[index].status == 4
+                                              ? Text('Batal', style: TextStyle(fontSize: 14, color: Colors.red))
+                                              : Text('Selesai', style: TextStyle(fontSize: 14, color: Colors.green))
+                                          ,
                                         ),
                                       ],
                                     )
