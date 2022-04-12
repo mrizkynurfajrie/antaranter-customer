@@ -42,7 +42,8 @@ class ControllerListNebeng extends GetxController
     }
   }
 
-  Future<void> onRefresh()async{
+  Future<void> onRefresh() async {
+    change(null, status: RxStatus.loading());
     await Future.delayed(Duration(milliseconds: 1000));
     getData();
   }

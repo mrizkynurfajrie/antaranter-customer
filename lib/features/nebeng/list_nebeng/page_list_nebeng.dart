@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/list_nebeng/controller_list_nebeng.dart';
 import 'package:intake_customer/response/nebeng_response.dart';
@@ -8,6 +9,7 @@ import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/helpers/currency_formatter.dart';
 import 'package:intake_customer/shared/helpers/format_date_time.dart';
+import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded_clickable.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:lottie/lottie.dart';
@@ -27,13 +29,13 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
       child: controller.obx(
         (state) => RefreshIndicator(
             child: ListView.builder(
-          padding:
-          EdgeInsets.symmetric(vertical: Insets.sm, horizontal: Insets.sm),
-          itemCount: controller.listNebeng.length,
-          itemBuilder: (context, index) =>
-              NebengPostingItem(nebengPost: controller.listNebeng[index]),
-        ),
-            onRefresh: ()async=> controller.onRefresh()),
+              padding: EdgeInsets.symmetric(
+                  vertical: Insets.sm, horizontal: Insets.sm),
+              itemCount: controller.listNebeng.length,
+              itemBuilder: (context, index) =>
+                  NebengPostingItem(nebengPost: controller.listNebeng[index]),
+            ),
+            onRefresh: () async => controller.onRefresh()),
         onLoading: Container(
           height: Get.height,
           width: Get.width,
@@ -45,9 +47,29 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
             ),
           ),
         ),
-        onEmpty: const Center(
-          child: Text("Tidak ada postingan driver"),
-        )
+        onEmpty: Container(
+          color: Colors.white,
+          height: Get.height,
+          width: Get.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Lottie.asset(AppLotties.emptyList, height: 250.w),
+              Text(
+                "Belum ada nebeng yang tersedia",
+                style: TextStyles.textLg,
+              ),
+              verticalSpace(Insets.lg),
+              ButtonPrimary(
+                onPressed: () => controller.onRefresh(),
+                label: "Muat ulang",
+                size: 120.w,
+                height: 40.h,
+                cornerRadius: Corners.sm,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
