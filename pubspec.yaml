@@ -39,7 +39,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.2
 
 flutter_icons:
-  image_path: "assets/logo/logo-launcher.png"
+  image_path: "assets/logo/AntarAnter-Logo-Only.png"
   android: true
   ios: true
   android12: true

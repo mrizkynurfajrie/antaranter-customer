@@ -29,7 +29,7 @@ class ControllerLogin extends GetxController {
 
   @override
   void onInit() {
-    checkLogin();
+    // checkLogin();
     super.onInit();
   }
 
@@ -79,13 +79,13 @@ class ControllerLogin extends GetxController {
     }
   }
 
-  checkLogin() async {
-    var statusLogin = await Api2().getLoginStatus();
-    log('cek status : ' + statusLogin.toString());
-    if (statusLogin == true) {
-      Get.offNamed(Routes.main);
-    }
-  }
+  // checkLogin() async {
+  //   var statusLogin = await Api2().getLoginStatus();
+  //   log('cek status : ' + statusLogin.toString());
+  //   if (statusLogin == true) {
+  //     Get.offNamed(Routes.main);
+  //   }
+  // }
 
   regisRoute() {
     Get.toNamed(Routes.register);

@@ -27,6 +27,8 @@ import 'package:intake_customer/features/profile/page_profile.dart';
 import 'package:intake_customer/features/register/page_register.dart';
 import 'package:intake_customer/features/register/binding_register.dart';
 import 'package:intake_customer/features/setting/page_setting.dart';
+import 'package:intake_customer/features/splash_screen/binding_splash.dart';
+import 'package:intake_customer/features/splash_screen/splash_screen.dart';
 import 'package:intake_customer/features/temcondition/page_termcondition.dart';
 import 'package:intake_customer/features/verifikasi/binding_verifikasi.dart';
 import 'package:intake_customer/features/verifikasi/page_verifikasi.dart';
@@ -36,7 +38,13 @@ import 'app_routes.dart';
 class AppPages {
   static final pages = [
     GetPage(
-      name: Routes.INITIAL,
+        name: Routes.INITIAL,
+        page: () => const PageSplash(),
+        binding: BindingSplash(),
+        transition: Transition.leftToRight,
+    ),
+    GetPage(
+      name: Routes.login,
       page: () => const PageLogin(),
     ),
     GetPage(
