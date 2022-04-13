@@ -21,16 +21,7 @@ class PageLogin extends GetView<ControllerLogin> {
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.whiteColor,
       toolbarElevation: 2,
-      center: Row(
-        children: [
-          AppLogos.logoAppBar(AppLogos.logoMark),
-          horizontalSpace(Insets.med),
-          Text(
-            "AntarAnter",
-            style: TextStyles.textLogo,
-          ),
-        ],
-      ),
+      center: AppLogos.logoAppBar(AppLogos.logoTextOnly),
       title: "IN-TAKE",
       enableBack: false,
       child: SafeArea(
