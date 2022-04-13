@@ -52,9 +52,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                             children: [
                               Expanded(
                                 child: Text(
-                                  statusOrderNebeng(controller.orderResponse
-                                          .value.nebengOrder?.status ??
-                                      0),
+                                 controller.statusOrderNebeng(),
                                   style: TextStyles.textSmBold,
                                 ),
                               ),

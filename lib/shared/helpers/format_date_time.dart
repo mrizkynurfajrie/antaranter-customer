@@ -187,10 +187,10 @@ class LocaleTime {
     } else if (dateTime.month == 12) {
       month = "Desember";
     }
-    dateTimeConvert =
-        "${dateTime.day} $month ${dateTime.year}";
+    dateTimeConvert = "${dateTime.day} $month ${dateTime.year}";
     return dateTimeConvert;
   }
+
   static String formatDateTimeLocale(String value) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
     DateTime dateTime = dateFormat.parse(value);
@@ -221,7 +221,65 @@ class LocaleTime {
     } else if (dateTime.month == 12) {
       month = "Desember";
     }
-    dateTimeConvert = "${dateTime.day} $month ${dateTime.year} ${dateTime.hour}:${dateTime.minute}";
+    dateTimeConvert =
+        "${dateTime.day} $month ${dateTime.year} ${dateTime.hour}:${dateTime.minute}";
+    return dateTimeConvert;
+  }
+
+  static String formatDateToTimeOnly(String value) {
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    DateTime dateTime = dateFormat.parse(value);
+    var dateTimeConvert = "${dateTime.hour}:${dateTime.minute}";
+    return dateTimeConvert;
+  }
+
+  static String formatDateLocaleWithDay(String value) {
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+    DateTime dateTime = dateFormat.parse(value);
+    var month;
+    var day;
+    var dateTimeConvert;
+    if (dateTime.month == 01) {
+      month = "Januari";
+    } else if (dateTime.month == 02) {
+      month = "Februari";
+    } else if (dateTime.month == 03) {
+      month = "Maret";
+    } else if (dateTime.month == 04) {
+      month = "April";
+    } else if (dateTime.month == 05) {
+      month = "Mei";
+    } else if (dateTime.month == 06) {
+      month = "Juni";
+    } else if (dateTime.month == 07) {
+      month = "Juli";
+    } else if (dateTime.month == 08) {
+      month = "Agustus";
+    } else if (dateTime.month == 09) {
+      month = "September";
+    } else if (dateTime.month == 10) {
+      month = "Oktober";
+    } else if (dateTime.month == 11) {
+      month = "November";
+    } else if (dateTime.month == 12) {
+      month = "Desember";
+    }
+    if (dateTime.weekday == 1) {
+      day = "Senin";
+    } else if (dateTime.weekday == 2) {
+      day = "Selasa";
+    } else if (dateTime.weekday == 3) {
+      day = "Rabu";
+    } else if (dateTime.weekday == 4) {
+      day = "Kamis";
+    } else if (dateTime.weekday == 5) {
+      day = "Jumat";
+    } else if (dateTime.weekday == 6) {
+      day = "Sabtu";
+    } else if (dateTime.weekday == 7) {
+      day = "Minggu";
+    }
+    dateTimeConvert = "$day ${dateTime.day} $month ${dateTime.year}";
     return dateTimeConvert;
   }
 }

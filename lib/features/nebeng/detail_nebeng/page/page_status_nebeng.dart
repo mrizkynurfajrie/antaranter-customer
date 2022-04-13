@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/detail_nebeng/controller_detail_nebeng.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
+import 'package:intake_customer/shared/helpers/format_date_time.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:timeline_tile/timeline_tile.dart';
@@ -36,22 +37,28 @@ class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
                       alignment: TimelineAlign.end,
                       isFirst: true,
                       startChild: CardRounded(
-                        shadow: [],
+                        shadow: const [],
                         child: Icon(
                           Icons.schedule,
                           size: IconSizes.lg,
-                          color: AppColor.primaryColor,
+                          color: controller.isOnScheduleActive()
+                              ? AppColor.primaryColor
+                              : AppColor.neutral.shade300,
                         ),
                       ),
                       indicatorStyle: IndicatorStyle(
-                        color: AppColor.primaryColor,
+                        color: controller.isOnScheduleActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade300,
                         iconStyle: IconStyle(
                           color: Colors.white,
                           iconData: Icons.check,
                         ),
                       ),
                       afterLineStyle: LineStyle(
-                        color: AppColor.neutral.shade200,
+                        color: controller.isOnTheWayActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade200,
                       ),
                     ),
                   ),
@@ -60,25 +67,33 @@ class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
                       axis: TimelineAxis.horizontal,
                       alignment: TimelineAlign.end,
                       startChild: CardRounded(
-                        shadow: [],
+                        shadow: const [],
                         child: Icon(
                           CupertinoIcons.car_detailed,
                           size: IconSizes.lg,
-                          color: AppColor.neutral.shade300,
+                          color: controller.isOnTheWayActive()
+                              ? AppColor.primaryColor
+                              : AppColor.neutral.shade300,
                         ),
                       ),
                       indicatorStyle: IndicatorStyle(
-                        color: AppColor.neutral.shade300,
+                        color: controller.isOnTheWayActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade300,
                         iconStyle: IconStyle(
                           color: Colors.white,
                           iconData: Icons.check,
                         ),
                       ),
                       afterLineStyle: LineStyle(
-                        color: AppColor.neutral.shade200,
+                        color: controller.isOnFinishActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade200,
                       ),
                       beforeLineStyle: LineStyle(
-                        color: AppColor.neutral.shade200,
+                        color: controller.isOnTheWayActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade200,
                       ),
                     ),
                   ),
@@ -88,18 +103,24 @@ class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
                       alignment: TimelineAlign.end,
                       isLast: true,
                       startChild: CardRounded(
-                        shadow: [],
+                        shadow: const [],
                         child: Icon(
                           CupertinoIcons.home,
                           size: IconSizes.lg,
-                          color: AppColor.neutral.shade300,
+                          color: controller.isOnFinishActive()
+                              ? AppColor.primaryColor
+                              : AppColor.neutral.shade300,
                         ),
                       ),
                       beforeLineStyle: LineStyle(
-                        color: AppColor.neutral.shade200,
+                        color: controller.isOnFinishActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade200,
                       ),
                       indicatorStyle: IndicatorStyle(
-                        color: AppColor.neutral.shade300,
+                        color: controller.isOnFinishActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade300,
                         iconStyle: IconStyle(
                           color: Colors.white,
                           iconData: Icons.check,
@@ -108,6 +129,19 @@ class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            verticalSpace(Insets.sm),
+            Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: EdgeInsets.all(Insets.med),
+                child: Text(
+                  controller.statusOrderNebeng(),
+                  style: TextStyles.textPrimaryColor.copyWith(
+                    fontSize: FontSizes.s14,
+                  ),
+                ),
               ),
             ),
             verticalSpace(Insets.sm),
@@ -128,17 +162,38 @@ class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
                 alignment: TimelineAlign.start,
                 isFirst: true,
                 endChild: CardRounded(
-                  shadow: [],
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text("Driver - Sabtu november 2012"),
-                      ),
-                      Text("18:49"),
-                    ],
-                  ),
+                  shadow: const [],
+                  child: controller.isOnFinishActive()
+                      ? Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                  "Driver - ${LocaleTime.formatDateLocaleWithDay(controller.orderResponse.value.nebengPost?.datetimeFinish.toString() ?? '')}"),
+                            ),
+                            Text(
+                              LocaleTime.formatDateToTimeOnly(controller
+                                      .orderResponse
+                                      .value
+                                      .nebengPost
+                                      ?.datetimeFinish
+                                      .toString() ??
+                                  ''),
+                            ),
+                          ],
+                        )
+                      : const Text("-"),
                 ),
-                indicatorStyle: IndicatorStyle(width: Sizes.sm),
+                indicatorStyle: IndicatorStyle(
+                  width: Sizes.sm,
+                  color: controller.isOnFinishActive()
+                      ? AppColor.primaryColor
+                      : AppColor.neutral.shade300,
+                ),
+                afterLineStyle: LineStyle(
+                  color: controller.isOnFinishActive()
+                      ? AppColor.primaryColor
+                      : AppColor.neutral.shade200,
+                ),
               ),
             ),
             Padding(
@@ -146,17 +201,58 @@ class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
               child: TimelineTile(
                 alignment: TimelineAlign.start,
                 endChild: CardRounded(
-                  shadow: [],
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text("Driver - Sabtu november 2012"),
-                      ),
-                      Text("18:49"),
-                    ],
-                  ),
+                  shadow: const [],
+                  child: controller.isOnTheWayActive()
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Driver - ${LocaleTime.formatDateLocaleWithDay(controller.orderResponse.value.nebengPost?.datetimeStart.toString() ?? '')}",
+                                    style: TextStyles.subtitle3,
+                                  ),
+                                ),
+                                Text(
+                                  LocaleTime.formatDateToTimeOnly(controller
+                                          .orderResponse
+                                          .value
+                                          .nebengPost
+                                          ?.datetimeStart
+                                          .toString() ??
+                                      ''),
+                                  style: TextStyles.subtitle3,
+                                ),
+                              ],
+                            ),
+                            verticalSpace(Insets.xs),
+                            Text(
+                              "Driver memulai perjalanan nebeng",
+                              style: TextStyles.subtitle3.copyWith(
+                                color: AppColor.neutral.shade500,
+                              ),
+                            ),
+                          ],
+                        )
+                      : const Text("-"),
                 ),
-                indicatorStyle: IndicatorStyle(width: Sizes.sm),
+                indicatorStyle: IndicatorStyle(
+                  width: Sizes.sm,
+                  color: controller.isOnScheduleActive()
+                      ? AppColor.primaryColor
+                      : AppColor.neutral.shade300,
+                ),
+                afterLineStyle: LineStyle(
+                  color: controller.isOnTheWayActive()
+                      ? AppColor.primaryColor
+                      : AppColor.neutral.shade200,
+                ),
+                beforeLineStyle: LineStyle(
+                  color: controller.isOnFinishActive()
+                      ? AppColor.primaryColor
+                      : AppColor.neutral.shade200,
+                ),
               ),
             ),
             Padding(
@@ -166,16 +262,51 @@ class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
                 isLast: true,
                 endChild: CardRounded(
                   shadow: [],
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text("Driver - Sabtu november 2012"),
-                      ),
-                      Text("18:49"),
-                    ],
-                  ),
+                  child: controller.isOnScheduleActive()
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Driver - ${LocaleTime.formatDateLocaleWithDay(controller.orderResponse.value.nebengOrder?.createdAt.toString() ?? '')}",
+                                    style: TextStyles.subtitle3,
+                                  ),
+                                ),
+                                Text(
+                                  LocaleTime.formatDateToTimeOnly(
+                                    controller.orderResponse.value.nebengOrder
+                                            ?.createdAt
+                                            .toString() ??
+                                        '',
+                                  ),
+                                  style: TextStyles.subtitle3,
+                                ),
+                              ],
+                            ),
+                            verticalSpace(Insets.xs),
+                            Text(
+                              "Driver telah menjadwalkan waktu perjalanan",
+                              style: TextStyles.subtitle3.copyWith(
+                                color: AppColor.neutral.shade500,
+                              ),
+                            ),
+                          ],
+                        )
+                      : const Text("-"),
                 ),
-                indicatorStyle: IndicatorStyle(width: Sizes.sm),
+                indicatorStyle: IndicatorStyle(
+                  width: Sizes.sm,
+                  color: controller.isOnScheduleActive()
+                      ? AppColor.primaryColor
+                      : AppColor.neutral.shade300,
+                ),
+                beforeLineStyle: LineStyle(
+                  color: controller.isOnTheWayActive()
+                      ? AppColor.primaryColor
+                      : AppColor.neutral.shade200,
+                ),
               ),
             ),
           ],
