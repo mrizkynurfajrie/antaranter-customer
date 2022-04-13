@@ -61,6 +61,7 @@ class ControllerRegister extends GetxController {
               "Register",
               'Register is success, please login'
           );
+          Get.offNamed(Routes.login);
         }else{
           var firstError = regisResult['errors'][0];
           Get.snackbar("Kesalahan", firstError['message']);

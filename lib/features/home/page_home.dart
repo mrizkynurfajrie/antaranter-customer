@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -105,10 +106,21 @@ class PageHome extends GetView<ControllerHome> {
                               ),
                             ),
                             errorWidget: (context, url, error) =>
-                                SvgPicture.asset(
-                              AppIcons.dummyAvatar,
-                              fit: BoxFit.cover,
-                            ),
+                                Container(
+                                  alignment: Alignment.topCenter,
+                                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                                  height: 50,
+                                  width: 50,
+                                  decoration: const BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(100)),
+                                      color: Color(0xffffffff)),
+                                  child: Icon(
+                                    CupertinoIcons.person_fill,
+                                    size: 35,
+                                    color: AppColor.bodyColor.shade600,
+                                  ),
+                                ),
                           ),
                         ),
                       ),

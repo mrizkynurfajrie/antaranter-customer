@@ -22,16 +22,7 @@ class PageRegister extends GetView<ControllerRegister> {
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.whiteColor,
       toolbarElevation: 2,
-      center: Row(
-        children: [
-          AppLogos.logoAppBar(AppLogos.logoMark),
-          horizontalSpace(Insets.med),
-          Text(
-            "AntarAnter",
-            style: TextStyles.textLogo,
-          ),
-        ],
-      ),
+      center: AppLogos.logoAppBar(AppLogos.logoTextOnly),
       title: "IN-TAKE",
       enableBack: false,
       child: Obx(()=> SafeArea(
@@ -88,9 +79,14 @@ class PageRegister extends GetView<ControllerRegister> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 10, bottom: 0, left: 36.5, right: 20),
-                  child: CheckboxLabel(onChange: (status) {
-                    controller.regisAgreemnet(status);
-                  }, label: 'Saya telah setuju dengan syarat & ketentuan\naplikasi',),
+                  child: CheckboxLabel(
+                    label: 'Saya setuju dengan syarat & ketentuan aplikasi',
+                    onChange: (status) => controller.regisAgreemnet(status),
+                    labelStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300
+                    ),
+                  ),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 20, left: 35, right: 35),

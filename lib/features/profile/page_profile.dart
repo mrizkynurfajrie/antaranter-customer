@@ -60,10 +60,21 @@ class PageProfile extends GetView<ControllerProfile> {
                                 ),
                               ),
                               errorWidget: (context, url, error) =>
-                                  SvgPicture.asset(
-                                AppIcons.dummyAvatar,
-                                fit: BoxFit.cover,
-                              ),
+                                  Container(
+                                    alignment: Alignment.topCenter,
+                                    margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                                    height: 50,
+                                    width: 50,
+                                    decoration: const BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.all(Radius.circular(100)),
+                                        color: Color(0xffffffff)),
+                                    child: Icon(
+                                      CupertinoIcons.person_fill,
+                                      size: 55,
+                                      color: AppColor.bodyColor.shade600,
+                                    ),
+                                  ),
                             ),
                           ),
                         ),
@@ -98,28 +109,27 @@ class PageProfile extends GetView<ControllerProfile> {
             GestureDetector(
               onTap: () => controller.routingPageHistory(),
               child: Container(
-                margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                height: Get.height * 0.10,
+                margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
+                height: Get.height * 0.08,
                 width: Get.width,
                 child: Card(
                   elevation: 4,
                   shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Row(
                     children: <Widget>[
                       Container(
-                          margin: const EdgeInsets.only(left: 15),
+                          margin: const EdgeInsets.fromLTRB(20, 10, 10, 10),
                           child: Icon(
                             CupertinoIcons.clock,
-                            size: 45,
+                            size: 30,
                             color: AppColor.primaryColor.shade300,
                           )),
                       Container(
-                          margin: const EdgeInsets.only(left: 10),
                           child: Text(
                             'Pesanan',
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w300,
                                 fontSize: 20,
                                 color: AppColor.bodyColor.shade600),
                           )),
@@ -164,28 +174,27 @@ class PageProfile extends GetView<ControllerProfile> {
             GestureDetector(
               onTap: () {},
               child: Container(
-                margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                height: Get.height * 0.10,
+                margin: const EdgeInsets.only(top: 5, left: 10, right: 10),
+                height: Get.height * 0.08,
                 width: Get.width,
                 child: Card(
                   elevation: 4,
                   shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Row(
                     children: <Widget>[
                       Container(
-                          margin: const EdgeInsets.only(left: 15),
+                          margin: const EdgeInsets.fromLTRB(20, 10, 10, 10),
                           child: Icon(
                             CupertinoIcons.person_add_solid,
-                            size: 45,
+                            size: 30,
                             color: AppColor.primaryColor.shade300,
                           )),
                       Container(
-                          margin: const EdgeInsets.only(left: 10),
                           child: Text(
                             'Ajak Teman',
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w300,
                                 fontSize: 20,
                                 color: AppColor.bodyColor.shade600),
                           )),
@@ -231,28 +240,27 @@ class PageProfile extends GetView<ControllerProfile> {
               onTap: () => controller.routingPageSetting(),
               child: Container(
                 margin: const EdgeInsets.only(
-                    top: 10, left: 20, right: 20, bottom: 20),
-                height: Get.height * 0.10,
+                    top: 5, left: 10, right: 10, bottom: 20),
+                height: Get.height * 0.08,
                 width: Get.width,
                 child: Card(
                   elevation: 4,
                   shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Row(
                     children: <Widget>[
                       Container(
-                          margin: const EdgeInsets.only(left: 15),
+                          margin: const EdgeInsets.fromLTRB(20, 10, 10, 10),
                           child: Icon(
                             CupertinoIcons.gear_solid,
-                            size: 45,
+                            size: 30,
                             color: AppColor.primaryColor.shade300,
                           )),
                       Container(
-                          margin: const EdgeInsets.only(left: 10),
                           child: Text(
                             'Pengaturan',
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w300,
                                 fontSize: 20,
                                 color: AppColor.bodyColor.shade600),
                           )),
