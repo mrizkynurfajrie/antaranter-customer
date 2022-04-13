@@ -25,7 +25,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.whiteColor,
-      toolbarElevation: 2,
+      toolbarElevation: 1,
       center: null,
       title: "Detail Nebeng",
       toolbarTitleColor: AppColor.primaryColor,
@@ -42,15 +42,65 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
             ((state) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: Insets.med,
-                        vertical: Insets.sm,
+                    Container(
+                      color: Colors.white,
+                      padding: EdgeInsets.all(Insets.med),
+                      child: Column(
+                        children: [
+                          Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  statusOrderNebeng(controller.orderResponse
+                                          .value.nebengOrder?.status ??
+                                      0),
+                                  style: TextStyles.textSmBold,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.toNamed(Routes.statusNebeng);
+                                },
+                                child: Text(
+                                  "Lihat Detail",
+                                  style: TextStyles.textPrimaryColor,
+                                ),
+                              )
+                            ],
+                          ),
+                          Divider(
+                            color: AppColor.neutral.shade300,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Tanggal pemesanan",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: AppColor.neutral.shade500,
+                                ),
+                              ),
+                              Text(
+                                LocaleTime.formatDateTimeLocale(
+                                  controller.orderResponse.value.nebengOrder
+                                          ?.createdAt
+                                          .toString() ??
+                                      '',
+                                ),
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: AppColor.neutral.shade500,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                      child: Text(
-                        "Driver",
-                        style: TextStyles.textStd,
-                      ),
+                    ),
+                    const TitleWidget(
+                      title: "Driver",
                     ),
                     Container(
                       color: Colors.white,
@@ -65,14 +115,10 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                               child: CachedNetworkImage(
                                 fit: BoxFit.cover,
                                 imageUrl: imageUrlPath(controller
-                                        .orderResponse
-                                        .value
-                                        .mainRider
-                                        ?.image ??
+                                        .orderResponse.value.mainRider?.image ??
                                     ''),
                                 progressIndicatorBuilder:
-                                    (context, url, downloadProgress) =>
-                                        Shimmer(
+                                    (context, url, downloadProgress) => Shimmer(
                                   gradient: AppColor.shimmerGradient,
                                   child: Container(
                                     color: Colors.white,
@@ -113,15 +159,8 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: Insets.med,
-                        vertical: Insets.sm,
-                      ),
-                      child: Text(
-                        "Kendaraan",
-                        style: TextStyles.textStd,
-                      ),
+                    const TitleWidget(
+                      title: "Info Kendaraan",
                     ),
                     Container(
                       color: Colors.white,
@@ -287,15 +326,8 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: Insets.med,
-                        vertical: Insets.sm,
-                      ),
-                      child: Text(
-                        "Rute & Jadwal",
-                        style: TextStyles.textStd,
-                      ),
+                    const TitleWidget(
+                      title: "Rute & Jadwal",
                     ),
                     Container(
                       padding: EdgeInsets.all(Insets.med),
@@ -386,8 +418,8 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                     ),
                     Container(
                       padding: EdgeInsets.all(Insets.med),
-                      margin: EdgeInsets.only(
-                          top: Insets.sm, bottom: (Insets.xs - 3)),
+                      margin:
+                          EdgeInsets.only(top: Insets.sm, bottom: (Insets.xs)),
                       color: Colors.white,
                       child: Column(
                         children: [
@@ -396,7 +428,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                             children: [
                               Text(
                                 "Total Pesanan",
-                                style: TextStyles.textSm,
+                                style: TextStyles.textSmBold,
                               ),
                               Text(
                                 CurrencyFormat.convertToIdr(
@@ -404,64 +436,10 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                                       .orderResponse.value.nebengPost?.price,
                                   0,
                                 ),
-                                style: TextStyles.textSm,
+                                style: TextStyles.textSmBold,
                               ),
                             ],
                           ),
-                          verticalSpace(Insets.sm),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Waktu pemesanan",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: AppColor.neutral.shade500,
-                                ),
-                              ),
-                              Text(
-                                LocaleTime.formatDateTimeLocale(
-                                  controller.orderResponse.value.nebengOrder
-                                          ?.createdAt
-                                          .toString() ??
-                                      '',
-                                ),
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: AppColor.neutral.shade500,
-                                ),
-                              ),
-                            ],
-                          ),
-                          verticalSpace(Insets.sm),
-                          controller.orderResponse.value.nebengOrder?.status ==
-                                  2
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Waktu keberangkatan",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: AppColor.neutral.shade500,
-                                      ),
-                                    ),
-                                    Text(
-                                      LocaleTime.formatDateTimeLocale(
-                                        controller.orderResponse.value
-                                                .nebengPost?.datetimeStart
-                                                .toString() ??
-                                            '',
-                                      ),
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: AppColor.neutral.shade500,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              : const SizedBox(),
                         ],
                       ),
                     ),
@@ -577,6 +555,29 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: Insets.med,
+        vertical: Insets.sm,
+      ),
+      child: Text(
+        title,
+        style: TextStyles.textStd,
       ),
     );
   }
