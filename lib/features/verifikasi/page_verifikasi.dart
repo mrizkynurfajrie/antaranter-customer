@@ -25,7 +25,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
         body: SafeArea(
             child: SingleChildScrollView(
           child: Obx(() => Form(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: controller.formkey,
                 child: Column(
                   children: <Widget>[
                     GestureDetector(
@@ -58,6 +58,16 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                                 color: AppColor.bodyColor.shade600,
                               ),
                             ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        'Add Photo',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 14,
+                            color: AppColor.bodyColor.shade800),
+                      ),
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 10),
@@ -234,21 +244,22 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                       width: Get.width * 0.825,
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
-                          color: AppColor.whiteColor
-                      ),
+                          color: AppColor.whiteColor),
                       child: TextFormField(
                         controller: controller.edt_nik,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 10),
                           hintText: 'NIK',
                         ),
                         validator: (value) {
                           if (value == null || value.length < 16) {
-                            controller.checker = false;
+                            // controller.checker = false;
                             return 'Nomor NIK anda salah';
                           } else {
-                            controller.checker = true;
+                            return null;
+                            // controller.checker = true;
                           }
                         },
                       ),
@@ -261,7 +272,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                               'Update Profile',
                               context,
                               AppColor.primaryColor.shade400, () async {
-                                controller.validator();
+                              controller.validator();
                               // await controller.uploadImgProfile();
                               // await controller.uploadImgktp();
                               // controller.updateProfile();

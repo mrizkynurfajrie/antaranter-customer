@@ -33,7 +33,8 @@ class ControllerVerifikasi extends GetxController {
   var name_provinsi = ''.obs;
   var name_kota = ''.obs;
 
-  var checker = false;
+  // var checker = false;
+  final formkey = GlobalKey<FormState>();
 
   ScrollController loadController = ScrollController();
 
@@ -285,12 +286,12 @@ class ControllerVerifikasi extends GetxController {
   }
 
   validator()async{
-    if(checker == true){
+    if(formkey.currentState!.validate()){
       await uploadImgProfile();
       await uploadImgktp();
       updateProfile();
     }else{
-      log('Something is wrong');
+      log('Please check input data');
     }
   }
 
