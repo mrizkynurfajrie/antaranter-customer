@@ -20,4 +20,5 @@ abstract class Routes {
   static const aboutApp = '/about_app_page';
   static const detailAds = '/detail_ads';
   static const statusNebeng = '/status_nebeng_page';
+  static const apiLog = '/page_api_log';
 }

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:intake_customer/features/about_app/binding_aboutapp.dart';
 import 'package:intake_customer/features/about_app/page_aboutapp.dart';
+import 'package:intake_customer/features/api_log/binding_api_log.dart';
+import 'package:intake_customer/features/api_log/page_api_log.dart';
 import 'package:intake_customer/features/contact_us/binding_contactus.dart';
 import 'package:intake_customer/features/contact_us/page_conctactus.dart';
 import 'package:intake_customer/features/create_order/page_create_order.dart';
@@ -135,6 +137,11 @@ class AppPages {
     GetPage(
       name: Routes.statusNebeng,
       page: () => const PageStatusNebeng(),
+    ),
+    GetPage(
+      name: Routes.apiLog,
+      page: () => const PageApiLog(),
+      binding: BindingApiLog(),
     ),
   ];
 }

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intake_customer/features/api_log/components/overlay_log_button.dart';
 import 'package:intake_customer/routes/app_pages.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
@@ -125,7 +126,7 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
               },
               child: Stack(children: [
                 child!,
-                // OverlayLogButton(),
+                const OverlayLogButton(),
                 // PageInfo(pageName: pageName),
               ]),
             ),
