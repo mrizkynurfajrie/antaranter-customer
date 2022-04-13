@@ -22,15 +22,8 @@ class PageProfile extends GetView<ControllerProfile> {
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.whiteColor,
       toolbarElevation: 2,
-      center: Row(
-        children: [
-          AppLogos.logoAppBar(AppLogos.logoMark),
-          horizontalSpace(Insets.med),
-          Text(
-            "AntarAnter",
-            style: TextStyles.textLogo,
-          ),
-        ],
+      center: AppLogos.logoAppBar(
+        AppLogos.logoTextOnly,
       ),
       title: "IN-TAKE",
       enableBack: false,
@@ -66,7 +59,8 @@ class PageProfile extends GetView<ControllerProfile> {
                                   color: Colors.white,
                                 ),
                               ),
-                              errorWidget: (context, url, error) => SvgPicture.asset(
+                              errorWidget: (context, url, error) =>
+                                  SvgPicture.asset(
                                 AppIcons.dummyAvatar,
                                 fit: BoxFit.cover,
                               ),
