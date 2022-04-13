@@ -12,7 +12,7 @@ class ControllerSplash extends GetxController {
   }
 
   splashAnimation() async {
-    Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     var statusLogin = await Api2().getLoginStatus();
     if (statusLogin == true) {
       Get.offNamed(Routes.main);
