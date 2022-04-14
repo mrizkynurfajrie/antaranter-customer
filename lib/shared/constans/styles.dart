@@ -209,6 +209,11 @@ class TextStyles {
         fontSize: 12,
         fontWeight: FontWeight.w600,
       );
+  static TextStyle get textPrimaryColor => inter.copyWith(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: AppColor.primaryColor,
+      );
 
   static TextStyle get textStdBold => inter.copyWith(
         fontSize: 18,

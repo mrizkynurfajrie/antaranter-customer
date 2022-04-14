@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:intake_customer/features/nebeng/detail_nebeng/controller_detail_nebeng.dart';
+import 'package:intake_customer/features/detail_history/controller_detail_history.dart';
+import 'package:intake_customer/features/detail_history/page/page_status_history.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
@@ -16,8 +17,8 @@ import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
-class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
-  const PageDetailNebeng({Key? key}) : super(key: key);
+class PageDetailHistory extends GetView<ControllerDetailHistory> {
+  const PageDetailHistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +28,14 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
       toolbarColor: AppColor.whiteColor,
       toolbarElevation: 1,
       center: null,
-      title: "Detail Nebeng",
+      title: "Detail Pesanan",
       toolbarTitleColor: AppColor.primaryColor,
-      enableBack: false,
+      enableBack: true,
       child: RefreshIndicator(
         color: AppColor.primaryColor,
         onRefresh: () async {
           // TODO add init call api for home
-          await controller.getDataOrder();
+          await controller.getDetailHistoryOrder();
         },
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
@@ -52,13 +53,13 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                             children: [
                               Expanded(
                                 child: Text(
-                                 controller.statusOrderNebeng(),
+                                  controller.statusOrderNebeng(),
                                   style: TextStyles.textSmBold,
                                 ),
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.toNamed(Routes.statusNebeng);
+                                  Get.to(() => const PageStatusHistory());
                                 },
                                 child: Text(
                                   "Lihat Detail",
@@ -441,83 +442,6 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                         ],
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: Insets.med,
-                      ),
-                      width: Get.width,
-                      color: Colors.white,
-                      child: OutlinedButton.icon(
-                        onPressed: () {
-                          controller.openwhatsapp();
-                        },
-                        icon: AppIcons.smallIcon(AppIcons.whatsapp),
-                        label: Text(
-                          "Hubungi Driver",
-                          style: TextStyles.textSm.copyWith(
-                            color: Colors.black,
-                          ),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          primary: AppColor.primaryColor,
-                          side: const BorderSide(
-                            color: AppColor.successColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                    controller.orderResponse.value.nebengOrder?.status == 2
-                        ? Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: Insets.med,
-                            ),
-                            width: Get.width,
-                            color: Colors.white,
-                            child: OutlinedButton.icon(
-                              onPressed: () {
-                                controller.callEmergency();
-                              },
-                              icon: const Icon(Icons.call),
-                              label: Text(
-                                "Hubungi Kontak Darurat",
-                                style: TextStyles.textSm.copyWith(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              style: OutlinedButton.styleFrom(
-                                primary: AppColor.primaryColor,
-                                side: const BorderSide(
-                                  color: AppColor.errorColor,
-                                ),
-                              ),
-                            ),
-                          )
-                        : const SizedBox(),
-                    controller.orderResponse.value.nebengPost?.statusUpdate ==
-                                1 &&
-                            controller.orderResponse.value.nebengPost?.status ==
-                                1
-                        ? Container(
-                            padding: EdgeInsets.all(Insets.med),
-                            width: Get.width,
-                            child: controller.loadingCancel.isFalse
-                                ? OutlinedButton(
-                                    onPressed: () {
-                                      controller.cancelOrderNebeng();
-                                    },
-                                    child: Text(
-                                      "Batalkan pesanan",
-                                      style: TextStyles.textSm.copyWith(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    style: OutlinedButton.styleFrom(
-                                      primary: AppColor.errorColor,
-                                    ),
-                                  )
-                                : loadingIndicator(context),
-                          )
-                        : const SizedBox(),
                   ],
                 )),
             onLoading: SizedBox(
@@ -537,7 +461,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                     LottieBuilder.asset(AppLotties.empty),
                     verticalSpace(Insets.med),
                     Text(
-                      "Belum ada pesanan",
+                      "History pesanan tidak ditemukan",
                       style: TextStyles.textStdBold,
                     )
                   ],
@@ -548,7 +472,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
               height: Get.height - 100.h,
               width: Get.width,
               child: const Center(
-                child: Text("Terjadi kesalahan"),
+                child: Text("Maaf.. terjadi kesalahan"),
               ),
             ),
           ),

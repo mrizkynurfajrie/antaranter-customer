@@ -30,7 +30,7 @@ class NebengOrderResponse {
     );
 
     Map<String, dynamic> toJson() => {
-        "nebengOrder": nebengOrder?.toJson(),
+        "nebeng_order": nebengOrder?.toJson(),
         "nebeng_post": nebengPost?.toJson(),
         "nebeng_rider": nebengRider?.toJson(),
         "main_rider": mainRider?.toJson(),

@@ -36,10 +36,10 @@ class ControllerDetailNebeng extends GetxController
           controllerUserInfo.removeActiveOrder();
           controllerUserInfo.setUserHasActiveOrder(false);
           change(null, status: RxStatus.empty());
-        }else{
-          change(orderResponse.value, status: RxStatus.success());  
-        } 
-      }else {
+        } else {
+          change(orderResponse.value, status: RxStatus.success());
+        }
+      } else {
         throw "Terjadi kesalahan";
       }
     } catch (e) {
@@ -76,10 +76,11 @@ class ControllerDetailNebeng extends GetxController
 
   callEmergency() async {
     if (await canLaunch("tel:110")) {
-        await launch("tel:110");
-      } else {
-        Get.snackbar('gagal', "Tidak dapat membuka telpon silahakn menelpon ke nomor 112");
-      }
+      await launch("tel:110");
+    } else {
+      Get.snackbar(
+          'gagal', "Tidak dapat membuka telpon silahakn menelpon ke nomor 112");
+    }
   }
 
   getDataOrder() async {
@@ -159,5 +160,47 @@ class ControllerDetailNebeng extends GetxController
       loadingCancel.value = false;
       Get.snackbar("Kesalahan", e.toString());
     }
+  }
+
+  bool isOnScheduleActive() {
+    int status = orderResponse.value.nebengOrder?.status ?? 0;
+    return status == 1 || status == 2 || status == 3;
+  }
+
+  bool isOnTheWayActive() {
+    int status = orderResponse.value.nebengOrder?.status ?? 0;
+    return status == 2 || status == 3;
+  }
+
+  bool isOnFinishActive() {
+    int status = orderResponse.value.nebengOrder?.status ?? 0;
+    return status == 3;
+  }
+  String statusOrderNebeng() {
+    var statusValue = '';
+    switch (orderResponse.value.nebengOrder?.status ?? 0) {
+      case 1:
+        {
+          statusValue = "Terjadwal";
+        }
+        break;
+
+      case 2:
+        {
+          statusValue = "Dalam Perjalanan";
+        }
+        break;
+      case 3:
+        {
+          statusValue = "Selesai";
+        }
+        break;
+      case 4:
+        {
+          statusValue = "Dibatalkan";
+        }
+        break;
+    }
+    return statusValue;
   }
 }

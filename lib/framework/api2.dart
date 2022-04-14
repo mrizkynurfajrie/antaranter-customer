@@ -9,6 +9,7 @@ const String CACHE_LONGITUDE = "longitude";
 const String STATUS_ACTIVE_ORDER = "status_active_order";
 const String CACHE_ACTIVE_ORDER = "order";
 const String CHECK_AGREEMENT_NEBENG = "agreement_nebeng";
+const String CACHE_API_LOGGER = "api_logger";
 
 
 class Api2 {
@@ -99,6 +100,15 @@ class Api2 {
   
   Future<bool?> getAgreementNebeng()async{
     return box.read(CHECK_AGREEMENT_NEBENG);
+  }
+
+  Future setApiLogger({dynamic value}) async{
+    value ??= "";
+    await box.write(CACHE_API_LOGGER, value);
+  }
+  
+  Future<dynamic> getApiLogger()async{
+    return box.read(CACHE_API_LOGGER);
   }
 
 
