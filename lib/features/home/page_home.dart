@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/controller_home.dart';
 import 'package:intake_customer/framework/api2.dart';
@@ -378,7 +377,7 @@ class PageHome extends GetView<ControllerHome> {
                             AppIcons.titipIcon,
                             fit: BoxFit.contain,
                           ),
-                          ontap: () {},
+                          ontap: () => Get.snackbar('Fitur', 'Dalam pengerjaan'),
                         ),
                       ],
                     ),
