@@ -103,22 +103,22 @@ class PageHome extends GetView<ControllerHome> {
                                 color: Colors.white,
                               ),
                             ),
-                            errorWidget: (context, url, error) =>
-                                Container(
-                                  alignment: Alignment.topCenter,
-                                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                                  height: 50,
-                                  width: 50,
-                                  decoration: const BoxDecoration(
-                                      borderRadius:
+                            errorWidget: (context, url, error) => Container(
+                              alignment: Alignment.topCenter,
+                              margin: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 10),
+                              height: 50,
+                              width: 50,
+                              decoration: const BoxDecoration(
+                                  borderRadius:
                                       BorderRadius.all(Radius.circular(100)),
-                                      color: Color(0xffffffff)),
-                                  child: Icon(
-                                    CupertinoIcons.person_fill,
-                                    size: 35,
-                                    color: AppColor.bodyColor.shade600,
-                                  ),
-                                ),
+                                  color: Color(0xffffffff)),
+                              child: Icon(
+                                CupertinoIcons.person_fill,
+                                size: 35,
+                                color: AppColor.bodyColor.shade600,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -136,7 +136,10 @@ class PageHome extends GetView<ControllerHome> {
                           horizontal: Insets.med,
                           vertical: Insets.xs,
                         ),
-                        color: AppColor.whiteColor,
+                        color:
+                            controller.controllerUserInfo.user.value.status == 0
+                                ? Colors.red.shade200
+                                : AppColor.primary.shade300,
                         borderRadius: 15,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,11 +159,12 @@ class PageHome extends GetView<ControllerHome> {
                                                 .status ==
                                             0
                                         ? "Lengkapi data diri anda untuk mulai menggunakan layanan kami"
-                                        : "Admin sedang memverifikasi data anda mohon tunggu 1x24 jam",
+                                        : "Admin sedang melakukan verifikasi data anda mohon tunggu 1x24 jam admin akan segera menghubungi anda",
                                     style: TextStyles.inter.copyWith(
-                                      color: AppColor.neutral,
-                                      fontSize: FontSizes.s14,
-                                    ),
+                                        color: AppColor.neutral,
+                                        fontSize: FontSizes.s14,
+                                        fontWeight: FontWeight.w500),
+                                        textAlign: TextAlign.justify,
                                   )
                                 ],
                               ),
@@ -175,9 +179,12 @@ class PageHome extends GetView<ControllerHome> {
                                       Icons.arrow_forward_ios,
                                     ),
                                     style: OutlinedButton.styleFrom(
-                                      shape: const CircleBorder(),
-                                      primary: AppColor.primaryColor,
-                                    ),
+                                        shape: const CircleBorder(),
+                                        primary: controller.controllerUserInfo
+                                                    .user.value.status ==
+                                                0
+                                            ? AppColor.errorColor
+                                            : AppColor.primaryColor),
                                   )
                                 : const SizedBox(),
                           ],
@@ -364,7 +371,7 @@ class PageHome extends GetView<ControllerHome> {
                                           .value.status ==
                                       0
                                   ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
-                                  : "Admin sedang memverivikasi data anda mohon tunggu";
+                                  : "Admin sedang melakukan verifikasi data anda mohon tunggu";
                               Get.snackbar("Pemberitahuan", message);
                             }
                           },
@@ -377,7 +384,8 @@ class PageHome extends GetView<ControllerHome> {
                             AppIcons.titipIcon,
                             fit: BoxFit.contain,
                           ),
-                          ontap: () => Get.snackbar('AntarAnter Titip', 'Layanan Titip akan segera tersedia'),
+                          ontap: () => Get.snackbar('AntarAnter Titip',
+                              'Layanan Titip akan segera tersedia'),
                         ),
                       ],
                     ),
