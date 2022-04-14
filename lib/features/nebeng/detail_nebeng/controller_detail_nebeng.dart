@@ -177,30 +177,30 @@ class ControllerDetailNebeng extends GetxController
     return status == 3;
   }
   String statusOrderNebeng() {
-  var statusValue = '';
-  switch (orderResponse.value.nebengOrder?.status ?? 0) {
-    case 1:
-      {
-        statusValue = "Terjadwal";
-      }
-      break;
+    var statusValue = '';
+    switch (orderResponse.value.nebengOrder?.status ?? 0) {
+      case 1:
+        {
+          statusValue = "Terjadwal";
+        }
+        break;
 
-    case 2:
-      {
-        statusValue = "Dalam Perjalanan";
-      }
-      break;
-    case 3:
-      {
-        statusValue = "Selesai";
-      }
-      break;
-    case 4:
-      {
-        statusValue = "Dibatalkan";
-      }
-      break;
+      case 2:
+        {
+          statusValue = "Dalam Perjalanan";
+        }
+        break;
+      case 3:
+        {
+          statusValue = "Selesai";
+        }
+        break;
+      case 4:
+        {
+          statusValue = "Dibatalkan";
+        }
+        break;
+    }
+    return statusValue;
   }
-  return statusValue;
-}
 }

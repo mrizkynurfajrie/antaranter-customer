@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_customer/features/nebeng/detail_nebeng/controller_detail_nebeng.dart';
+import 'package:intake_customer/features/detail_history/controller_detail_history.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/helpers/format_date_time.dart';
@@ -9,8 +9,8 @@ import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
-class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
-  const PageStatusNebeng({Key? key}) : super(key: key);
+class PageStatusHistory extends GetView<ControllerDetailHistory> {
+  const PageStatusHistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -156,112 +156,173 @@ class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
               color: AppColor.neutral.shade700,
             ),
             verticalSpace(Insets.sm),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Insets.med),
-              child: TimelineTile(
-                alignment: TimelineAlign.start,
-                isFirst: true,
-                endChild: CardRounded(
-                  shadow: const [],
-                  child: controller.isOnFinishActive()
-                      ? Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                  "Driver - ${LocaleTime.formatDateLocaleWithDay(controller.orderResponse.value.nebengPost?.datetimeFinish.toString() ?? '')}"),
-                            ),
-                            Text(
-                              LocaleTime.formatDateToTimeOnly(controller
-                                      .orderResponse
-                                      .value
-                                      .nebengPost
-                                      ?.datetimeFinish
-                                      .toString() ??
-                                  ''),
-                            ),
-                          ],
-                        )
-                      : const Text("-"),
-                ),
-                indicatorStyle: IndicatorStyle(
-                  width: Sizes.sm,
-                  color: controller.isOnFinishActive()
-                      ? AppColor.primaryColor
-                      : AppColor.neutral.shade300,
-                ),
-                afterLineStyle: LineStyle(
-                  color: controller.isOnFinishActive()
-                      ? AppColor.primaryColor
-                      : AppColor.neutral.shade200,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Insets.med),
-              child: TimelineTile(
-                alignment: TimelineAlign.start,
-                endChild: CardRounded(
-                  shadow: const [],
-                  child: controller.isOnTheWayActive()
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    "Driver - ${LocaleTime.formatDateLocaleWithDay(controller.orderResponse.value.nebengPost?.datetimeStart.toString() ?? '')}",
-                                    style: TextStyles.subtitle3,
+            controller.isOnCanceledActive() == false
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: Insets.med),
+                    child: TimelineTile(
+                      alignment: TimelineAlign.start,
+                      isFirst: true,
+                      endChild: CardRounded(
+                        shadow: const [],
+                        child: controller.isOnFinishActive()
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                            "Driver - ${LocaleTime.formatDateLocaleWithDay(controller.orderResponse.value.nebengPost?.datetimeFinish.toString() ?? '')}"),
+                                      ),
+                                      Text(
+                                        LocaleTime.formatDateToTimeOnly(
+                                            controller.orderResponse.value
+                                                    .nebengPost?.datetimeFinish
+                                                    .toString() ??
+                                                ''),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                Text(
-                                  LocaleTime.formatDateToTimeOnly(controller
-                                          .orderResponse
-                                          .value
-                                          .nebengPost
-                                          ?.datetimeStart
-                                          .toString() ??
-                                      ''),
-                                  style: TextStyles.subtitle3,
-                                ),
-                              ],
-                            ),
-                            verticalSpace(Insets.xs),
-                            Text(
-                              "Driver memulai perjalanan nebeng",
-                              style: TextStyles.subtitle3.copyWith(
-                                color: AppColor.neutral.shade500,
-                              ),
-                            ),
-                          ],
-                        )
-                      : const Text("-"),
-                ),
-                indicatorStyle: IndicatorStyle(
-                  width: Sizes.sm,
-                  color: controller.isOnTheWayActive()
-                      ? AppColor.primaryColor
-                      : AppColor.neutral.shade300,
-                ),
-                afterLineStyle: LineStyle(
-                  color: controller.isOnTheWayActive()
-                      ? AppColor.primaryColor
-                      : AppColor.neutral.shade200,
-                ),
-                beforeLineStyle: LineStyle(
-                  color: controller.isOnFinishActive()
-                      ? AppColor.primaryColor
-                      : AppColor.neutral.shade200,
-                ),
-              ),
-            ),
+                                  verticalSpace(Insets.xs),
+                                  Text(
+                                    "Driver telah menyelesaikan perjalanan",
+                                    style: TextStyles.subtitle3.copyWith(
+                                      color: AppColor.neutral.shade500,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : const Text("-"),
+                      ),
+                      indicatorStyle: IndicatorStyle(
+                        width: Sizes.sm,
+                        color: controller.isOnFinishActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade300,
+                      ),
+                      afterLineStyle: LineStyle(
+                        color: controller.isOnFinishActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade200,
+                      ),
+                    ),
+                  )
+                : const SizedBox(),
+            controller.isOnCanceledActive() == false
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: Insets.med),
+                    child: TimelineTile(
+                      alignment: TimelineAlign.start,
+                      endChild: CardRounded(
+                        shadow: const [],
+                        child: controller.isOnTheWayActive()
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "Driver - ${LocaleTime.formatDateLocaleWithDay(controller.orderResponse.value.nebengPost?.datetimeStart.toString() ?? '')}",
+                                          style: TextStyles.subtitle3,
+                                        ),
+                                      ),
+                                      Text(
+                                        LocaleTime.formatDateToTimeOnly(
+                                            controller.orderResponse.value
+                                                    .nebengPost?.datetimeStart
+                                                    .toString() ??
+                                                ''),
+                                        style: TextStyles.subtitle3,
+                                      ),
+                                    ],
+                                  ),
+                                  verticalSpace(Insets.xs),
+                                  Text(
+                                    "Driver memulai perjalanan nebeng",
+                                    style: TextStyles.subtitle3.copyWith(
+                                      color: AppColor.neutral.shade500,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : const Text("-"),
+                      ),
+                      indicatorStyle: IndicatorStyle(
+                        width: Sizes.sm,
+                        color: controller.isOnTheWayActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade300,
+                      ),
+                      afterLineStyle: LineStyle(
+                        color: controller.isOnTheWayActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade200,
+                      ),
+                      beforeLineStyle: LineStyle(
+                        color: controller.isOnFinishActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade200,
+                      ),
+                    ),
+                  )
+                : Padding(
+                    padding: EdgeInsets.symmetric(horizontal: Insets.med),
+                    child: TimelineTile(
+                      alignment: TimelineAlign.start,
+                      isFirst: true,
+                      endChild: CardRounded(
+                        shadow: const [],
+                        child: controller.isOnCanceledActive()
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                            "Dibatalkan - ${LocaleTime.formatDateLocaleWithDay(controller.orderResponse.value.nebengOrder?.updatedAt.toString() ?? '')}"),
+                                      ),
+                                      Text(
+                                        LocaleTime.formatDateToTimeOnly(
+                                            controller.orderResponse.value
+                                                    .nebengOrder?.updatedAt
+                                                    .toString() ??
+                                                ''),
+                                      ),
+                                    ],
+                                  ),
+                                  verticalSpace(Insets.xs),
+                                  Text(
+                                    "Pesanan telah dibatalkan",
+                                    style: TextStyles.subtitle3.copyWith(
+                                      color: AppColor.neutral.shade500,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : const Text("-"),
+                      ),
+                      indicatorStyle: IndicatorStyle(
+                        width: Sizes.sm,
+                        color: controller.isOnCanceledActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade300,
+                      ),
+                      afterLineStyle: LineStyle(
+                        color: controller.isOnCanceledActive()
+                            ? AppColor.primaryColor
+                            : AppColor.neutral.shade200,
+                      ),
+                    ),
+                  ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: Insets.med),
               child: TimelineTile(
                 alignment: TimelineAlign.start,
                 isLast: true,
                 endChild: CardRounded(
-                  shadow: const [],
+                  shadow: [],
                   child: controller.isOnScheduleActive()
                       ? Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -303,7 +364,8 @@ class PageStatusNebeng extends GetView<ControllerDetailNebeng> {
                       : AppColor.neutral.shade300,
                 ),
                 beforeLineStyle: LineStyle(
-                  color: controller.isOnTheWayActive()
+                  color: controller.isOnTheWayActive() ||
+                          controller.isOnCanceledActive()
                       ? AppColor.primaryColor
                       : AppColor.neutral.shade200,
                 ),

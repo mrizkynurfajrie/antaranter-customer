@@ -8,6 +8,9 @@ import 'package:intake_customer/features/contact_us/page_conctactus.dart';
 import 'package:intake_customer/features/create_order/page_create_order.dart';
 import 'package:intake_customer/features/detail_ads/binding_detail_ads.dart';
 import 'package:intake_customer/features/detail_ads/page_detail_ads.dart';
+import 'package:intake_customer/features/detail_history/binding_detail_history.dart';
+import 'package:intake_customer/features/detail_history/page/page_status_history.dart';
+import 'package:intake_customer/features/detail_history/page_detail_history.dart';
 import 'package:intake_customer/features/history/binding_history.dart';
 import 'package:intake_customer/features/history/page_history.dart';
 import 'package:intake_customer/features/home/page_home.dart';
@@ -142,6 +145,11 @@ class AppPages {
       name: Routes.apiLog,
       page: () => const PageApiLog(),
       binding: BindingApiLog(),
+    ),
+    GetPage(
+      name: Routes.detailHistory,
+      page: () => const PageDetailHistory(),
+      binding: BindingDetailHistory(),
     ),
   ];
 }
