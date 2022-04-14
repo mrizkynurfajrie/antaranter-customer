@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/home/api_home.dart';
 import 'package:intake_customer/response/ads.dart';
@@ -21,45 +20,8 @@ class ControllerHome extends GetxController {
 
   @override
   void onInit() {
-    // permissionHandler();
-    // getLocation();
     getData();
   }
-
-  // permissionHandler() async {
-  //   bool _serviceEnabled;
-  //   PermissionStatus _permissionGranted;
-  //   LocationData _locationData;
-  //
-  //   _serviceEnabled = await location.serviceEnabled();
-  //   if (!_serviceEnabled) {
-  //     _serviceEnabled = await location.requestService();
-  //     if (!_serviceEnabled) {
-  //       return;
-  //     }
-  //   }
-  //
-  //   _permissionGranted = await location.hasPermission();
-  //   if (_permissionGranted == PermissionStatus.denied) {
-  //     _permissionGranted = await location.requestPermission();
-  //     if (_permissionGranted != PermissionStatus.granted) {
-  //       return;
-  //     }
-  //   }
-  //
-  //   _locationData = await location.getLocation();
-  // }
-
-  // getLocation() {
-  //   location.onLocationChanged.listen((LocationData currentLocation) async {
-  //     if (currentLocation != null) {
-  //       await Api2().setLatitude(lat: currentLocation.latitude);
-  //       await Api2().setLongitude(lng: currentLocation.longitude);
-  //     } else {
-  //       log("we con't see you");
-  //     }
-  //   });
-  // }
 
   void getData() async {
     loading.value = true;

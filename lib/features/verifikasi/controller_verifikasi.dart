@@ -319,7 +319,6 @@ class ControllerVerifikasi extends GetxController {
             Get.snackbar(
               "verification",
               "Your account has been updated",
-              snackPosition: SnackPosition.BOTTOM,
             );
           } else {
             throw "Something error verify user";
@@ -328,7 +327,6 @@ class ControllerVerifikasi extends GetxController {
           Get.snackbar(
             "verification",
             "Your account has been updated, please fill in your identity card and identity number",
-            snackPosition: SnackPosition.BOTTOM,
           );
         }
       } else {
@@ -341,7 +339,6 @@ class ControllerVerifikasi extends GetxController {
       Get.snackbar(
         "Failed",
         e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
       );
     }
   }

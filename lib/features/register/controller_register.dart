@@ -71,8 +71,8 @@ class ControllerRegister extends GetxController {
         if(successStatus == true){
           Get.back();
           Get.snackbar(
-              "Register",
-              'Register is success, please login'
+              "Registration",
+              'Registration is success, please login'
           );
         }else{
           var firstError = regisResult['errors'][0];

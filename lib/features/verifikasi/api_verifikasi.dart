@@ -52,7 +52,6 @@ class ApiVerifikasi{
     return upload;
   }
 
-  // 
   Future<dynamic> verifyUser ({required var id}) async {
 
     final body = {
