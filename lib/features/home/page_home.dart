@@ -377,7 +377,7 @@ class PageHome extends GetView<ControllerHome> {
                             AppIcons.titipIcon,
                             fit: BoxFit.contain,
                           ),
-                          ontap: () => Get.snackbar('Fitur', 'Dalam pengerjaan'),
+                          ontap: () => Get.snackbar('AntarAnter Titip', 'Layanan Titip akan segera tersedia'),
                         ),
                       ],
                     ),
