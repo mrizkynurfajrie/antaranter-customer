@@ -59,22 +59,22 @@ class PageProfile extends GetView<ControllerProfile> {
                                   color: Colors.white,
                                 ),
                               ),
-                              errorWidget: (context, url, error) =>
-                                  Container(
-                                    alignment: Alignment.topCenter,
-                                    margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                                    height: 50,
-                                    width: 50,
-                                    decoration: const BoxDecoration(
-                                        borderRadius:
+                              errorWidget: (context, url, error) => Container(
+                                alignment: Alignment.topCenter,
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 10),
+                                height: 50,
+                                width: 50,
+                                decoration: const BoxDecoration(
+                                    borderRadius:
                                         BorderRadius.all(Radius.circular(100)),
-                                        color: Color(0xffffffff)),
-                                    child: Icon(
-                                      CupertinoIcons.person_fill,
-                                      size: 55,
-                                      color: AppColor.bodyColor.shade600,
-                                    ),
-                                  ),
+                                    color: Color(0xffffffff)),
+                                child: Icon(
+                                  CupertinoIcons.person_fill,
+                                  size: 55,
+                                  color: AppColor.bodyColor.shade600,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -90,8 +90,7 @@ class PageProfile extends GetView<ControllerProfile> {
                         Container(
                           margin: const EdgeInsets.only(top: 5),
                           child: Text(
-                            controller.controllerUserInfo.user.value.phone ??
-                                "08xxx",
+                            '+62${controller.controllerUserInfo.user.value.phone}',
                             style: const TextStyle(
                                 fontSize: 16, color: AppColor.whiteColor),
                           ),
@@ -127,12 +126,12 @@ class PageProfile extends GetView<ControllerProfile> {
                           )),
                       Container(
                           child: Text(
-                            'Pesanan',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                fontSize: 20,
-                                color: AppColor.bodyColor.shade600),
-                          )),
+                        'Pesanan',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 20,
+                            color: AppColor.bodyColor.shade600),
+                      )),
                     ],
                   ),
                 ),
@@ -192,12 +191,12 @@ class PageProfile extends GetView<ControllerProfile> {
                           )),
                       Container(
                           child: Text(
-                            'Ajak Teman',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                fontSize: 20,
-                                color: AppColor.bodyColor.shade600),
-                          )),
+                        'Ajak Teman',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 20,
+                            color: AppColor.bodyColor.shade600),
+                      )),
                     ],
                   ),
                 ),
@@ -258,12 +257,12 @@ class PageProfile extends GetView<ControllerProfile> {
                           )),
                       Container(
                           child: Text(
-                            'Pengaturan',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                fontSize: 20,
-                                color: AppColor.bodyColor.shade600),
-                          )),
+                        'Pengaturan',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 20,
+                            color: AppColor.bodyColor.shade600),
+                      )),
                     ],
                   ),
                 ),

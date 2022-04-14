@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
-import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
+import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -26,89 +26,129 @@ class PageLogin extends GetView<ControllerLogin> {
       enableBack: false,
       child: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.only(top: 30),
-                child: Text(
-                  "SIGN IN",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: AppColor.bodyColor.shade800,
-                    fontWeight: FontWeight.w600,
+          child: Form(
+            key: controller.formkeyLogin,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.only(top: 30),
+                  child: Text(
+                    "SIGN IN",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: AppColor.bodyColor.shade800,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-              ),
-              uiComponent().baseLinePrimaryColor(context),
-              Container(
-                margin: const EdgeInsets.only(top: 5),
-                child: const Text(
-                  "Sudah punya akun? Yuk, masuk!",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w300,
+                uiComponent().baseLinePrimaryColor(context),
+                Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  child: const Text(
+                    "Sudah punya akun? Yuk, masuk!",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                child: Card(
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  child: InternationalPhoneNumberInput(
-                    onInputChanged: (PhoneNumber value) {},
-                    textFieldController: controller.edtPhoneControl,
-                    initialValue: controller.number,
-                    hintText: 'Phone Number',
-                    inputBorder: InputBorder.none,
+                Container(
+                  margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                  child: Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    child: InternationalPhoneNumberInput(
+                      onInputChanged: (value) {},
+                      formatInput: false,
+                      textFieldController: controller.edtPhoneControl,
+                      initialValue: controller.number,
+                      hintText: 'Phone Number',
+                      inputBorder: InputBorder.none,
+                      validator: (value) {
+                        if (value == null || value.length < 11 || value.length > 11) {
+                          return 'Nomor Ponsel anda salah';
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                child: Card(
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  child: uiComponent().edtPassField(controller.edtPassword,
-                      prefIcon: const Icon(CupertinoIcons.lock_fill)),
-                ),
-              ),
-              Obx(() => Container(
-                    margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
-                    child: controller.loading.isFalse
-                        ? uiComponent().buttonStyle_one(
-                            'Sign In',
-                            context,
-                            AppColor.primaryColor.shade400,
-                            () {
-                              dismisKeyboard();
-                              controller.login();
-                            },
+                Container(
+                  margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                  child: Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Obx(()=> TextFormField(
+                      obscureText: controller.obsecurePass.value,
+                      controller: controller.edtPassword,
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Password',
+                          contentPadding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
+                          suffixIcon: GestureDetector(
+                            onTap: ()=> controller.showPass(),
+                            child: controller.obsecurePass.value == true
+                                ? const Icon(CupertinoIcons.eye_solid)
+                                : const Icon(CupertinoIcons.eye_slash)
+                            ,
                           )
-                        : loadingIndicator(context),
-                  ),),
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                child: Align(
-                  child: TextButton(
-                    onPressed: () => controller.regisRoute(),
-                    child: Text(
-                      "Belum punya akun? Yuk, buat!",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: AppColor.primaryColor.shade600,
+                      ),
+                      validator: (value) {
+                        if (value == null || value == '') {
+                          return 'Nomor Ponsel anda salah';
+                        } else {
+                          return null;
+                        }
+                      },
+                    )),
+                  ),
+                ),
+                Obx(() => Container(
+                      margin: const EdgeInsets.only(top: 20, left: 35, right: 35),
+                      child: controller.loading.isFalse
+                          ? uiComponent().buttonStyle_one(
+                              'Sign In',
+                              context,
+                              AppColor.primaryColor.shade400,
+                              () {
+                                dismisKeyboard();
+                                controller.validator();
+                              },
+                            )
+                          : loadingIndicator(context),
+                    ),),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      'Belum punya akun? Yuk,',
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
-                  ),
-                ),
-              )
-            ],
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: ButtonText(
+                        onPressed: ()=> controller.regisRoute(),
+                        label: 'buat!',
+                        textStyle: TextStyle(
+                          color: AppColor.primaryColor.shade600,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

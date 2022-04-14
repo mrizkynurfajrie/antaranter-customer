@@ -78,8 +78,7 @@ class PageHome extends GetView<ControllerHome> {
                               ),
                             ),
                             Text(
-                              controller.controllerUserInfo.user.value.phone ??
-                                  "08xxx",
+                              '+62${controller.controllerUserInfo.user.value.phone}',
                               style: TextStyles.inter.copyWith(
                                 color: AppColor.whiteColor,
                                 fontSize: FontSizes.s12,

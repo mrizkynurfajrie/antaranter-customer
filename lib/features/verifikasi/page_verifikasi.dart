@@ -25,7 +25,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
         body: SafeArea(
             child: SingleChildScrollView(
           child: Obx(() => Form(
-            key: controller.formkey,
+            key: controller.formkeyVerif,
                 child: Column(
                   children: <Widget>[
                     GestureDetector(
@@ -83,8 +83,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                     Container(
                       margin: const EdgeInsets.only(top: 5),
                       child: Text(
-                        controller.mainController.user.value.phone ??
-                            '0812xxxxxxxx',
+                        '+62${controller.mainController.user.value.phone}',
                         style: TextStyle(
                             fontSize: 14, color: AppColor.bodyColor.shade600),
                       ),
@@ -111,8 +110,22 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5)),
                               color: AppColor.whiteColor),
-                          child: uiComponent()
-                              .edtField(controller.edt_name, 'Nama'),
+                          child: TextFormField(
+                            controller: controller.edt_name,
+                            decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 10),
+                                hintText: 'Nama',
+                              ),
+                            validator: (value) {
+                              if (value == null || value == '') {
+                                return 'Nama anda masih kosong';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
                         ),
                         GestureDetector(
                           onTap: () => controller.inputDate(context),
@@ -142,7 +155,22 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           color: AppColor.whiteColor),
                       child:
-                          uiComponent().edtField(controller.edt_email, 'Email'),
+                      TextFormField(
+                        controller: controller.edt_email,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 10),
+                          hintText: 'Email',
+                        ),
+                        validator: (value) {
+                          if (value == null || value == '') {
+                            return 'Email anda masih kosong';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                     ),
                     Container(
                       margin:
@@ -152,8 +180,22 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           color: AppColor.whiteColor),
-                      child: uiComponent()
-                          .edtField(controller.edt_alamat, 'Alamat'),
+                      child: TextFormField(
+                        controller: controller.edt_alamat,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 10),
+                          hintText: 'Alamat',
+                        ),
+                        validator: (value) {
+                          if (value == null || value == '') {
+                            return 'Alamat anda masih kosong';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                     ),
                     GestureDetector(
                       onTap: () => controller.popUpProvinsi(),
@@ -246,6 +288,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           color: AppColor.whiteColor),
                       child: TextFormField(
+                        keyboardType: TextInputType.number,
                         controller: controller.edt_nik,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -255,11 +298,9 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                         ),
                         validator: (value) {
                           if (value == null || value.length < 16) {
-                            // controller.checker = false;
-                            return 'Nomor NIK anda salah';
+                            return 'NIK anda salah';
                           } else {
                             return null;
-                            // controller.checker = true;
                           }
                         },
                       ),
@@ -271,11 +312,8 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                           ? uiComponent().buttonStyle_one(
                               'Update Profile',
                               context,
-                              AppColor.primaryColor.shade400, () async {
+                              AppColor.primaryColor.shade400, (){
                               controller.validator();
-                              // await controller.uploadImgProfile();
-                              // await controller.uploadImgktp();
-                              // controller.updateProfile();
                             })
                           : loadingIndicator(context),
                     ),

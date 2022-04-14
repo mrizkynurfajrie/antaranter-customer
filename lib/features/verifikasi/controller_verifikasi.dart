@@ -34,7 +34,7 @@ class ControllerVerifikasi extends GetxController {
   var name_kota = ''.obs;
 
   // var checker = false;
-  final formkey = GlobalKey<FormState>();
+  final formkeyVerif = GlobalKey<FormState>();
 
   ScrollController loadController = ScrollController();
 
@@ -64,11 +64,6 @@ class ControllerVerifikasi extends GetxController {
     edt_alamat.dispose();
     edt_nik.dispose();
   }
-
-  // setProfile() async {
-  //   lat = (await Api2().getLatitude())!;
-  //   lang = (await Api2().getLongitude())!;
-  // }
 
   inputDate(BuildContext context) async {
     final DateTime? select = await showDatePicker(
@@ -286,12 +281,10 @@ class ControllerVerifikasi extends GetxController {
   }
 
   validator()async{
-    if(formkey.currentState!.validate()){
-      await uploadImgProfile();
-      await uploadImgktp();
-      updateProfile();
-    }else{
-      log('Please check input data');
+    if(formkeyVerif.currentState!.validate()){
+      uploadImgProfile();
+        await uploadImgktp();
+        await updateProfile();
     }
   }
 

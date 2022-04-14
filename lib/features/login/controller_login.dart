@@ -17,6 +17,9 @@ class ControllerLogin extends GetxController {
 
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+  final formkeyLogin = GlobalKey<FormState>();
+  var obsecurePass = true.obs;
+
   String initialCountry = 'ID';
   PhoneNumber number = PhoneNumber(isoCode: 'ID');
 
@@ -38,6 +41,22 @@ class ControllerLogin extends GetxController {
     super.onClose();
     edtPhoneControl.dispose();
     edtPassword.dispose();
+  }
+
+  validator()async{
+    if(formkeyLogin.currentState!.validate()){
+      login();
+    }else{
+      log('Please check input data');
+    }
+  }
+
+  showPass()async{
+    if(obsecurePass.value == true){
+      obsecurePass.value = false;
+    }else{
+      obsecurePass.value = true;
+    }
   }
 
   login() async {
@@ -69,23 +88,16 @@ class ControllerLogin extends GetxController {
           // Get.snackbar("Kesalahan", firstError['message']);
         }
       } else {
-        throw "Terjadi kesalahan";
+        var firstError = loginResult['errors'][0];
+        throw firstError['message'];
       }
       loading(false);
     } catch (e) {
       loading(false);
       log(e.toString());
-      Get.snackbar("Kesalahan", "Terjadi kesalahan");
+      Get.snackbar("Kesalahan", e.toString());
     }
   }
-
-  // checkLogin() async {
-  //   var statusLogin = await Api2().getLoginStatus();
-  //   log('cek status : ' + statusLogin.toString());
-  //   if (statusLogin == true) {
-  //     Get.offNamed(Routes.main);
-  //   }
-  // }
 
   regisRoute() {
     Get.toNamed(Routes.register);

@@ -21,13 +21,17 @@ class ControllerRegister extends GetxController {
   var loading = false.obs;
   var regisAgree = false.obs;
 
-  void regisAgreemnet(bool status) => regisAgree.value = status;
+  final formkeyRegis = GlobalKey<FormState>();
+  var obsecurePass = true.obs;
 
+  void regisAgreemnet(bool status) => regisAgree.value = status;
 
   checkAgreement(){
     if(regisAgree.value == true){
-      dismisKeyboard();
-      register();
+      if(formkeyRegis.currentState!.validate()){
+        dismisKeyboard();
+        register();
+      }
     }else{
       Get.snackbar(
           "Register",
@@ -37,15 +41,23 @@ class ControllerRegister extends GetxController {
     }
   }
 
-  termCondtionPage(){
-    Get.toNamed(Routes.termcondition);
-  }
-
   @override
   void onClose() {
     super.onClose();
     edtPhoneNum.dispose();
     edtPswd.dispose();
+  }
+
+  showPass(){
+    if(obsecurePass.value == true){
+      obsecurePass.value = false;
+    }else{
+      obsecurePass.value = true;
+    }
+  }
+
+  termCondtionPage(){
+    Get.toNamed(Routes.termcondition);
   }
 
   register() async {
@@ -57,11 +69,11 @@ class ControllerRegister extends GetxController {
       if(regisResult != null){
         var successStatus = regisResult["success"];
         if(successStatus == true){
+          Get.back();
           Get.snackbar(
               "Register",
               'Register is success, please login'
           );
-          Get.offNamed(Routes.login);
         }else{
           var firstError = regisResult['errors'][0];
           Get.snackbar("Kesalahan", firstError['message']);
