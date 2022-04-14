@@ -77,7 +77,7 @@ class ControllerVerifikasi extends GetxController {
 
     if (select != null && select != date) {
       date = select;
-      datePick.value = DateFormat('dd-MM-yyyy').format(date!);
+      datePick.value = DateFormat('yyyy-MM-dd').format(date!);
     } else {
       datePick.value = "Tgl. Lahir";
     }
