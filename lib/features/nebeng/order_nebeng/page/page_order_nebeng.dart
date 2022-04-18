@@ -36,7 +36,7 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
             Padding(
               padding: EdgeInsets.all(Insets.med),
               child: Text(
-                "Kendaraan",
+                "Driver",
                 style: TextStyles.textStd,
               ),
             ),
