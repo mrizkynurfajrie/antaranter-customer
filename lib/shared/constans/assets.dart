@@ -29,6 +29,7 @@ class AppIcons {
   static const email = 'assets/icons/email-icon.png';
   static const web = 'assets/icons/web-icon.png';
   static const dummyAvatar = 'assets/images/avatar_dummy.svg';
+  static const confirmData = 'assets/images/confirm_data.png';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(
@@ -57,4 +58,5 @@ class AppLotties {
   static const loadingCar = 'assets/lottie/loading-car.json';
   static const empty = 'assets/lottie/empty.json';
   static const emptyList = 'assets/lottie/empty-list.json';
+  static const errorIcon = 'assets/lottie/error.json';
 }

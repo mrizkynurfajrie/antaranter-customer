@@ -12,6 +12,7 @@ import 'package:intake_customer/shared/helpers/currency_formatter.dart';
 import 'package:intake_customer/shared/helpers/format_date_time.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
+import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
@@ -52,7 +53,7 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                             children: [
                               Expanded(
                                 child: Text(
-                                 controller.statusOrderNebeng(),
+                                  controller.statusOrderNebeng(),
                                   style: TextStyles.textSmBold,
                                 ),
                               ),
@@ -105,27 +106,47 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                       padding: EdgeInsets.all(Insets.med),
                       child: Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(90),
-                            child: SizedBox(
-                              height: IconSizes.xxl,
-                              width: IconSizes.xxl,
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl: imageUrlPath(controller
-                                        .orderResponse.value.mainRider?.image ??
-                                    ''),
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Shimmer(
-                                  gradient: AppColor.shimmerGradient,
-                                  child: Container(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    SvgPicture.asset(
-                                  AppIcons.dummyAvatar,
+                          InkWell(
+                            onTap: () {
+                              if (controller
+                                      .orderResponse.value.mainRider?.image !=
+                                  null) {
+                                showPopUpImage(
+                                  imageUri: imageUrlPath(controller
+                                          .orderResponse
+                                          .value
+                                          .mainRider
+                                          ?.image ??
+                                      ''),
+                                );
+                              }
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(90),
+                              child: SizedBox(
+                                height: IconSizes.xxl,
+                                width: IconSizes.xxl,
+                                child: CachedNetworkImage(
                                   fit: BoxFit.cover,
+                                  imageUrl: imageUrlPath(controller
+                                          .orderResponse
+                                          .value
+                                          .mainRider
+                                          ?.image ??
+                                      ''),
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) =>
+                                          Shimmer(
+                                    gradient: AppColor.shimmerGradient,
+                                    child: Container(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      SvgPicture.asset(
+                                    AppIcons.dummyAvatar,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
@@ -138,15 +159,21 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                                 Text(
                                   "${controller.orderResponse.value.mainRider?.name}",
                                   style: TextStyles.textStdBold,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
                                   "${controller.orderResponse.value.mainRider?.phone}",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: AppColor.neutral.shade400,
                                   ),
                                 ),
                                 Text(
                                   "${controller.orderResponse.value.mainRider?.cityLocation}",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: AppColor.neutral.shade400,
                                   ),
@@ -503,7 +530,13 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                             child: controller.loadingCancel.isFalse
                                 ? OutlinedButton(
                                     onPressed: () {
-                                      controller.cancelOrderNebeng();
+                                      dialogConfirmation(
+                                        onPressed: () =>
+                                            controller.cancelOrderNebeng(),
+                                        title: "Batalkan pesanan",
+                                        desc1:
+                                            "Anda yakin ingin membatalkan pesanan ?",
+                                      );
                                     },
                                     child: Text(
                                       "Batalkan pesanan",

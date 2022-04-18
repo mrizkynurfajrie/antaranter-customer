@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/order_nebeng/controller_order_nebeng.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
@@ -7,8 +10,11 @@ import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/helpers/currency_formatter.dart';
 import 'package:intake_customer/shared/helpers/format_date_time.dart';
+import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/appbar/appbar.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
+import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
   const PageOrderNebeng({Key? key}) : super(key: key);
@@ -27,6 +33,91 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: EdgeInsets.all(Insets.med),
+              child: Text(
+                "Kendaraan",
+                style: TextStyles.textStd,
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.all(Insets.med),
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      if (controller.postinganNebeng.value.mainRider?.image !=
+                          null) {
+                        showPopUpImage(
+                          imageUri: imageUrlPath(controller
+                                  .postinganNebeng.value.mainRider?.image ??
+                              ''),
+                        );
+                      }
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(90),
+                      child: SizedBox(
+                        height: IconSizes.xxl,
+                        width: IconSizes.xxl,
+                        child: CachedNetworkImage(
+                          fit: BoxFit.cover,
+                          imageUrl: imageUrlPath(controller
+                                  .postinganNebeng.value.mainRider?.image ??
+                              ''),
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) => Shimmer(
+                            gradient: AppColor.shimmerGradient,
+                            child: Container(
+                              color: Colors.white,
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => Container(
+                            alignment: Alignment.topCenter,
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 10),
+                            height: 50,
+                            width: 50,
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100)),
+                                color: Color(0xffffffff)),
+                            child: Icon(
+                              CupertinoIcons.person_fill,
+                              size: 55,
+                              color: AppColor.bodyColor.shade600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  horizontalSpace(Insets.lg),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${controller.postinganNebeng.value.mainRider?.name}",
+                          style: TextStyles.textStdBold,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          "${controller.postinganNebeng.value.mainRider?.cityLocation}",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: AppColor.neutral.shade400,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(Insets.med),
               child: Text(
@@ -292,7 +383,15 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
               label: "Pesan sekarang",
               height: Sizes.xl,
               onPressed: () {
-                controller.orderNebeng();
+                showPopUpChoice(
+                  imageUri: AppIcons.confirmData,
+                  imageSize: 120.w,
+                  labelPositif: "Pesan",
+                  onConfirm: () => controller.orderNebeng(),
+                  title: "Konfirmasi pesanan",
+                  description:
+                      "Pastikan pesanan anda sudah benar, anda tidak dapat melakukan pembatalan pesanan jika pesanan telah dilakukan",
+                );
               },
             ),
           ],

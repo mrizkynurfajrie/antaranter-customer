@@ -103,6 +103,10 @@ class Insets {
 }
 
 class Corners {
+  static double xs = 1.w;
+  static BorderRadius xsBorder = BorderRadius.all(xsRadius);
+  static Radius xsRadius = Radius.circular(xs);
+
   static double sm = 3.w;
   static BorderRadius smBorder = BorderRadius.all(smRadius);
   static Radius smRadius = Radius.circular(sm);
