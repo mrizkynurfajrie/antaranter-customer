@@ -13,6 +13,7 @@ import 'package:intake_customer/shared/helpers/currency_formatter.dart';
 import 'package:intake_customer/shared/helpers/format_date_time.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
+import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
@@ -106,27 +107,47 @@ class PageDetailHistory extends GetView<ControllerDetailHistory> {
                       padding: EdgeInsets.all(Insets.med),
                       child: Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(90),
-                            child: SizedBox(
-                              height: IconSizes.xxl,
-                              width: IconSizes.xxl,
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl: imageUrlPath(controller
-                                        .orderResponse.value.mainRider?.image ??
-                                    ''),
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Shimmer(
-                                  gradient: AppColor.shimmerGradient,
-                                  child: Container(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    SvgPicture.asset(
-                                  AppIcons.dummyAvatar,
+                          InkWell(
+                            onTap: () {
+                              if (controller
+                                      .orderResponse.value.mainRider?.image !=
+                                  null) {
+                                showPopUpImage(
+                                  imageUri: imageUrlPath(controller
+                                          .orderResponse
+                                          .value
+                                          .mainRider
+                                          ?.image ??
+                                      ''),
+                                );
+                              }
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(90),
+                              child: SizedBox(
+                                height: IconSizes.xxl,
+                                width: IconSizes.xxl,
+                                child: CachedNetworkImage(
                                   fit: BoxFit.cover,
+                                  imageUrl: imageUrlPath(controller
+                                          .orderResponse
+                                          .value
+                                          .mainRider
+                                          ?.image ??
+                                      ''),
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) =>
+                                          Shimmer(
+                                    gradient: AppColor.shimmerGradient,
+                                    child: Container(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      SvgPicture.asset(
+                                    AppIcons.dummyAvatar,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),

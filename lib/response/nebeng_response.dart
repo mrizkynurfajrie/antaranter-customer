@@ -32,6 +32,7 @@ class NebengResponse {
     this.createdAt,
     this.updatedAt,
     this.isDeleted,
+    this.count,
     this.mainRider,
     this.nebengRider,
   });
@@ -54,6 +55,7 @@ class NebengResponse {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? isDeleted;
+  int? count;
   MainRider? mainRider;
   NebengRider? nebengRider;
 
@@ -84,6 +86,7 @@ class NebengResponse {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         isDeleted: json["isDeleted"],
+        count: json["count"],
         mainRider: json["main_rider"] == null
             ? null
             : MainRider.fromJson(json["main_rider"]),
@@ -111,6 +114,7 @@ class NebengResponse {
         "createdAt": createdAt,
         "updatedAt": updatedAt,
         "isDeleted": isDeleted,
+        "count": count,
         "main_rider": mainRider?.toJson(),
         "nebeng_rider": nebengRider?.toJson(),
       };
@@ -135,6 +139,7 @@ class NebengResponse {
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
         isDeleted: json["isDeleted"],
+        count: json["count"],
         mainRider: MainRider.fromArguments(json["main_rider"]),
         nebengRider: NebengRider.fromArguments(json["nebeng_rider"]),
       );

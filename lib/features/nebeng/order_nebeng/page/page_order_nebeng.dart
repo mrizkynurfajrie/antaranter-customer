@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/order_nebeng/controller_order_nebeng.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
@@ -220,10 +219,36 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                                 ),
                               ),
                               Obx(
-                                () => Text(
-                                  "${controller.postinganNebeng.value.seatAvail}",
-                                  style: TextStyle(
-                                    fontSize: FontSizes.s16,
+                                () => RichText(
+                                  text: TextSpan(
+                                    text:
+                                        "${controller.postinganNebeng.value.count}",
+                                    style: TextStyle(
+                                      color: AppColor.primaryColor,
+                                      fontSize: FontSizes.s14,
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text:
+                                            "/${controller.postinganNebeng.value.seatAvail}",
+                                        style: TextStyle(
+                                          color: AppColor.basic.shade400,
+                                          fontSize: FontSizes.s14,
+                                        ),
+                                      ),
+                                      controller.postinganNebeng.value
+                                                  .seatAvail ==
+                                              controller
+                                                  .postinganNebeng.value.count
+                                          ? TextSpan(
+                                              text: " (penuh)",
+                                              style: TextStyle(
+                                                color: AppColor.errorColor,
+                                                fontSize: FontSizes.s14,
+                                              ),
+                                            )
+                                          : const TextSpan(),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -382,15 +407,20 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
               size: Get.width,
               label: "Pesan sekarang",
               height: Sizes.xl,
+              enable: controller.postinganNebeng.value.count !=
+                  controller.postinganNebeng.value.seatAvail,
               onPressed: () {
                 showPopUpChoice(
                   imageUri: AppIcons.confirmData,
                   imageSize: 120.w,
                   labelPositif: "Pesan",
-                  onConfirm: () => controller.orderNebeng(),
+                  onConfirm: () {
+                    Get.back();
+                    controller.orderNebeng();
+                  },
                   title: "Konfirmasi pesanan",
                   description:
-                      "Pastikan pesanan anda sudah benar, anda tidak dapat melakukan pembatalan pesanan jika pesanan telah dilakukan",
+                      "Mohon pastikan pesanan anda sudah benar, anda tidak dapat melakukan pembatalan pesanan jika pesanan telah dilakukan",
                 );
               },
             ),

@@ -159,22 +159,31 @@ class NebengPostingItem extends StatelessWidget {
                       horizontalSpace(Insets.xs),
                       RichText(
                         text: TextSpan(
-                          text: "${nebengPost.seatAvail}",
+                          text: "${nebengPost.count}",
                           style: TextStyle(
                             color: AppColor.primaryColor,
-                            fontSize: FontSizes.s12,
+                            fontSize: FontSizes.s14,
                           ),
                           children: [
                             TextSpan(
-                              text: " kursi tersedia",
-                              style: TextStyles.small1.copyWith(
+                              text: "/${nebengPost.seatAvail}",
+                              style: TextStyle(
                                 color: AppColor.basic.shade400,
-                                fontWeight: FontWeight.w400,
+                                fontSize: FontSizes.s14,
                               ),
                             ),
+                            nebengPost.seatAvail == nebengPost.count
+                                ? TextSpan(
+                                    text: " (penuh)",
+                                    style: TextStyle(
+                                      color: AppColor.errorColor,
+                                      fontSize: FontSizes.s14,
+                                    ),
+                                  )
+                                : const TextSpan(),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   )
                 ],
