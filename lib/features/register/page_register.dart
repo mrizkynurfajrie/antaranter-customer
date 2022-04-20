@@ -4,7 +4,6 @@ import 'package:intake_customer/features/register/controller_register.dart';
 import 'package:flutter/material.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
-import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/others/checkbox_label.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
@@ -102,7 +101,7 @@ class PageRegister extends GetView<ControllerRegister> {
                                 )
                             ),
                             validator: (value) {
-                              if (value == null || value == '') {
+                              if (value == null || value == '' || value.length < 6) {
                                 return 'Kata sandi anda salah';
                               } else {
                                 return null;

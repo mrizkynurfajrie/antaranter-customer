@@ -25,7 +25,7 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
         body: SafeArea(
             child: SingleChildScrollView(
           child: Obx(() => Form(
-            key: controller.formkeyVerif,
+                key: controller.formkeyVerif,
                 child: Column(
                   children: <Widget>[
                     GestureDetector(
@@ -113,11 +113,11 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                           child: TextFormField(
                             controller: controller.edt_name,
                             decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 10),
-                                hintText: 'Nama',
-                              ),
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
+                              hintText: 'Nama',
+                            ),
                             validator: (value) {
                               if (value == null || value == '') {
                                 return 'Nama anda masih kosong';
@@ -154,13 +154,12 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           color: AppColor.whiteColor),
-                      child:
-                      TextFormField(
+                      child: TextFormField(
                         controller: controller.edt_email,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 5, horizontal: 10),
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                           hintText: 'Email',
                         ),
                         validator: (value) {
@@ -184,8 +183,8 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                         controller: controller.edt_alamat,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 5, horizontal: 10),
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                           hintText: 'Alamat',
                         ),
                         validator: (value) {
@@ -309,11 +308,11 @@ class PageVerifikasi extends GetView<ControllerVerifikasi> {
                       margin: const EdgeInsets.only(
                           top: 5, left: 35, right: 35, bottom: 20),
                       child: controller.loading.isFalse
-                          ? uiComponent().buttonStyle_one(
-                              'Update Profile',
-                              context,
-                              AppColor.primaryColor.shade400, (){
+                          ? uiComponent().buttonStyle_one('Update Profile',
+                              context, AppColor.primaryColor.shade400, () {
                               controller.validator();
+                            // controller.uploadImgProfile();
+                            // controller.uploadImgktp();
                             })
                           : loadingIndicator(context),
                     ),

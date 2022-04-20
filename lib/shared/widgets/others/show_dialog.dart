@@ -80,6 +80,50 @@ showPopUpError({
       });
 }
 
+dialogError({var errorTitle, required var message}){
+  Get.defaultDialog(
+      title: errorTitle,
+      content: Column(
+        children: <Widget>[
+          Text(
+            message ?? "Informasi",
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+              height: 30
+          ),
+          ButtonPrimary(
+              onPressed: ()=> Get.back(),
+              size: Get.width * 0.5,
+              label: 'Kembali'
+          )
+        ],
+      )
+  );
+}
+
+dialogNormal({var normalTilte, required var normalMessage, Function()? toDo}){
+  Get.defaultDialog(
+      title: normalTilte ?? 'Informasi',
+      content: Column(
+        children: <Widget>[
+          Text(
+            normalMessage,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+              height: 30
+          ),
+          ButtonPrimary(
+              onPressed: toDo ?? ()=> Get.back(),
+              size: Get.width * 0.5,
+              label: 'Kembali'
+          )
+        ],
+      )
+  );
+}
+
 showPopUpChoice({
   String? title,
   String? description,

@@ -11,7 +11,6 @@ const String CACHE_ACTIVE_ORDER = "order";
 const String CHECK_AGREEMENT_NEBENG = "agreement_nebeng";
 const String CACHE_API_LOGGER = "api_logger";
 
-
 class Api2 {
   final box = GetStorage();
 
@@ -22,22 +21,6 @@ class Api2 {
   Future<String?> getUsername() async {
     return box.read(CACHE_USERNAME);
   }
-
-  // Future setLatitude({double? lat}) async {
-  //   lat ??= 0.0;
-  //   await box.write(CACHE_LATITUDE, lat);
-  // }
-  // Future<double?> getLatitude() async {
-  //   return box.read(CACHE_LATITUDE);
-  // }
-
-  // Future setLongitude({double? lng}) async {
-  //   lng ??= 0.0;
-  //   await box.write(CACHE_LONGITUDE, lng);
-  // }
-  // Future<double?> getLongitude() async {
-  //   return box.read(CACHE_LONGITUDE);
-  // }
 
   Future setUser({dynamic user}) async {
     user ??= "";
@@ -67,7 +50,6 @@ class Api2 {
     isHasActiveOrder ??= false;
     await box.write(STATUS_ACTIVE_ORDER, isHasActiveOrder);
   }
-
   Future<bool?> getHasActiveOrder()async{
     return box.read(STATUS_ACTIVE_ORDER);
   }
@@ -83,7 +65,6 @@ class Api2 {
     return box.remove(CACHE_ACTIVE_ORDER);
   }
 
-
   Future removeStorageForLogout() async{
     await box.remove(CACHE_USER);
     await box.remove(CACHE_TOKEN);
@@ -97,7 +78,6 @@ class Api2 {
     status ??= false;
     await box.write(CHECK_AGREEMENT_NEBENG, status);
   }
-  
   Future<bool?> getAgreementNebeng()async{
     return box.read(CHECK_AGREEMENT_NEBENG);
   }
@@ -106,11 +86,9 @@ class Api2 {
     value ??= "";
     await box.write(CACHE_API_LOGGER, value);
   }
-  
   Future<dynamic> getApiLogger()async{
     return box.read(CACHE_API_LOGGER);
   }
-
 
 }
 
