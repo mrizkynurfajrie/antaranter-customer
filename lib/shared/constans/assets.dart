@@ -30,6 +30,8 @@ class AppIcons {
   static const web = 'assets/icons/web-icon.png';
   static const dummyAvatar = 'assets/images/avatar_dummy.svg';
   static const confirmData = 'assets/images/confirm_data.png';
+  static const genderFemale = 'assets/icons/gender-female.svg';
+  static const genderMale = 'assets/icons/gender-male.svg';
 
   static Widget smallIcon(String asset, {double? size}) {
     return Image.asset(
