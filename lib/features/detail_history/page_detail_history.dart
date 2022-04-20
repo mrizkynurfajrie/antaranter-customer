@@ -12,6 +12,7 @@ import 'package:intake_customer/shared/constans/styles.dart';
 import 'package:intake_customer/shared/helpers/currency_formatter.dart';
 import 'package:intake_customer/shared/helpers/format_date_time.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
+import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
@@ -160,6 +161,8 @@ class PageDetailHistory extends GetView<ControllerDetailHistory> {
                                 Text(
                                   "${controller.orderResponse.value.mainRider?.name}",
                                   style: TextStyles.textStdBold,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
                                   "${controller.orderResponse.value.mainRider?.phone}",
@@ -167,11 +170,43 @@ class PageDetailHistory extends GetView<ControllerDetailHistory> {
                                     color: AppColor.neutral.shade400,
                                   ),
                                 ),
-                                Text(
-                                  "${controller.orderResponse.value.mainRider?.cityLocation}",
-                                  style: TextStyle(
-                                    color: AppColor.neutral.shade400,
-                                  ),
+                                verticalSpace(Insets.xs),
+                                Row(
+                                  children: [
+                                    CardRounded(
+                                      shadow: Shadows.none,
+                                      margin: EdgeInsets.zero,
+                                      padding: EdgeInsets.zero,
+                                      child: controller.orderResponse.value
+                                                  .mainRider?.gender ==
+                                              'male'
+                                          ? Icon(
+                                              Icons.male,
+                                              size: IconSizes.sm,
+                                              color: Colors.blue,
+                                            )
+                                          : Icon(
+                                              Icons.female,
+                                              size: IconSizes.sm,
+                                              color: Colors.red,
+                                            ),
+                                    ),
+                                    CardRounded(
+                                      margin: EdgeInsets.only(
+                                        left: Insets.sm,
+                                      ),
+                                      shadow: Shadows.none,
+                                      padding: EdgeInsets.zero,
+                                      child: Text(
+                                        "${controller.orderResponse.value.mainRider?.cityLocation}",
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          color: AppColor.neutral.shade400,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 )
                               ],
                             ),

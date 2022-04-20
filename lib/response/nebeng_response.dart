@@ -59,6 +59,8 @@ class NebengResponse {
   MainRider? mainRider;
   NebengRider? nebengRider;
 
+  get remainingSeat => seatAvail! - count!;
+
   factory NebengResponse.fromJson(Map<String, dynamic> json) => NebengResponse(
         id: json["id"],
         riderId: json["rider_id"],
@@ -70,12 +72,10 @@ class NebengResponse {
             : DateTime.parse(json["datetimeFinish"]),
         cityOrigin: json["city_origin"],
         cityDestination: json["city_destination"],
-        dateDep: json["dateDep"] == null
-            ? null
-            : DateTime.parse(json["dateDep"]),
-        dateArr: json["dateArr"] == null
-            ? null
-            : DateTime.parse(json["dateArr"]),
+        dateDep:
+            json["dateDep"] == null ? null : DateTime.parse(json["dateDep"]),
+        dateArr:
+            json["dateArr"] == null ? null : DateTime.parse(json["dateArr"]),
         timeDep: json["timeDep"],
         timeArr: json["timeArr"],
         seatAvail: json["seatAvail"],

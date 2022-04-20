@@ -159,7 +159,7 @@ class NebengPostingItem extends StatelessWidget {
                       horizontalSpace(Insets.xs),
                       RichText(
                         text: TextSpan(
-                          text: "${nebengPost.count}",
+                          text: "${nebengPost.remainingSeat}",
                           style: TextStyle(
                             color: AppColor.primaryColor,
                             fontSize: FontSizes.s14,

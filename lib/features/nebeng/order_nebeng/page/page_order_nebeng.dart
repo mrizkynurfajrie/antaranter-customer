@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/nebeng/order_nebeng/controller_order_nebeng.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
@@ -12,6 +13,7 @@ import 'package:intake_customer/shared/helpers/format_date_time.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
 import 'package:intake_customer/shared/widgets/appbar/appbar.dart';
 import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
+import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -103,13 +105,35 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        Text(
-                          "${controller.postinganNebeng.value.mainRider?.cityLocation}",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: AppColor.neutral.shade400,
-                          ),
+                        verticalSpace(Insets.xs),
+                        Row(
+                          children: [
+                            CardRounded(
+                              shadow: Shadows.none,
+                              margin: EdgeInsets.zero,
+                              padding: EdgeInsets.zero,
+                              child: controller.postinganNebeng.value.mainRider
+                                          ?.gender ==
+                                      'male'
+                                  ? SvgPicture.asset(AppIcons.genderMale)
+                                  : SvgPicture.asset(AppIcons.genderFemale),
+                            ),
+                            CardRounded(
+                              margin: EdgeInsets.only(
+                                left: Insets.sm,
+                              ),
+                              shadow: Shadows.none,
+                              padding: EdgeInsets.zero,
+                              child: Text(
+                                "${controller.postinganNebeng.value.mainRider?.cityLocation}",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: AppColor.neutral.shade400,
+                                ),
+                              ),
+                            ),
+                          ],
                         )
                       ],
                     ),
@@ -222,7 +246,7 @@ class PageOrderNebeng extends GetView<ControllerOrderNebeng> {
                                 () => RichText(
                                   text: TextSpan(
                                     text:
-                                        "${controller.postinganNebeng.value.count}",
+                                        "${controller.postinganNebeng.value.remainingSeat}",
                                     style: TextStyle(
                                       color: AppColor.primaryColor,
                                       fontSize: FontSizes.s14,

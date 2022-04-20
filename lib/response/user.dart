@@ -26,6 +26,7 @@ class User {
         this.city,
         this.role,
         this.fcm,
+        this.gender,
         this.blockedAt,
         this.createdAt,
         this.updatedAt,
@@ -48,6 +49,7 @@ class User {
     String? city;
     String? role;
     String? fcm;
+    String? gender;
     DateTime? blockedAt;
     DateTime? createdAt;
     DateTime? updatedAt;
@@ -70,6 +72,7 @@ class User {
         city: json["city"],
         role: json["role"],
         fcm: json["fcm"],
+        gender: json["gender"],
         blockedAt: json["blockedAt"] == null ? null : DateTime.parse(json["blockedAt"]),
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -93,6 +96,7 @@ class User {
         "city": city,
         "role": role,
         "fcm": fcm,
+        "gender": gender,
         "blockedAt": blockedAt?.toIso8601String(),
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
