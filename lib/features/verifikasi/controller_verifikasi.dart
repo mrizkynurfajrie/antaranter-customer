@@ -340,7 +340,6 @@ class ControllerVerifikasi extends GetxController {
     } catch (e) {
       loading.value = false;
       log(e.toString());
-      showPopUpError(errorTitle: 'Failed', errorMessage: e.toString());
       dialogError(
           errorTitle: 'Failed',
           message: e.toString()
