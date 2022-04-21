@@ -7,6 +7,7 @@ import 'package:intake_customer/response/nebeng_response.dart';
 import 'package:intake_customer/shared/helpers/format_date_time.dart';
 import 'package:intake_customer/shared/widgets/bottomsheet/bottomsheet_selection.dart';
 import 'package:intake_customer/shared/widgets/cards/card_item.dart';
+import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 import 'package:intl/intl.dart';
 
 class ControllerListNebeng extends GetxController {
@@ -26,9 +27,10 @@ class ControllerListNebeng extends GetxController {
 
   final now = DateTime.now();
 
-  var initDateEnd = DateTime.now().obs;
+  var initDateEnd = DateTime.now().add(const Duration(days: 1)).obs;
 
   var loading = false.obs;
+  var loadingList = false.obs;
 
   @override
   void onInit() {
@@ -46,8 +48,9 @@ class ControllerListNebeng extends GetxController {
   }
 
   void getData() async {
-    loading.value = true;
+    loading.value = loadingList.value = true;
     listNebeng.clear();
+    resetFilter();
     try {
       var res = await api.listNebeng();
       if (res['success'] == true) {
@@ -56,20 +59,24 @@ class ControllerListNebeng extends GetxController {
             .map((data) => NebengResponse.fromJson(data))
             .toList();
         if (resultNebeng.isNotEmpty) {
-          resultNebeng = resultNebeng.where((nebeng) => nebeng.dateDep!.compareTo(DateTime.now()) >=0).toList();
+          resultNebeng = resultNebeng
+              .where((nebeng) => nebeng.dateDep!.compareTo(DateTime.now()) >= 0)
+              .toList();
           listNebeng.addAll(resultNebeng);
           // print(listNebeng);
-          loading.value = false;
+          await getCities();
+          loading.value = loadingList.value = false;
         } else {
-          loading.value = false;
+          loading.value = loadingList.value = false;
         }
-        await getCities();
       } else {
         throw "Something error";
       }
     } catch (e) {
+      loading.value = loadingList.value = false;
       log(e.toString());
       // change(null, status: RxStatus.error(e.toString()));
+      showPopUpError(errorMessage: e.toString(), errorTitle: "Failed");
     }
   }
 
@@ -87,7 +94,12 @@ class ControllerListNebeng extends GetxController {
         ));
         cities.sort((a, b) => a.itemName.compareTo(b.itemName));
       }
-    } catch (_) {}
+    } catch (e) {
+      loading.value = loadingList.value = false;
+      log(e.toString());
+      // change(null, status: RxStatus.error(e.toString()));
+      showPopUpError(errorMessage: e.toString(), errorTitle: "Failed");
+    }
   }
 
   Future<void> onRefresh() async {
@@ -133,7 +145,7 @@ class ControllerListNebeng extends GetxController {
   }
 
   void searchData() async {
-    loading.value = true;
+    loadingList.value = true;
     listNebeng.clear();
     try {
       var res = await api.listNebeng();
@@ -144,22 +156,24 @@ class ControllerListNebeng extends GetxController {
             .toList();
         if (resultNebeng.isNotEmpty) {
           // print(listNebeng);
-          var resultFilter = filterData(resultNebeng);
+          var resultFilter = await filterData(resultNebeng);
           listNebeng.addAll(resultFilter);
-          loading.value = false;
+          loadingList.value = false;
         } else {
-          loading.value = false;
+          loadingList.value = false;
         }
       } else {
         throw "Something error";
       }
     } catch (e) {
       log(e.toString());
+      loadingList.value = false;
+      showPopUpError(errorMessage: e.toString(), errorTitle: "Failed");
       // change(null, status: RxStatus.error(e.toString()));
     }
   }
 
-  List<NebengResponse> filterData(List<NebengResponse> data) {
+  Future<List<NebengResponse>> filterData(List<NebengResponse> data) async {
     var listFilterNebeng = List<NebengResponse>.empty();
     var isFilterLocation = false;
     try {
@@ -192,21 +206,30 @@ class ControllerListNebeng extends GetxController {
       if (isFilterLocation) {
         listFilterNebeng = listFilterNebeng
             .where((nebeng) =>
-                nebeng.dateDep!.isAfter(dateStart) &&
-                nebeng.dateDep!.isBefore(dateEnd))
+                nebeng.dateDep!.compareTo(dateStart) >= 0 &&
+                nebeng.dateDep!.compareTo(dateEnd) <= 0)
             .toList();
       } else {
         listFilterNebeng = data.where((nebeng) {
           // print(
           //     "ID ${nebeng.id} ${nebeng.dateDep!.compareTo(dateStart)} ${nebeng.dateDep!.compareTo(dateEnd)}");
-          return nebeng.dateDep!.compareTo(dateStart) >=0 &&
+          return nebeng.dateDep!.compareTo(dateStart) >= 0 &&
               nebeng.dateDep!.compareTo(dateEnd) <= 0;
         }).toList();
       }
     } catch (e) {
       log(e.toString());
+      loadingList.value = false;
+      showPopUpError(errorMessage: e.toString(), errorTitle: "Failed");
     }
 
     return listFilterNebeng;
+  }
+
+  void resetFilter() {
+    selectedCityDept = 'Pilih kota keberangkatan'.obs;
+    selectedCityArv = 'Pilih kota tujuan'.obs;
+    txtDateDeptStart.text = '';
+    txtDateDeptEnd.text = '';
   }
 }

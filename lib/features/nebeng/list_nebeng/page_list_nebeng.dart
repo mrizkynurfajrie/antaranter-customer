@@ -38,8 +38,8 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
       child: Obx(
         () => LoadingOverlay(
           isLoading: controller.loading.value,
-          opacity: 0.2,
-          color: AppColor.neutral.shade600,
+          opacity: 0.5,
+          color: AppColor.secondary,
           progressIndicator: loadingIndicator(context),
           child: RefreshIndicator(
             onRefresh: () async => controller.onRefresh(),
@@ -50,7 +50,7 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
                   FilterWidget(
                     controller: controller,
                   ),
-                  controller.loading.isFalse
+                  controller.loadingList.isFalse
                       ? controller.listNebeng.isNotEmpty
                           ? ListView.builder(
                               shrinkWrap: true,
