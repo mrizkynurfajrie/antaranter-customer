@@ -7,4 +7,11 @@ class ApiListNebeng {
 
     return response;
   }
+
+  Future<dynamic> cities() async {
+    var response = await Api1().apiJSONGetWitToken("cities/list");
+    // log('return data = ' + apiLoginResponse.toString());
+
+    return response;
+  }
 }

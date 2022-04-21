@@ -83,7 +83,7 @@ class PageHome extends GetView<ControllerHome> {
                                 color: AppColor.whiteColor,
                                 fontSize: FontSizes.s12,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -165,7 +165,7 @@ class PageHome extends GetView<ControllerHome> {
                                         color: AppColor.neutral,
                                         fontSize: FontSizes.s14,
                                         fontWeight: FontWeight.w500),
-                                        textAlign: TextAlign.justify,
+                                    textAlign: TextAlign.justify,
                                   )
                                 ],
                               ),

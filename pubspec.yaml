@@ -31,6 +31,8 @@ dependencies:
   flutter_local_notifications: ^9.4.0
   webview_flutter: ^2.8.0
   timeline_tile: ^2.0.0
+  flutter_holo_date_picker: ^1.0.3
+  loading_overlay: ^0.3.0
 
 dev_dependencies: 
   flutter_lints: ^1.0.0
