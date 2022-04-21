@@ -5,7 +5,7 @@ import 'package:intake_customer/features/history/api_history.dart';
 import 'package:intake_customer/response/nebeng_order.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
 
-class ControllerHistory extends GetxController{
+class ControllerHistory extends GetxController {
   final ApiHistory api;
 
   ControllerHistory({required this.api});
@@ -31,8 +31,14 @@ class ControllerHistory extends GetxController{
           users_id: controllerUserInfo.user.value.id);
       if (runningHistoryApi != null) {
         List<dynamic> response = runningHistoryApi["data"]["data"];
-        allData(RxList<NebengOrder>.from(
-            response.map((e) => NebengOrder.fromJson(e))));
+        allData(
+          RxList<NebengOrder>.from(
+            response.map(
+              (e) => NebengOrder.fromJson(e),
+            ),
+          ),
+        );
+        allData.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
       }
       loading.value = false;
     } catch (e) {
@@ -41,7 +47,7 @@ class ControllerHistory extends GetxController{
     }
   }
 
-  Future<void> onRefresh()async{
+  Future<void> onRefresh() async {
     await Future.delayed(Duration(milliseconds: 1000));
     history();
   }
