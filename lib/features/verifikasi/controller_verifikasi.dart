@@ -10,6 +10,7 @@ import 'package:intake_customer/response/daftar_provinsi.dart';
 import 'package:intake_customer/response/user.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
+import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 import 'package:intl/intl.dart';
 
 class ControllerVerifikasi extends GetxController {
@@ -51,7 +52,6 @@ class ControllerVerifikasi extends GetxController {
 
   @override
   void onInit() {
-    // setProfile();
     getProvincies();
     super.onInit();
   }
@@ -259,8 +259,10 @@ class ControllerVerifikasi extends GetxController {
       var uploadSelImg =
           await api.uploadProfileImg(ProfileImg: imgPreview.value);
       if (uploadSelImg != null) {
-        var selfImgValue = uploadSelImg["data"]["filename"];
-        uploadImg = selfImgValue;
+        var selfImgValue = uploadSelImg["data"]["key"];
+        var sample = selfImgValue;
+        uploadImg = sample.toString().replaceAll('DEV/', '');
+        log('return img Profile : ' + uploadImg.toString());
       }
     } catch (e) {
       log(e.toString());
@@ -272,8 +274,10 @@ class ControllerVerifikasi extends GetxController {
       var uploadSelktp =
           await api.uploadProfileKtp(ProfileKtp: ktpPreview.value);
       if (uploadSelktp != null) {
-        var selfKtpValue = uploadSelktp["data"]["filename"];
-        uploadKtp = selfKtpValue;
+        var selfKtpValue = uploadSelktp["data"]["key"];
+        var sample = selfKtpValue;
+        uploadKtp = sample.toString().replaceAll('DEV/', '');
+        log('return ktp : ' + uploadKtp.toString());
       }
     } catch (e) {
       log(e.toString());
@@ -282,9 +286,9 @@ class ControllerVerifikasi extends GetxController {
 
   validator()async{
     if(formkeyVerif.currentState!.validate()){
-      uploadImgProfile();
-        await uploadImgktp();
-        await updateProfile();
+      await uploadImgProfile();
+      await uploadImgktp();
+      updateProfile();
     }
   }
 
@@ -316,17 +320,17 @@ class ControllerVerifikasi extends GetxController {
           if (resultUserVerify['success'] == true) {
             mainController.user.value.status = 2;
             mainController.user.refresh();
-            Get.snackbar(
-              "verification",
-              "Your account has been updated",
+            dialogNormal(
+                normalTilte: "verification",
+                normalMessage: "Your account has been updated"
             );
           } else {
             throw "Something error verify user";
           }
         } else {
-          Get.snackbar(
-            "verification",
-            "Your account has been updated, please fill in your identity card and identity number",
+          dialogNormal(
+              normalTilte: "verification",
+              normalMessage: "Your account has been updated, please fill in your identity card and identity number"
           );
         }
       } else {
@@ -336,9 +340,9 @@ class ControllerVerifikasi extends GetxController {
     } catch (e) {
       loading.value = false;
       log(e.toString());
-      Get.snackbar(
-        "Failed",
-        e.toString(),
+      dialogError(
+          errorTitle: 'Failed',
+          message: e.toString()
       );
     }
   }

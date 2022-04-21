@@ -15,6 +15,7 @@ import 'package:intake_customer/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_customer/shared/widgets/cards/card_rounded_clickable.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
+import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -372,7 +373,11 @@ class PageHome extends GetView<ControllerHome> {
                                       0
                                   ? "Silahkan lengkapi data anda untuk menggunakan layanan kami"
                                   : "Admin sedang melakukan verifikasi data anda mohon tunggu";
-                              Get.snackbar("Pemberitahuan", message);
+                              // Get.snackbar("Pemberitahuan", message);
+                              dialogNormal(
+                                  normalTilte: 'Pemberitahuan',
+                                  normalMessage: message,
+                              );
                             }
                           },
                         ),
@@ -384,8 +389,11 @@ class PageHome extends GetView<ControllerHome> {
                             AppIcons.titipIcon,
                             fit: BoxFit.contain,
                           ),
-                          ontap: () => Get.snackbar('AntarAnter Titip',
-                              'Layanan Titip akan segera tersedia'),
+                          ontap: () =>
+                              dialogNormal(
+                                  normalTilte: 'AntarAnter Titip',
+                                  normalMessage: 'Layanan Titip akan segera tersedia'
+                              ),
                         ),
                       ],
                     ),

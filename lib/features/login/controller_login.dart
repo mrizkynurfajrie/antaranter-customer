@@ -6,6 +6,7 @@ import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/response/user.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
+import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'api_login.dart';
 
@@ -14,7 +15,6 @@ class ControllerLogin extends GetxController {
   ControllerLogin({required this.api});
 
   var controllerUserInfo = Get.find<ControllerUserInfo>();
-
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   final formkeyLogin = GlobalKey<FormState>();
@@ -29,12 +29,6 @@ class ControllerLogin extends GetxController {
   var loading = false.obs;
   var token = "".obs;
   var loginStatus = false;
-
-  @override
-  void onInit() {
-    // checkLogin();
-    super.onInit();
-  }
 
   @override
   void onClose() {
@@ -85,7 +79,6 @@ class ControllerLogin extends GetxController {
         } else {
           var firstError = loginResult['errors'][0];
           throw firstError['message'];
-          // Get.snackbar("Kesalahan", firstError['message']);
         }
       } else {
         var firstError = loginResult['errors'][0];
@@ -95,7 +88,10 @@ class ControllerLogin extends GetxController {
     } catch (e) {
       loading(false);
       log(e.toString());
-      Get.snackbar("Kesalahan", e.toString());
+      dialogError(
+          errorTitle: 'Sign In',
+          message: e.toString()
+      );
     }
   }
 

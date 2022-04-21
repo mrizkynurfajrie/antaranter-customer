@@ -14,5 +14,17 @@ class ApiRegister{
 
     return apiRegisterResponse;
   }
+
+  Future<dynamic> autoLoginApiRunning(
+      {required var phoneNum,
+        required String password,
+        required String fcm}) async {
+    final loginBody = {"phone": phoneNum, "password": password, "fcm": fcm};
+
+    var apiLoginResponse = await Api1().apiJSONPost("login-user", loginBody);
+    // log('return data = ' + apiLoginResponse.toString());
+
+    return apiLoginResponse;
+  }
   
 }

@@ -40,14 +40,14 @@ class ApiVerifikasi{
 
   Future<dynamic>uploadProfileImg({required String ProfileImg})async{
     var upload = Api1().apiJSONMultipartWithToken(ProfileImg, 'upload');
-    // log('cek imgProfile : $upload');
+    // log('cek imgProfile : ' + upload.toString());
 
     return upload;
   }
 
   Future<dynamic>uploadProfileKtp({required String ProfileKtp})async{
     var upload = Api1().apiJSONMultipartWithToken(ProfileKtp, 'upload');
-    // log('cek imgKTP : $upload');
+    // log('cek imgKTP : ' + upload.toString());
 
     return upload;
   }
