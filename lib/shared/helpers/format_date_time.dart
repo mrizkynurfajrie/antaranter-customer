@@ -141,6 +141,15 @@ class LocaleTime {
     return dateTimeConvert;
   }
 
+  static DateTime stringDateToDateTime(String date) {
+    DateFormat inputFormat = DateFormat('yyyy-MM-dd');
+    var dateTimeConvert;
+    if (date.contains('-')) {
+      dateTimeConvert = inputFormat.parse(date);
+    }
+    return dateTimeConvert;
+  }
+
   static DateTime parseDate({required String dateString}) {
     var inputFormat = DateFormat('dd-MM-yyyy HH:mm:ss');
     return inputFormat.parse(dateString);

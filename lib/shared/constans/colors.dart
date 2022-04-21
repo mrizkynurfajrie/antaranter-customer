@@ -84,19 +84,18 @@ class AppColor {
   static const MaterialColor primary = MaterialColor(
     _primary,
     <int, Color>{
-      50: Color(0xFFD9D9D9),
-      100: Color(0xFFEFF1FF),
-      200: Color(0xFFBEC4E0),
-      300: Color(0xFFA8B0D5),
-      400: Color(0xFF939DCB),
-      500: Color(_primary),
-      600: Color(0xFF6775B6),
-      700: Color(0xFF5157AF),
-      800: Color(0xFF3C4EA1),
-      900: Color(0xFF263A96),
+      50: Color(0xFFFFF0E5),
+      100: Color(0xFFFFE1CC),
+      200: Color(0xFFFFC399),
+      300: Color(0xFFFFA566),
+      400: Color(0xFFFF8733),
+      500: Color(_orangePrimaryValue),
+      600: Color(0xFFC75200),
+      700: Color(0xFF8F3B00),
+      800: Color(0xFF572400),
     },
   );
-  static const int _primary = 0xFF263A96;
+  static const int _primary = 0xFFFF6600;
 
   static const MaterialColor neutral = MaterialColor(
     _neutral,
