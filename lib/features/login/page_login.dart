@@ -65,7 +65,7 @@ class PageLogin extends GetView<ControllerLogin> {
                       formatInput: false,
                       textFieldController: controller.edtPhoneControl,
                       initialValue: controller.number,
-                      hintText: 'Phone Number',
+                      hintText: '+628xxx',
                       inputBorder: InputBorder.none,
                       validator: (value) {
                         if (value == null || value.length < 11 || value.length > 11) {

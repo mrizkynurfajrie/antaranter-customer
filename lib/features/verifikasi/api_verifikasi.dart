@@ -17,13 +17,14 @@ class ApiVerifikasi{
     return daftarKota;
   }
 
-  Future<dynamic> verifikasiApiRunning ({required var name, required var ktp, required var email, required var image, required var birth, required var address, required var nik, required var city, required var id_user}) async {
+  Future<dynamic> verifikasiApiRunning ({required var name, required var ktp, required var email, required var image, required var gender, required var birth, required var address, required var nik, required var city, required var id_user}) async {
 
     final inputBody = {
       "username" : name,
       "ktp_pict" : ktp,
       "email" : email,
       "image" : image,
+      "gender" : gender,
       "birth" : birth,
       "address" : address,
       "nik" : nik,

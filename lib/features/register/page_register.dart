@@ -65,7 +65,7 @@ class PageRegister extends GetView<ControllerRegister> {
                             formatInput: false,
                             textFieldController: controller.edtPhoneNum,
                             initialValue: controller.numberID,
-                            hintText: 'Phone Number',
+                            hintText: '+628xxx',
                             inputBorder: InputBorder.none,
                             validator: (value) {
                               if (value == null ||

@@ -15,13 +15,14 @@ import 'package:intl/intl.dart';
 
 class ControllerVerifikasi extends GetxController {
   final ApiVerifikasi api;
-
   ControllerVerifikasi({required this.api});
 
   var edt_name = TextEditingController();
   var edt_email = TextEditingController();
   var edt_alamat = TextEditingController();
   var edt_nik = TextEditingController();
+  var edt_gender = TextEditingController();
+
 
   var pict = ''.obs;
   var datePick = ''.obs;
@@ -29,6 +30,7 @@ class ControllerVerifikasi extends GetxController {
   var ktpPreview = ''.obs;
   var uploadImg = '';
   var uploadKtp = '';
+  var showImg = ''.obs;
   var id_user = 0.obs;
   var id_provinsi = 0;
   var name_provinsi = ''.obs;
@@ -63,6 +65,7 @@ class ControllerVerifikasi extends GetxController {
     edt_email.dispose();
     edt_alamat.dispose();
     edt_nik.dispose();
+    edt_gender.dispose();
   }
 
   inputDate(BuildContext context) async {
@@ -81,6 +84,35 @@ class ControllerVerifikasi extends GetxController {
     } else {
       datePick.value = "Tgl. Lahir";
     }
+  }
+
+  genderSelect(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+              child: Container(
+                child: Wrap(
+                  children: <Widget>[
+                    ListTile(
+                        leading: Icon(CupertinoIcons.person_fill, color: Colors.blue),
+                        title: Text('Male'),
+                        onTap: () {
+                          edt_gender.text = 'Male';
+                          Navigator.of(context).pop();
+                        }),
+                    ListTile(
+                      leading: Icon(CupertinoIcons.person_fill, color: Colors.pink),
+                      title: Text('Female'),
+                      onTap: () {
+                        edt_gender.text = 'Female';
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                ),
+              ));
+        });
   }
 
   //gambar profile
@@ -260,9 +292,7 @@ class ControllerVerifikasi extends GetxController {
           await api.uploadProfileImg(ProfileImg: imgPreview.value);
       if (uploadSelImg != null) {
         var selfImgValue = uploadSelImg["data"]["key"];
-        var sample = selfImgValue;
-        uploadImg = sample.toString().replaceAll('DEV/', '');
-        log('return img Profile : ' + uploadImg.toString());
+        uploadImg = selfImgValue;
       }
     } catch (e) {
       log(e.toString());
@@ -275,9 +305,7 @@ class ControllerVerifikasi extends GetxController {
           await api.uploadProfileKtp(ProfileKtp: ktpPreview.value);
       if (uploadSelktp != null) {
         var selfKtpValue = uploadSelktp["data"]["key"];
-        var sample = selfKtpValue;
-        uploadKtp = sample.toString().replaceAll('DEV/', '');
-        log('return ktp : ' + uploadKtp.toString());
+        uploadKtp = selfKtpValue;
       }
     } catch (e) {
       log(e.toString());
@@ -300,6 +328,7 @@ class ControllerVerifikasi extends GetxController {
         ktp: uploadKtp,
         email: edt_email.text,
         image: uploadImg,
+        gender: edt_gender.text,
         birth: datePick.value,
         address: edt_alamat.text,
         nik: edt_nik.text,
