@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:intake_customer/framework/api1.dart';
 import 'package:url_launcher/url_launcher.dart';

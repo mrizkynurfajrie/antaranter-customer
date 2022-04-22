@@ -164,7 +164,7 @@ class PageProfile extends GetView<ControllerProfile> {
             //   ),
             // ),
             GestureDetector(
-              onTap: () {},
+              onTap: ()=> controller.emailInvitation(),
               child: Container(
                 margin: const EdgeInsets.only(top: 5, left: 10, right: 10),
                 height: Get.height * 0.08,
