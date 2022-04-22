@@ -48,11 +48,8 @@ class PageProfile extends GetView<ControllerProfile> {
                             width: 85.w,
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl: imageUrlPath(controller
-                                      .controllerUserInfo.user.value.image ??
-                                  ''),
-                              progressIndicatorBuilder:
-                                  (context, url, downloadProgress) => Shimmer(
+                              imageUrl: imageUrlPath(controller.imgShow.value),
+                              progressIndicatorBuilder: (context, url, downloadProgress) => Shimmer(
                                 gradient: AppColor.shimmerGradient,
                                 child: Container(
                                   color: Colors.white,
@@ -60,13 +57,11 @@ class PageProfile extends GetView<ControllerProfile> {
                               ),
                               errorWidget: (context, url, error) => Container(
                                 alignment: Alignment.topCenter,
-                                margin: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
+                                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                                 height: 50,
                                 width: 50,
                                 decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(100)),
+                                    borderRadius: BorderRadius.all(Radius.circular(100)),
                                     color: Color(0xffffffff)),
                                 child: Icon(
                                   CupertinoIcons.person_fill,
@@ -80,10 +75,9 @@ class PageProfile extends GetView<ControllerProfile> {
                         Container(
                           margin: const EdgeInsets.only(top: 10),
                           child: Text(
-                            controller.controllerUserInfo.user.value.username ??
-                                "Pelanggan",
-                            style: const TextStyle(
-                                fontSize: 20, color: AppColor.whiteColor),
+                            controller.controllerUserInfo.user.value.username
+                                ?? "Pelanggan",
+                            style: const TextStyle(fontSize: 20, color: AppColor.whiteColor),
                           ),
                         ),
                         Container(
