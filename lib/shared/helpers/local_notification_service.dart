@@ -1,7 +1,10 @@
 import 'dart:developer';
 
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class LocalNotificationService {
   static final FlutterLocalNotificationsPlugin _notificationPlugin =
@@ -48,4 +51,70 @@ class LocalNotificationService {
       print(e.toString());
     }
   }
+
+  static void addScheduleNotification({
+    required int id,
+    required String title,
+    required String body,
+    required DateTime schedule,
+  }) async {
+    // tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5))
+    String timeZoneName = 'Unknown';
+    tz.initializeTimeZones();
+    timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(timeZoneName));
+    await _notificationPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      // schedule,
+      tz.TZDateTime.from(schedule, tz.local),
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'intake',
+          'intake',
+          channelDescription: 'intake',
+          importance: Importance.max,
+          priority: Priority.high,
+        ),
+      ),
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
+  }
+
+  static void updateScheduleNotification({
+    required int id,
+    required String title,
+    required String body,
+    required DateTime schedule,
+  }) async {
+    // tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5))
+    String timeZoneName = 'Unknown';
+    tz.initializeTimeZones();
+    timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(timeZoneName));
+    await _notificationPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      // schedule,
+      tz.TZDateTime.from(schedule, tz.local),
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'intake',
+          'intake',
+          channelDescription: 'intake',
+          importance: Importance.max,
+          priority: Priority.high,
+        ),
+      ),
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
+  }
+
+
 }
