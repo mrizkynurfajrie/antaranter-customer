@@ -53,7 +53,7 @@ showPopUp({
                 ),
                 verticalSpace(Insets.xl),
                 ButtonPrimary(
-                  onPressed: () {},
+                  onPressed: onPress ?? (){} ,
                   size: Get.width * 0.5,
                   label: labelButton ?? "OK",
                 ),
@@ -80,7 +80,7 @@ showPopUpError({
       });
 }
 
-dialogError({var errorTitle, required var message}){
+dialogError({var errorTitle, required var message}) {
   Get.defaultDialog(
       title: errorTitle,
       content: Column(
@@ -89,20 +89,16 @@ dialogError({var errorTitle, required var message}){
             message ?? "Informasi",
             textAlign: TextAlign.center,
           ),
-          SizedBox(
-              height: 30
-          ),
+          SizedBox(height: 30),
           ButtonPrimary(
-              onPressed: ()=> Get.back(),
+              onPressed: () => Get.back(),
               size: Get.width * 0.5,
-              label: 'Kembali'
-          )
+              label: 'Kembali')
         ],
-      )
-  );
+      ));
 }
 
-dialogNormal({var normalTilte, required var normalMessage, Function()? toDo}){
+dialogNormal({var normalTilte, required var normalMessage, Function()? toDo}) {
   Get.defaultDialog(
       title: normalTilte ?? 'Informasi',
       content: Column(
@@ -111,17 +107,13 @@ dialogNormal({var normalTilte, required var normalMessage, Function()? toDo}){
             normalMessage,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
-              height: 30
-          ),
+          SizedBox(height: 30),
           ButtonPrimary(
-              onPressed: toDo ?? ()=> Get.back(),
+              onPressed: toDo ?? () => Get.back(),
               size: Get.width * 0.5,
-              label: 'Kembali'
-          )
+              label: 'Kembali')
         ],
-      )
-  );
+      ));
 }
 
 showPopUpChoice({

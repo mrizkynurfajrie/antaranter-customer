@@ -375,8 +375,8 @@ class PageHome extends GetView<ControllerHome> {
                                   : "Admin sedang melakukan verifikasi data anda mohon tunggu";
                               // Get.snackbar("Pemberitahuan", message);
                               dialogNormal(
-                                  normalTilte: 'Pemberitahuan',
-                                  normalMessage: message,
+                                normalTilte: 'Pemberitahuan',
+                                normalMessage: message,
                               );
                             }
                           },
@@ -389,11 +389,10 @@ class PageHome extends GetView<ControllerHome> {
                             AppIcons.titipIcon,
                             fit: BoxFit.contain,
                           ),
-                          ontap: () =>
-                              dialogNormal(
-                                  normalTilte: 'AntarAnter Titip',
-                                  normalMessage: 'Layanan Titip akan segera tersedia'
-                              ),
+                          ontap: () => dialogNormal(
+                              normalTilte: 'AntarAnter Titip',
+                              normalMessage:
+                                  'Layanan Titip akan segera tersedia'),
                         ),
                       ],
                     ),
@@ -448,18 +447,27 @@ class PageHome extends GetView<ControllerHome> {
                       verticalSpace(Insets.med),
                       Obx(
                         () => controller.loading.isFalse
-                            ? Expanded(
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: controller.homeResponse.value
-                                      .adsResponse?.ads?.length,
-                                  itemBuilder: (context, index) => AdsItem(
-                                    ads: controller.homeResponse.value
-                                            .adsResponse?.ads?[index] ??
-                                        Ads(),
-                                  ),
-                                ),
-                              )
+                            ? controller.homeResponse.value.adsResponse!.ads!
+                                    .isNotEmpty
+                                ? Expanded(
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: controller.homeResponse.value
+                                          .adsResponse?.ads?.length,
+                                      itemBuilder: (context, index) => AdsItem(
+                                        ads: controller.homeResponse.value
+                                                .adsResponse?.ads?[index] ??
+                                            Ads(),
+                                      ),
+                                    ),
+                                  )
+                                : const Expanded(
+                                    child: Center(
+                                      child: CardRounded(
+                                        child: Text("Penawaran kosong"),
+                                      ),
+                                    ),
+                                  )
                             : Expanded(
                                 child: Center(
                                   child: loadingIndicatorBottom(context),
