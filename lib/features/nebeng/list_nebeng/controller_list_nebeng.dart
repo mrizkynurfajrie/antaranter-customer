@@ -156,6 +156,9 @@ class ControllerListNebeng extends GetxController {
             .toList();
         if (resultNebeng.isNotEmpty) {
           // print(listNebeng);
+          resultNebeng = resultNebeng
+              .where((nebeng) => nebeng.dateDep!.compareTo(DateTime.now()) >= 0)
+              .toList();
           var resultFilter = await filterData(resultNebeng);
           listNebeng.addAll(resultFilter);
           loadingList.value = false;
@@ -202,7 +205,9 @@ class ControllerListNebeng extends GetxController {
           : DateTime.now();
       var dateEnd = txtDateDeptEnd.text.isNotEmpty
           ? LocaleTime.stringDateToDateTime(txtDateDeptEnd.text)
-          : LocaleTime.stringDateToDateTime("2099-12-30");
+              .add(const Duration(days: 1))
+          : LocaleTime.stringDateToDateTime("9999-12-30");
+
       if (isFilterLocation) {
         listFilterNebeng = listFilterNebeng
             .where((nebeng) =>
