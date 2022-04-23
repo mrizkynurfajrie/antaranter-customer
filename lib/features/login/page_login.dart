@@ -148,31 +148,6 @@ class PageLogin extends GetView<ControllerLogin> {
                       )
                   ),
                 ),
-                // Row(
-                //   crossAxisAlignment: CrossAxisAlignment.center,
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: <Widget>[
-                //     const Text(
-                //       'Belum punya akun? Yuk,',
-                //       style: const TextStyle(
-                //         fontSize: 16,
-                //         fontWeight: FontWeight.w300,
-                //       ),
-                //     ),
-                //     Container(
-                //       margin: const EdgeInsets.only(top: 10),
-                //       child: ButtonText(
-                //         onPressed: ()=> controller.regisRoute(),
-                //         label: 'buat!',
-                //         textStyle: TextStyle(
-                //           color: AppColor.primaryColor.shade600,
-                //           fontSize: 16,
-                //           fontWeight: FontWeight.w500,
-                //         ),
-                //       ),
-                //     )
-                //   ],
-                // )
               ],
             ),
           ),

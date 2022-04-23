@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/splash_screen/controller_splash.dart';
-import 'package:intake_customer/shared/constans/colors.dart';
 
 class PageSplash extends GetView<ControllerSplash> {
   const PageSplash({Key? key}) : super(key: key);
@@ -12,29 +11,39 @@ class PageSplash extends GetView<ControllerSplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: <Widget>[
-          Center(
-            child: Container(
-              margin: const EdgeInsets.only(top: 10),
-              height: Get.height * 0.2.h,
-              child: SvgPicture.asset('assets/logo/AntarAnter-Vertical-SVG.svg'),
+          Container(
+            height: Get.height,
+            width: Get.width,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                  Color(0xffFF6600),
+                  Color(0xffFF2500),
+                ])
             ),
           ),
-          // Center(
-          //   child: Container(
-          //     child: const Text(
-          //       'Mau pergi? Sama kita aja!',
-          //       style: TextStyle(
-          //         fontSize: 16,
-          //         fontWeight: FontWeight.w400,
-          //         color: Color(0xFFC75200)
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          Container(
+            width: Get.width,
+            height: Get.height,
+            alignment: Alignment.bottomCenter,
+            child: SvgPicture.asset('assets/images/city-dark.svg', fit: BoxFit.fitWidth),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  height: Get.height * 0.2.h,
+                  child: SvgPicture.asset('assets/icons/logo-white.svg'),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );

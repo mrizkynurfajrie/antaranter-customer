@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/features/register/controller_register.dart';
 import 'package:flutter/material.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
-import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/others/checkbox_label.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
@@ -136,13 +136,25 @@ class PageRegister extends GetView<ControllerRegister> {
                         visible: controller.regisAgree.value,
                         child: Container(
                           margin: const EdgeInsets.only(top: 10),
-                          child: ButtonText(
-                              onPressed: () => controller.termCondtionPage(),
-                              textStyle: TextStyle(
-                                  color: AppColor.primaryColor.shade600,
-                                  fontWeight: FontWeight.w400),
-                              label:
-                                  'Mohon perhatikan syarat dan ketentuan kami'),
+                          child: RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                  style: TextStyle(
+                                    color: AppColor.bodyColor.shade600,
+                                    fontSize: 16,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(text: 'Berikut adalah '),
+                                    TextSpan(
+                                        text: 'Syarat & Ketentuan',
+                                        style: TextStyle(color: AppColor.primaryColor.shade600, fontWeight: FontWeight.w500),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = ()=> controller.termCondtionPage()
+                                    ),
+                                    TextSpan(text: ' aplikasi'),
+                                  ]
+                              )
+                          ),
                         ),
                       )
                     ],
