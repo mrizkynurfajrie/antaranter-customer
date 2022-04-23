@@ -26,14 +26,8 @@ class PageSplash extends GetView<ControllerSplash> {
                 ])
             ),
           ),
-          Container(
-            width: Get.width,
-            height: Get.height,
-            alignment: Alignment.bottomCenter,
-            child: SvgPicture.asset('assets/images/city-dark.svg', fit: BoxFit.fitWidth),
-          ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Center(
                 child: Container(
@@ -42,6 +36,8 @@ class PageSplash extends GetView<ControllerSplash> {
                   child: SvgPicture.asset('assets/icons/logo-white.svg'),
                 ),
               ),
+              SvgPicture.asset('assets/images/city-dark.svg',
+                alignment: Alignment.bottomCenter,)
             ],
           )
         ],
