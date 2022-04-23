@@ -48,7 +48,7 @@ class PageProfile extends GetView<ControllerProfile> {
                             width: 85.w,
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl: imageUrlPath(controller.imgShow.value),
+                              imageUrl: imageUrlPath(controller.controllerUserInfo.user.value.image??''),
                               progressIndicatorBuilder: (context, url, downloadProgress) => Shimmer(
                                 gradient: AppColor.shimmerGradient,
                                 child: Container(

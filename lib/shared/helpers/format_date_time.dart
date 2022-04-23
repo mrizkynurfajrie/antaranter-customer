@@ -151,7 +151,7 @@ class LocaleTime {
   }
 
   static DateTime parseDate({required String dateString}) {
-    var inputFormat = DateFormat('dd-MM-yyyy HH:mm:ss');
+    var inputFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
     return inputFormat.parse(dateString);
   }
 

@@ -7,6 +7,9 @@ import 'package:intake_customer/response/nebeng_response.dart';
 import 'package:intake_customer/response/nebeng_order_response.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
+import 'package:intake_customer/shared/helpers/format_date_time.dart';
+import 'package:intake_customer/shared/helpers/local_notification_service.dart';
+import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 
 class ControllerOrderNebeng extends GetxController {
   var controllerUserInfo = Get.find<ControllerUserInfo>();
@@ -41,17 +44,45 @@ class ControllerOrderNebeng extends GetxController {
             orderNebengRes.nebengOrder?.id ?? 0,
             "nebeng",
           );
+          addReminderNebeng(orderNebengRes);
           // IF SUCCESS GO TO PAGE DETAIL ORDER NEBENG
           Get.offAllNamed(Routes.main, arguments: 1);
         } else {
           Get.back();
           String? error = res['errors'][0]['message']['message'];
-          Get.snackbar("Gagal memesan", error ?? "Gagal melakukan pemesanan");
+          // Get.snackbar("Gagal memesan", error ?? "Gagal melakukan pemesanan");
+          throw error ?? "Gagal melakukan pemesanan";
         }
       } catch (e) {
         // TODO HANDLE ERROR
         log(e.toString());
+        showPopUpError(errorMessage: e.toString());
       }
     }
+  }
+
+  void addReminderNebeng(NebengOrderResponse nebengOrderResponse) {
+    // var dateTimeDep = LocaleTime.parseDate(
+    //     dateString:
+    //         "${LocaleTime.stringDateToDateTime(nebengOrderResponse.nebengPost!.dateDep!.toString()).toString()} ${nebengOrderResponse.nebengPost!.timeDep}");
+    var dateDep = nebengOrderResponse.nebengPost!.dateDep!;
+    var timeDep = nebengOrderResponse.nebengPost!.timeDep!.split(':');
+    var scheduleTime = DateTime.utc(
+      dateDep.year,
+      dateDep.month,
+      dateDep.day,
+      int.parse(timeDep[0]),
+      int.parse(
+        timeDep[1],
+      ),
+    );
+    log(scheduleTime.toString());
+    LocalNotificationService.addScheduleNotification(
+      id: nebengOrderResponse.nebengOrder!.id!,
+      title: "AntarAnter",
+      body:
+          "Hai ${controllerUserInfo.user.value.username}, jangan lupa waktu keberangkatan nebeng kamu pada ${LocaleTime.formatDateTimeLocale(scheduleTime.toString())}",
+      schedule: scheduleTime.subtract(const Duration(minutes: 30)),
+    );
   }
 }

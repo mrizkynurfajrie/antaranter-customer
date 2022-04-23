@@ -3,28 +3,29 @@ import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/response/user.dart';
 import 'package:intake_customer/routes/app_routes.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
+import 'package:intake_customer/shared/helpers/local_notification_service.dart';
 
-class ControllerSetting extends GetxController{
-
-  routeToverifikasi(){
+class ControllerSetting extends GetxController {
+  routeToverifikasi() {
     Get.toNamed(Routes.verifikasi);
   }
 
-  routeToTermCondition(){
+  routeToTermCondition() {
     Get.toNamed(Routes.termcondition);
   }
 
-  routeToContactUs(){
+  routeToContactUs() {
     Get.toNamed(Routes.contactus);
   }
 
-  routeToAboutApp(){
+  routeToAboutApp() {
     Get.toNamed(Routes.aboutApp);
   }
 
-  logout()async{
+  logout() async {
     Get.find<ControllerUserInfo>().user.value = User();
     Get.find<ControllerUserInfo>().hasActiveOrder.value = false;
+    LocalNotificationService.removeAllScheduleNotification();
     await Api2().removeStorageForLogout();
     Get.offAllNamed(Routes.login);
   }
