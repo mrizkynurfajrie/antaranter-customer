@@ -62,16 +62,27 @@ class ControllerOrderNebeng extends GetxController {
   }
 
   void addReminderNebeng(NebengOrderResponse nebengOrderResponse) {
-    var dateTimeDep = LocaleTime.parseDate(
-        dateString:
-            "${LocaleTime.stringDateToDateTime(nebengOrderResponse.nebengPost!.dateDep!.toString()).toString()} ${nebengOrderResponse.nebengPost!.timeDep}");
-    log(dateTimeDep.toString());
-    // var scheduleTime = DateTime.utc(dateDep!.year, dateDep.month, dateDep.day);
+    // var dateTimeDep = LocaleTime.parseDate(
+    //     dateString:
+    //         "${LocaleTime.stringDateToDateTime(nebengOrderResponse.nebengPost!.dateDep!.toString()).toString()} ${nebengOrderResponse.nebengPost!.timeDep}");
+    var dateDep = nebengOrderResponse.nebengPost!.dateDep!;
+    var timeDep = nebengOrderResponse.nebengPost!.timeDep!.split(':');
+    var scheduleTime = DateTime.utc(
+      dateDep.year,
+      dateDep.month,
+      dateDep.day,
+      int.parse(timeDep[0]),
+      int.parse(
+        timeDep[1],
+      ),
+    );
+    log(scheduleTime.toString());
     LocalNotificationService.addScheduleNotification(
       id: nebengOrderResponse.nebengOrder!.id!,
       title: "AntarAnter",
-      body: 'Hai , jangan lupa waktu keberangkatan nebeng kamu pada ',
-      schedule: dateTimeDep.subtract(const Duration(minutes: 30)),
+      body:
+          "Hai ${controllerUserInfo.user.value.username}, jangan lupa waktu keberangkatan nebeng kamu pada ${LocaleTime.formatDateTimeLocale(scheduleTime.toString())}",
+      schedule: scheduleTime.subtract(const Duration(minutes: 30)),
     );
   }
 }

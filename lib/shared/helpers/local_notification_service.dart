@@ -25,6 +25,13 @@ class LocalNotificationService {
         log(payload.toString());
       },
     );
+
+    final NotificationAppLaunchDetails? notificationAppLaunchDetails =
+        await _notificationPlugin.getNotificationAppLaunchDetails();
+    if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+      var selectedNotificationPayload = notificationAppLaunchDetails!.payload;
+      log("From local notif : " + selectedNotificationPayload.toString());
+    }
   }
 
   static void displayNotification(RemoteMessage message) async {
@@ -90,6 +97,7 @@ class LocalNotificationService {
     required String body,
     required DateTime schedule,
   }) async {
+    await _notificationPlugin.cancel(id);
     // tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5))
     String timeZoneName = 'Unknown';
     tz.initializeTimeZones();
@@ -116,5 +124,12 @@ class LocalNotificationService {
     );
   }
 
+  static void removeSingleScheduleNotification(int id) async {
+    await _notificationPlugin.cancel(id);
+  }
+  
+  static void removeAllScheduleNotification() async {
+    await _notificationPlugin.cancelAll();
+  }
 
 }

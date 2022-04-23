@@ -60,7 +60,8 @@ class ControllerListNebeng extends GetxController {
             .toList();
         if (resultNebeng.isNotEmpty) {
           resultNebeng = resultNebeng
-              .where((nebeng) => nebeng.dateDep!.compareTo(DateTime.now()) >= 0)
+              .where(
+                  (nebeng) => daysBetween(nebeng.dateDep!, DateTime.now()) < 0)
               .toList();
           listNebeng.addAll(resultNebeng);
           // print(listNebeng);
@@ -157,7 +158,8 @@ class ControllerListNebeng extends GetxController {
         if (resultNebeng.isNotEmpty) {
           // print(listNebeng);
           resultNebeng = resultNebeng
-              .where((nebeng) => nebeng.dateDep!.compareTo(DateTime.now()) >= 0)
+              .where(
+                  (nebeng) => daysBetween(nebeng.dateDep!, DateTime.now()) < 0)
               .toList();
           var resultFilter = await filterData(resultNebeng);
           listNebeng.addAll(resultFilter);
@@ -205,21 +207,23 @@ class ControllerListNebeng extends GetxController {
           : DateTime.now();
       var dateEnd = txtDateDeptEnd.text.isNotEmpty
           ? LocaleTime.stringDateToDateTime(txtDateDeptEnd.text)
-              .add(const Duration(days: 1))
+          // .add(const Duration(days: 1))
           : LocaleTime.stringDateToDateTime("9999-12-30");
 
       if (isFilterLocation) {
         listFilterNebeng = listFilterNebeng
             .where((nebeng) =>
-                nebeng.dateDep!.compareTo(dateStart) >= 0 &&
-                nebeng.dateDep!.compareTo(dateEnd) <= 0)
+                daysBetween(nebeng.dateDep!, dateStart) <= 0 &&
+              daysBetween(nebeng.dateDep!, dateEnd) >= 0)
             .toList();
       } else {
         listFilterNebeng = data.where((nebeng) {
           // print(
-          //     "ID ${nebeng.id} ${nebeng.dateDep!.compareTo(dateStart)} ${nebeng.dateDep!.compareTo(dateEnd)}");
-          return nebeng.dateDep!.compareTo(dateStart) >= 0 &&
-              nebeng.dateDep!.compareTo(dateEnd) <= 0;
+          //     "ID ${nebeng.id} ${nebeng.dateDep!.toUtc().compareTo(dateStart.toUtc())} ${nebeng.dateDep!.compareTo(dateEnd)}");
+          // print(
+          //     "ID ${nebeng.id} ${daysBetween(nebeng.dateDep!, dateStart)} ${daysBetween(nebeng.dateDep!, dateEnd)}");
+          return daysBetween(nebeng.dateDep!, dateStart) <= 0 &&
+              daysBetween(nebeng.dateDep!, dateEnd) >= 0;
         }).toList();
       }
     } catch (e) {
@@ -236,5 +240,11 @@ class ControllerListNebeng extends GetxController {
     selectedCityArv = 'Pilih kota tujuan'.obs;
     txtDateDeptStart.text = '';
     txtDateDeptEnd.text = '';
+  }
+
+  int daysBetween(DateTime from, DateTime to) {
+    from = DateTime(from.year, from.month, from.day);
+    to = DateTime(to.year, to.month, to.day);
+    return (to.difference(from).inHours / 24).round();
   }
 }

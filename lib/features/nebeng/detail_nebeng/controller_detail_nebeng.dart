@@ -7,6 +7,8 @@ import 'package:intake_customer/framework/api2.dart';
 import 'package:intake_customer/response/nebeng_order_response.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/controller/controller_user_info.dart';
+import 'package:intake_customer/shared/helpers/format_date_time.dart';
+import 'package:intake_customer/shared/helpers/local_notification_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ControllerDetailNebeng extends GetxController
@@ -31,6 +33,7 @@ class ControllerDetailNebeng extends GetxController
       var res = await api.detailNebengOrder(id);
       if (res['success'] == true) {
         orderResponse.value = NebengOrderResponse.fromJson(res['data']);
+        updateReminderNebeng(orderResponse.value);
         if (orderResponse.value.nebengOrder?.status == 3 ||
             orderResponse.value.nebengOrder?.status == 4) {
           controllerUserInfo.removeActiveOrder();
@@ -109,6 +112,7 @@ class ControllerDetailNebeng extends GetxController
               orderResponse.value.nebengOrder?.id ?? 0,
               "nebeng",
             );
+            updateReminderNebeng(orderResponse.value);
             controllerUserInfo.setUserHasActiveOrder(true);
             change(orderResponse.value, status: RxStatus.success());
           } catch (e) {
@@ -145,6 +149,8 @@ class ControllerDetailNebeng extends GetxController
         var res = await api.cancelNebengOrder(
           orderResponse.value.nebengOrder?.id ?? 0,
         );
+        LocalNotificationService.removeSingleScheduleNotification(
+            orderResponse.value.nebengOrder?.id ?? 0);
         log(res.toString());
         if (res['success'] == true) {
           controllerUserInfo.removeActiveOrder();
@@ -176,6 +182,7 @@ class ControllerDetailNebeng extends GetxController
     int status = orderResponse.value.nebengOrder?.status ?? 0;
     return status == 3;
   }
+
   String statusOrderNebeng() {
     var statusValue = '';
     switch (orderResponse.value.nebengOrder?.status ?? 0) {
@@ -202,5 +209,27 @@ class ControllerDetailNebeng extends GetxController
         break;
     }
     return statusValue;
+  }
+
+  void updateReminderNebeng(NebengOrderResponse nebengOrderResponse) {
+    var dateDep = nebengOrderResponse.nebengPost!.dateDep!;
+    var timeDep = nebengOrderResponse.nebengPost!.timeDep!.split(':');
+    var scheduleTime = DateTime.utc(
+      dateDep.year,
+      dateDep.month,
+      dateDep.day,
+      int.parse(timeDep[0]),
+      int.parse(
+        timeDep[1],
+      ),
+    );
+    log(scheduleTime.toString());
+    LocalNotificationService.updateScheduleNotification(
+      id: nebengOrderResponse.nebengOrder!.id!,
+      title: "AntarAnter",
+      body:
+          "Hai ${controllerUserInfo.user.value.username}, jangan lupa waktu keberangkatan nebeng kamu pada ${LocaleTime.formatDateTimeLocale(scheduleTime.toString())}",
+      schedule: scheduleTime.subtract(const Duration(minutes: 30)),
+    );
   }
 }
