@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/helpers/utils.dart';
-import 'package:intake_customer/shared/widgets/buttons/button_text.dart';
 import 'package:intake_customer/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -122,31 +122,57 @@ class PageLogin extends GetView<ControllerLogin> {
                             )
                           : loadingIndicator(context),
                     ),),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Text(
-                      'Belum punya akun? Yuk,',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 10),
-                      child: ButtonText(
-                        onPressed: ()=> controller.regisRoute(),
-                        label: 'buat!',
-                        textStyle: TextStyle(
-                          color: AppColor.primaryColor.shade600,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: TextStyle(
+                            color: AppColor.bodyColor.shade600,
+                            fontSize: 16,
                         ),
-                      ),
-                    )
-                  ],
-                )
+                        children: <TextSpan>[
+                          TextSpan(text: 'Belum punya '),
+                          TextSpan(
+                              text: 'akun? ',
+                              style: TextStyle(color: AppColor.primaryColor.shade600, fontWeight: FontWeight.w500),
+                              recognizer: TapGestureRecognizer()
+                              ..onTap = ()=> controller.regisRoute()
+                          ),
+                          TextSpan(text: 'Atau lupa '),
+                          TextSpan(
+                              text: 'password?',
+                              style: TextStyle(color: AppColor.primaryColor.shade600, fontWeight: FontWeight.w500)
+                          ),
+                        ]
+                      )
+                  ),
+                ),
+                // Row(
+                //   crossAxisAlignment: CrossAxisAlignment.center,
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: <Widget>[
+                //     const Text(
+                //       'Belum punya akun? Yuk,',
+                //       style: const TextStyle(
+                //         fontSize: 16,
+                //         fontWeight: FontWeight.w300,
+                //       ),
+                //     ),
+                //     Container(
+                //       margin: const EdgeInsets.only(top: 10),
+                //       child: ButtonText(
+                //         onPressed: ()=> controller.regisRoute(),
+                //         label: 'buat!',
+                //         textStyle: TextStyle(
+                //           color: AppColor.primaryColor.shade600,
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.w500,
+                //         ),
+                //       ),
+                //     )
+                //   ],
+                // )
               ],
             ),
           ),
