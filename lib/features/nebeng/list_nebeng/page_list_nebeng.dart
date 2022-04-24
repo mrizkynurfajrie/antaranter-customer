@@ -108,8 +108,8 @@ class _CardInfoProkesState extends State<CardInfoProkes> {
     return InkWell(
       onTap: () {
         Get.toNamed(Routes.webView, arguments: {
-          'title': "Informasi perjalanan",
-          'url': "https://www.tiket.com/info/tiket-safe",
+          'title': "Panduan protokol kesehatan",
+          'url': "https://antaranter.com/panduan-protokol-kesehatan",
         });
       },
       child: AnimatedContainer(
@@ -132,7 +132,7 @@ class _CardInfoProkesState extends State<CardInfoProkes> {
             horizontalSpace(Insets.sm),
             Expanded(
               child: Text(
-                "Informasi umum syarat dan ketentuan perjalanan",
+                "Informasi panduan protokol kesehatan",
                 style: TextStyles.inter.copyWith(
                   color: AppColor.whiteColor,
                 ),
