@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
 
 class AppIcons {
@@ -42,13 +43,25 @@ class AppIcons {
 }
 
 class AppLogos {
-  static const logoColored = 'assets/logo/AntarAnter-Horizontal.png';
-  static const verticalLogo = 'assets/logo/AntarAnter-Vertical.png';
-  static const logoMark = 'assets/logo/AntarAnter-Logo-Only.png';
-  static const logoTextOnly = 'assets/logo/AntarAnter-Text-Only.png';
+  // static const  = 'assets/logo/AntarAnter-Horizontal.png';
+  // static const  = 'assets/logo/AntarAnter-Vertical.png';
+  // static const  = 'assets/logo/AntarAnter-Logo-Only.png';
+  // static const  = 'assets/logo/AntarAnter-Text-Only.png';
+
+  static const logoOnly = 'assets/logo/AntarAnter-Logo-Only.svg';
+  static const logoOnlyWhite = 'assets/logo/AntarAnter-Logo-Only-white.svg';
+  static const logoHorizontal = 'assets/logo/AntarAnter-Horizontal.svg';
+  static const logoTextOnlySvg = 'assets/logo/AntarAnter-Text-Only.svg';
+
 
   static Widget logoAppBar(String asset) {
     return Image.asset(
+      asset,
+      height: IconSizes.lg,
+    );
+  }
+  static Widget logoAppBarSvg(String asset) {
+    return SvgPicture.asset(
       asset,
       height: IconSizes.lg,
     );

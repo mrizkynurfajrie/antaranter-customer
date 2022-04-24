@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/styles.dart';
@@ -16,8 +17,8 @@ class PageProcessOrderNebeng extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              AppLogos.logoMark,
+            SvgPicture.asset(
+              AppLogos.logoOnly,
               width: Get.width * 0.4,
             ),
             Lottie.asset(

@@ -29,8 +29,8 @@ class PageHome extends GetView<ControllerHome> {
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.whiteColor,
       toolbarElevation: 2,
-      center: AppLogos.logoAppBar(
-        AppLogos.logoTextOnly,
+      center: AppLogos.logoAppBarSvg(
+        AppLogos.logoTextOnlySvg,
       ),
       title: "IN-TAKE",
       enableBack: false,

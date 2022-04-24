@@ -19,7 +19,7 @@ class PageCreateOrder extends StatelessWidget {
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.whiteColor,
-      center: AppLogos.logoAppBar(AppLogos.logoColored),
+      center: null,
       title: "IN-TAKE",
       enableBack: false,
       child: SingleChildScrollView(
