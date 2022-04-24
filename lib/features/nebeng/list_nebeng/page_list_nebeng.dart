@@ -47,6 +47,7 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
               physics: const AlwaysScrollableScrollPhysics(),
               child: Column(
                 children: [
+                  const CardInfoProkes(),
                   FilterWidget(
                     controller: controller,
                   ),
@@ -93,6 +94,69 @@ class PageListNebeng extends GetView<ControllerListNebeng> {
   }
 }
 
+class CardInfoProkes extends StatefulWidget {
+  const CardInfoProkes({Key? key}) : super(key: key);
+
+  @override
+  State<CardInfoProkes> createState() => _CardInfoProkesState();
+}
+
+class _CardInfoProkesState extends State<CardInfoProkes> {
+  double _height = 55.h;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Get.toNamed(Routes.webView, arguments: {
+          'title': "Informasi perjalanan",
+          'url': "https://www.tiket.com/info/tiket-safe",
+        });
+      },
+      child: AnimatedContainer(
+        padding: EdgeInsets.symmetric(horizontal: Insets.sm),
+        // Use the properties stored in the State class.
+        width: Get.width,
+        height: _height,
+        color: AppColor.primaryColor,
+        // Define how long the animation should take.
+        duration: const Duration(milliseconds: 500),
+        // Provide an optional curve to make the animation feel smoother.
+        curve: Curves.easeOut,
+        child: Row(
+          children: [
+            Icon(
+              Icons.info_outline,
+              color: AppColor.whiteColor,
+              size: IconSizes.med,
+            ),
+            horizontalSpace(Insets.sm),
+            Expanded(
+              child: Text(
+                "Informasi umum syarat dan ketentuan perjalanan",
+                style: TextStyles.inter.copyWith(
+                  color: AppColor.whiteColor,
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _height = 0;
+                });
+              },
+              icon: Icon(
+                Icons.close,
+                size: Sizes.sm,
+                color: AppColor.whiteColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class FilterWidget extends StatelessWidget {
   const FilterWidget({
     Key? key,
@@ -118,7 +182,7 @@ class FilterWidget extends StatelessWidget {
                 controller.buildCitiesDep(context);
               },
               padding: EdgeInsets.all(Insets.sm),
-              margin: EdgeInsets.only(bottom: Insets.med),
+              margin: EdgeInsets.only(bottom: Insets.xs),
               width: Get.width,
             ),
             InputSelection(
@@ -129,11 +193,11 @@ class FilterWidget extends StatelessWidget {
                 controller.buildCitiesArv(context);
               },
               padding: EdgeInsets.all(Insets.sm),
-              margin: EdgeInsets.only(bottom: Insets.med),
+              margin: EdgeInsets.only(bottom: Insets.xs),
               width: Get.width,
             ),
             InputDate(
-              margin: EdgeInsets.only(bottom: Insets.med),
+              margin: EdgeInsets.only(bottom: Insets.xs),
               label: "Tanggal Keberangkatan",
               hintText: 'Pilih Tanggal Berangkat',
               controller: controller.txtDateDeptStart,
@@ -161,7 +225,7 @@ class FilterWidget extends StatelessWidget {
               ),
             ),
             InputDate(
-              margin: EdgeInsets.only(bottom: Insets.med),
+              margin: EdgeInsets.only(bottom: Insets.xs),
               label: "Sampai dengan",
               hintText: 'Pilih Tanggal Berangkat',
               controller: controller.txtDateDeptEnd,

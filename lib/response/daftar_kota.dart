@@ -19,7 +19,7 @@ class DaftarKota {
   String createdAt;
   String updatedAt;
   dynamic deletedAt;
-  int provinceId;
+  dynamic provinceId;
 
   factory DaftarKota.fromJson(Map<String, dynamic> json) => DaftarKota(
     id: json["id"],

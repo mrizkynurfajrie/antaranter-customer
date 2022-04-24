@@ -23,7 +23,6 @@ class ControllerVerifikasi extends GetxController {
   var edt_nik = TextEditingController();
   var edt_gender = TextEditingController();
 
-
   var pict = ''.obs;
   var datePick = ''.obs;
   var imgPreview = ''.obs;
@@ -92,26 +91,27 @@ class ControllerVerifikasi extends GetxController {
         builder: (BuildContext bc) {
           return SafeArea(
               child: Container(
-                child: Wrap(
-                  children: <Widget>[
-                    ListTile(
-                        leading: Icon(CupertinoIcons.person_fill, color: Colors.blue),
-                        title: Text('Male'),
-                        onTap: () {
-                          edt_gender.text = 'Male';
-                          Navigator.of(context).pop();
-                        }),
-                    ListTile(
-                      leading: Icon(CupertinoIcons.person_fill, color: Colors.pink),
-                      title: Text('Female'),
-                      onTap: () {
-                        edt_gender.text = 'Female';
-                        Navigator.of(context).pop();
-                      },
-                    )
-                  ],
-                ),
-              ));
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                    leading:
+                        Icon(CupertinoIcons.person_fill, color: Colors.blue),
+                    title: Text('Male'),
+                    onTap: () {
+                      edt_gender.text = 'Male';
+                      Navigator.of(context).pop();
+                    }),
+                ListTile(
+                  leading: Icon(CupertinoIcons.person_fill, color: Colors.pink),
+                  title: Text('Female'),
+                  onTap: () {
+                    edt_gender.text = 'Female';
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ),
+          ));
         });
   }
 
@@ -249,6 +249,7 @@ class ControllerVerifikasi extends GetxController {
       loading.value = true;
       allKota.clear();
       var kota = await api.getKota((id_provinsi == 0) ? 0 : id_provinsi);
+      log(kota.toString());
       if (kota != null) {
         var daftarKota = kota["data"];
         allKota(RxList<DaftarKota>.from(
@@ -257,7 +258,7 @@ class ControllerVerifikasi extends GetxController {
       loading.value = false;
     } catch (e) {
       loading.value = false;
-      log(e.toString());
+      log("Error get kota : " + e.toString());
     }
   }
 
@@ -296,6 +297,8 @@ class ControllerVerifikasi extends GetxController {
       }
     } catch (e) {
       log(e.toString());
+      loading.value = false;
+      dialogError(errorTitle: 'Failed',message: e.toString());
     }
   }
 
@@ -309,11 +312,14 @@ class ControllerVerifikasi extends GetxController {
       }
     } catch (e) {
       log(e.toString());
+      loading.value = false;
+      dialogError(errorTitle: 'Failed',message: e.toString());
     }
   }
 
-  validator()async{
-    if(formkeyVerif.currentState!.validate()){
+  validator() async {
+    if (formkeyVerif.currentState!.validate()) {
+      loading.value = true;
       await uploadImgProfile();
       await uploadImgktp();
       updateProfile();
@@ -349,18 +355,18 @@ class ControllerVerifikasi extends GetxController {
           if (resultUserVerify['success'] == true) {
             mainController.user.value.status = 2;
             mainController.user.refresh();
+            await Api2().setUser(user: mainController.user.value.toJson());
             dialogNormal(
                 normalTilte: "verification",
-                normalMessage: "Your account has been updated"
-            );
+                normalMessage: "Your account has been updated");
           } else {
             throw "Something error verify user";
           }
         } else {
           dialogNormal(
               normalTilte: "verification",
-              normalMessage: "Your account has been updated, please fill in your identity card and identity number"
-          );
+              normalMessage:
+                  "Your account has been updated, please fill in your identity card and identity number");
         }
       } else {
         throw "Something error update data";
@@ -369,10 +375,7 @@ class ControllerVerifikasi extends GetxController {
     } catch (e) {
       loading.value = false;
       log(e.toString());
-      dialogError(
-          errorTitle: 'Failed',
-          message: e.toString()
-      );
+      dialogError(errorTitle: 'Failed', message: e.toString());
     }
   }
 }

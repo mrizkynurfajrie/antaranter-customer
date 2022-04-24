@@ -464,7 +464,8 @@ class PageHome extends GetView<ControllerHome> {
                                 : const Expanded(
                                     child: Center(
                                       child: CardRounded(
-                                        child: Text("Penawaran kosong"),
+                                        child: Text(
+                                            "Belum ada penawaran untuk anda"),
                                       ),
                                     ),
                                   )

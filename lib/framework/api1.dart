@@ -6,8 +6,8 @@ import 'api2.dart';
 import 'package:http_parser/http_parser.dart';
 
 class Api1 {
-  String baseUrl = 'https://api.intakekurir.com/';
-  String webUrl = 'https://antaranter.indoteknokarya.com/';
+  String baseUrl = 'https://api-prod.intakekurir.com/';
+  String webUrl = 'https://antaranter.com/';
   String imgUrl = 'https://antaranter.sgp1.digitaloceanspaces.com/';
 
   Future<dynamic> apiJSONGet(String url) async {

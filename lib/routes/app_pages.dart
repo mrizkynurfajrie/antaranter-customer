@@ -38,6 +38,7 @@ import 'package:intake_customer/features/splash_screen/splash_screen.dart';
 import 'package:intake_customer/features/temcondition/page_termcondition.dart';
 import 'package:intake_customer/features/verifikasi/binding_verifikasi.dart';
 import 'package:intake_customer/features/verifikasi/page_verifikasi.dart';
+import 'package:intake_customer/shared/widgets/pages/page_webview.dart';
 
 import 'app_routes.dart';
 
@@ -150,6 +151,10 @@ class AppPages {
       name: Routes.detailHistory,
       page: () => const PageDetailHistory(),
       binding: BindingDetailHistory(),
+    ),
+    GetPage(
+      name: Routes.webView,
+      page: () => const PageWebView(),
     ),
   ];
 }

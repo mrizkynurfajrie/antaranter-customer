@@ -68,6 +68,7 @@ class ControllerListNebeng extends GetxController {
           await getCities();
           loading.value = loadingList.value = false;
         } else {
+          await getCities();
           loading.value = loadingList.value = false;
         }
       } else {
