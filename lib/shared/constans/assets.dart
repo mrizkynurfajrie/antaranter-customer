@@ -43,16 +43,17 @@ class AppIcons {
 }
 
 class AppLogos {
-  // static const  = 'assets/logo/AntarAnter-Horizontal.png';
-  // static const  = 'assets/logo/AntarAnter-Vertical.png';
-  // static const  = 'assets/logo/AntarAnter-Logo-Only.png';
-  // static const  = 'assets/logo/AntarAnter-Text-Only.png';
+  static const logoOnlySvg = 'assets/logo/antaranter-logo-only.svg';
+  static const logoOnlyWhiteSvg = 'assets/logo/antaranter-logo-only-white.svg';
+  static const logoHorizontalSvg = 'assets/logo/antaranter-horizontal.svg';
+  static const logoVerticalSvg = 'assets/logo/antaranter-logo-vertical.svg';
+  // static const logoTextOnlySvg = 'assets/logo/antaranter-text-only.svg';
 
-  static const logoOnly = 'assets/logo/AntarAnter-Logo-Only.svg';
-  static const logoOnlyWhite = 'assets/logo/AntarAnter-Logo-Only-white.svg';
-  static const logoHorizontal = 'assets/logo/AntarAnter-Horizontal.svg';
-  static const logoTextOnlySvg = 'assets/logo/AntarAnter-Text-Only.svg';
-
+  static const logoOnlyPng = 'assets/logo/antaranter-logo-only.png';
+  static const logoOnlyWhitePng = 'assets/logo/antaranter-logo-only-white.png';
+  static const logoHorizontalPng = 'assets/logo/antaranter-horizontal.png';
+  static const logoVerticalPng = 'assets/logo/antaranter-logo-vertical.png';
+  // static const logoTextOnlyPng = 'assets/logo/antaranter-text-only.png';
 
   static Widget logoAppBar(String asset) {
     return Image.asset(
@@ -60,6 +61,7 @@ class AppLogos {
       height: IconSizes.lg,
     );
   }
+
   static Widget logoAppBarSvg(String asset) {
     return SvgPicture.asset(
       asset,

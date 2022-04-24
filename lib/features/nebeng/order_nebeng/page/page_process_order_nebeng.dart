@@ -17,8 +17,8 @@ class PageProcessOrderNebeng extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              AppLogos.logoOnly,
+            Image.asset(
+              AppLogos.logoOnlyPng,
               width: Get.width * 0.4,
             ),
             Lottie.asset(

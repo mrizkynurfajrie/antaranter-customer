@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intake_customer/shared/constans/assets.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
 import 'package:intake_customer/shared/widgets/uiComponenr.dart';
 
@@ -25,7 +26,7 @@ class PageAboutApp extends StatelessWidget {
               height: 70,
               width: 220,
               child: const Image(
-                image: AssetImage('assets/logo/AntarAnter-Text-Only.png'),
+                image: AssetImage(AppLogos.logoVerticalPng),
               ),
             ),
           ),
