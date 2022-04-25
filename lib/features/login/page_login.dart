@@ -125,7 +125,7 @@ class PageLogin extends GetView<ControllerLogin> {
                           : loadingIndicator(context),
                     ),),
                 Container(
-                  margin: EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
                   child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
@@ -134,14 +134,14 @@ class PageLogin extends GetView<ControllerLogin> {
                             fontSize: 16,
                         ),
                         children: <TextSpan>[
-                          TextSpan(text: 'Belum punya '),
+                          const TextSpan(text: 'Belum punya '),
                           TextSpan(
                               text: 'akun? ',
                               style: TextStyle(color: AppColor.primaryColor.shade600, fontWeight: FontWeight.w500),
                               recognizer: TapGestureRecognizer()
                               ..onTap = ()=> controller.regisRoute()
                           ),
-                          TextSpan(text: 'Atau lupa '),
+                          const TextSpan(text: 'Atau lupa '),
                           TextSpan(
                               text: 'password?',
                               style: TextStyle(color: AppColor.primaryColor.shade600, fontWeight: FontWeight.w500)
