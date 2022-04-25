@@ -23,10 +23,11 @@ class PageAboutApp extends StatelessWidget {
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 10),
-              height: 70,
-              width: 220,
               child: const Image(
-                image: AssetImage(AppLogos.logoVerticalPng),
+                height: 110,
+                width: 220,
+                image: AssetImage(AppLogos.logoVerticalPng,
+                ),
               ),
             ),
           ),
