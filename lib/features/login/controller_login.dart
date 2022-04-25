@@ -98,4 +98,8 @@ class ControllerLogin extends GetxController {
   regisRoute() {
     Get.toNamed(Routes.register);
   }
+
+  forgetPasswordRoute() {
+    Get.toNamed(Routes.forgetpassword);
+  }
 }

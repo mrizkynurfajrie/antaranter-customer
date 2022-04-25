@@ -144,7 +144,9 @@ class PageLogin extends GetView<ControllerLogin> {
                           const TextSpan(text: 'Atau lupa '),
                           TextSpan(
                               text: 'password?',
-                              style: TextStyle(color: AppColor.primaryColor.shade600, fontWeight: FontWeight.w500)
+                              style: TextStyle(color: AppColor.primaryColor.shade600, fontWeight: FontWeight.w500),
+                              recognizer: TapGestureRecognizer()
+                            ..onTap = ()=> controller.forgetPasswordRoute()
                           ),
                         ]
                       )

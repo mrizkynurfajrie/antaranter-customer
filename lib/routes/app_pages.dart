@@ -9,8 +9,9 @@ import 'package:intake_customer/features/create_order/page_create_order.dart';
 import 'package:intake_customer/features/detail_ads/binding_detail_ads.dart';
 import 'package:intake_customer/features/detail_ads/page_detail_ads.dart';
 import 'package:intake_customer/features/detail_history/binding_detail_history.dart';
-import 'package:intake_customer/features/detail_history/page/page_status_history.dart';
 import 'package:intake_customer/features/detail_history/page_detail_history.dart';
+import 'package:intake_customer/features/forget_password/binding_forgetpassword.dart';
+import 'package:intake_customer/features/forget_password/page_forgetpassword.dart';
 import 'package:intake_customer/features/history/binding_history.dart';
 import 'package:intake_customer/features/history/page_history.dart';
 import 'package:intake_customer/features/home/page_home.dart';
@@ -53,6 +54,11 @@ class AppPages {
     GetPage(
       name: Routes.login,
       page: () => const PageLogin(),
+    ),
+    GetPage(
+      name: Routes.forgetpassword,
+      page: () => const PageForgetPassword(),
+      binding: BindingForgetPassword()
     ),
     GetPage(
       name: Routes.register,
