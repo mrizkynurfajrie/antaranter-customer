@@ -113,12 +113,11 @@ class PageDetailNebeng extends GetView<ControllerDetailNebeng> {
                                       .orderResponse.value.mainRider?.image !=
                                   null) {
                                 showPopUpImage(
-                                  imageUri: imageUrlPath(controller
-                                          .orderResponse
-                                          .value
-                                          .mainRider
-                                          ?.image ??
-                                      ''),
+                                  imageUri: imageUrlPath(
+                                    controller.orderResponse.value.mainRider
+                                            ?.image ??
+                                        '',
+                                  ),
                                 );
                               }
                             },
