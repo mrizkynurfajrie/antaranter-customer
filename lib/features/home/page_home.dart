@@ -383,14 +383,14 @@ class PageHome extends GetView<ControllerHome> {
                         ),
                         horizontalSpace(Get.width * 0.025),
                         MenuButtonHome(
-                          title: "Titip",
+                          title: "Nitip",
                           subTitle: "*Layanan ini akan segera hadir",
                           icon: Image.asset(
                             AppIcons.titipIcon,
                             fit: BoxFit.contain,
                           ),
                           ontap: () => dialogNormal(
-                              normalTilte: 'AntarAnter Titip',
+                              normalTilte: 'AntarAnter Nitip',
                               normalMessage:
                                   'Layanan Titip akan segera tersedia'),
                         ),
