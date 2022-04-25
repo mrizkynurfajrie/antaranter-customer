@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:intake_customer/features/detail_ads/controller_detail_ads.dart';
 import 'package:intake_customer/framework/api1.dart';
 import 'package:intake_customer/shared/constans/colors.dart';
+import 'package:intake_customer/shared/widgets/others/show_dialog.dart';
 import 'package:intake_customer/shared/widgets/pages/page_decoration_top.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PageDetailAds extends GetView<ControllerDetailAds> {
@@ -49,6 +51,20 @@ class PageDetailAds extends GetView<ControllerDetailAds> {
               },
               onWebViewCreated: (webController) {
                 controller.webViewcontroller = webController;
+              },
+              navigationDelegate: (NavigationRequest request) async {
+                if (request.url.contains("tel:")) {
+                  if (await canLaunch(request.url)) {
+                    await launch(request.url);
+                  } else {
+                    showPopUpError(
+                      errorMessage: "error open call ",
+                      errorTitle: 'Terjadi kesalahan',
+                    );
+                  }
+                  return NavigationDecision.prevent;
+                }
+                return NavigationDecision.navigate;
               },
             ),
             controller.loading.isTrue
