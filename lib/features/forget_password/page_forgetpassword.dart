@@ -67,7 +67,7 @@ class PageForgetPassword extends GetView<ControllerForgetPassword> {
                             hintText: '+628xxx',
                             inputBorder: InputBorder.none,
                             validator: (value) {
-                              if (value == null || value.length < 11 || value.length > 11) {
+                              if (value == null || value.length < 9 || value.length > 11 || value.characters.characterAt(0).contains(0.toString())) {
                                 return 'Nomor Ponsel anda salah';
                               } else {
                                 return null;
