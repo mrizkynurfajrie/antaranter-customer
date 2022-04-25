@@ -50,7 +50,7 @@ class PageRegister extends GetView<ControllerRegister> {
                         child: const Text(
                           "Yuk, gabung sama kami!",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.w300,
                           ),
                         ),

@@ -51,7 +51,7 @@ class PageLogin extends GetView<ControllerLogin> {
                   child: const Text(
                     "Sudah punya akun? Yuk, masuk!",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w300,
                     ),
                   ),
